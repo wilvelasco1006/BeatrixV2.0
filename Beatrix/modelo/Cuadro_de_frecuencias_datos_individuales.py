@@ -18,12 +18,13 @@ class Cuadro_de_frecuencias_datos_individuales:
         pass
     
     #Este metodo va a permitir pasarle los datos que vienen en la lista _todos_los_datos al atributo de tipo lista
-    # todos_los_datos a través de un meotodo for que va a iterar en la lista entrante
+    # todos_los_datos a través de un metodo for que va a iterar en la lista entrante
     def set_todos_los_datos(self, _todos_los_datos):
         for dato in _todos_los_datos:
             self.todos_los_datos.append(dato) 
     
     #Metodo para rellenar el atributo datos_para_evaluar con base a la lista entrante _datos_para_evaluar
+    #Este metodo tambien almacenará los intervalos en la clase Cuadro de_frecuencias_intervalos
     def set_datos_para_evaluar(self, _datos_para_evaluar):
         for dato in _datos_para_evaluar:
             self.datos_para_evaluar.append(dato)
@@ -58,3 +59,5 @@ class Cuadro_de_frecuencias_datos_individuales:
         for dato in _frecuencias_en_grados:
             self.frecuencias_en_grados.append(dato)
     
+    def mostrar_la_tabla_de_frecuencias(self):
+        pass
