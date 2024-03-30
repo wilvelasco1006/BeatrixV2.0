@@ -17,6 +17,34 @@ class Cuadro_de_frecuencias_datos_individuales:
     def __init__(self):
         pass
     
+    #Metodos get//////////////////////////////////////
+    def get_todos_los_datos(self):
+        return self.todos_los_datos
+    
+    def get_datos_para_evaluar(self):
+       return self.datos_para_evaluar
+    
+    def get_frecuencias_de_apari(self):
+        return self.frecuencias_de_apari
+    
+    def get_frecuencias_relativas (self):
+        return self.frecuencias_relativas
+    
+    def get_frecuencias_relat_acu (self):
+        return self.frecuencias_relat_acu
+    
+    def get_frecuencias_porcentuales (self):
+        return self.frecuencias_porcentuales
+    
+    def get_frecuencias_porcent_acu (self):
+        return self.frecuencias_porcent_acu
+    
+    def get_frecuencias_en_grados (self):
+        return self.frecuencias_en_grados
+
+    
+    #Metodos set//////////////////////////////////////
+    
     #Este metodo va a permitir pasarle los datos que vienen en la lista _todos_los_datos al atributo de tipo lista
     # todos_los_datos a través de un metodo for que va a iterar en la lista entrante
     def set_todos_los_datos(self, _todos_los_datos):
