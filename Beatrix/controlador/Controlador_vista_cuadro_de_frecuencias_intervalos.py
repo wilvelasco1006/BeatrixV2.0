@@ -1,1 +1,0 @@
-import Beatrix.modelo.Cuadro_de_frecuencias_datos_individuales as cuadro_de_frecuencias

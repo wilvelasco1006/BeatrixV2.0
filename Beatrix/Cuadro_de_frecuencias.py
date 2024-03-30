@@ -60,4 +60,9 @@ class Cuadro_de_frecuencias_datos_individuales:
             self.frecuencias_en_grados.append(dato)
     
     def mostrar_la_tabla_de_frecuencias(self):
-        pass
+        
+        print ("Datos  |  F  |   Fr   |   FrA  |   F%  |   F%A  |   F°  |")
+        #Ciclo para mostrar la tabla de frecuencia
+        for i in self.datos_para_evaluar:
+            print (self.datos_para_evaluar[i], "\t", self.frecuencias_de_apari[i], "\t", self.frecuencias_relativas[i], "\t", self.frecuencias_relat_acu[i],
+                    "\t", self.frecuencias_porcentuales[i], "\t", self.frecuencias_porcent_acu, "\t", self.frecuencias_en_grados[i], "\n") 
