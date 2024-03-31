@@ -55,4 +55,17 @@ class Controlador_vista_cuadro_de_frecuencias:
             
             #Se envia la lista frecuencias_de_aparicion al objeto un_cuadro_de_frecuencia en el atributo frecuencia_de_aparicion
         self.un_cuadro_de_frecuencias.set_frecuencias_de_apari(frecuencias_de_apari)
+        
+        self.determinar_las_frecuencias_relativas(frecuencias_de_apari)
+        
+    
+    def determinar_las_frecuencias_relativas(self,frecuencias_de_apari):
+        frecuencias_relativas= list()
+        todos_los_datos=self.un_cuadro_de_frecuencias.get_todos_los_datos()
+        
+        for i in range(len(frecuencias_de_apari)):
+            frecuencias_relativas.append(round(frecuencias_de_apari[i]/(len(todos_los_datos)),4))
             
+        self.un_cuadro_de_frecuencias.set_frecuencias_relativas(frecuencias_relativas)
+        
+        
