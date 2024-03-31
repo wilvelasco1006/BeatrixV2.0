@@ -20,7 +20,7 @@ class Controlador_vista_cuadro_de_frecuencias:
         while(continuar== 1):
             dato=input("Por favor ingrese los datos que desee analizar:  ")
             todos_los_datos.append(dato)
-            continuar= int(input("Desea agregar otro dato? 1.Si  2.No\n"))
+            continuar= int(input("\nDesea agregar otro dato? 1.Si  2.No\n"))
             while (continuar<1 or continuar>2):
                 continuar= int(input("Se ingresó un numero distinto a  1.Si  2.No  Por favor inténtelo de nuevo\n"))
         
@@ -40,11 +40,19 @@ class Controlador_vista_cuadro_de_frecuencias:
         #Aquí estoy llenando el atributo lista todos_los_datos del objeto cuadro de frecuencias
         self.un_cuadro_de_frecuencias.set_datos_para_evaluar(datos_para_evaluar)
         
-        print(self.un_cuadro_de_frecuencias.get_datos_para_evaluar())
+        self.determinar_la_frecuencia_de_aparicion_de_los_datos(datos_para_evaluar)
         
-
         
-       
+    #metodo para determinar y alamcenar la cantidad de veces que aparece un elemento de la lista datos_para_evaluar en la lista todos_los_datos
+    def determinar_la_frecuencia_de_aparicion_de_los_datos(self,datos_para_evaluar):
+        frecuencias_de_apari= list()
         
-       
+        #Ciclo que va a iterar segun la cantidad de elementos que tenga la lista datos_para_evaluar
+        for i in range(len(datos_para_evaluar)):
+            
+            #Se almacena en la lista fecuencias de aparicion
+            frecuencias_de_apari.append(self.un_cuadro_de_frecuencias.get_todos_los_datos().count(datos_para_evaluar[i])) 
+            
+            #Se envia la lista frecuencias_de_aparicion al objeto un_cuadro_de_frecuencia en el atributo frecuencia_de_aparicion
+        self.un_cuadro_de_frecuencias.set_frecuencias_de_apari(frecuencias_de_apari)
             
