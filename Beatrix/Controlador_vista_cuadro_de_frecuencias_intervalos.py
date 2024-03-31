@@ -1,4 +1,4 @@
-from Cuadro_de_frecuencias import Cuadro_de_frecuencias_datos_individuales as cuadro_de_frecuencias
+from Cuadro_de_frecuencias_intervalos import Cuadro_de_frecuencias_intervalos as cuadro_de_frecuencias
 
 class Controlador_vista_cuadro_de_frecuencias_intervalos():
     #Atributos
@@ -75,7 +75,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         
     #Metoto para determinar la cantidad de veces que un numero se encuentra en los rangos de cada intervalo 
     def determinar_la_frecuencia_de_aparicion_de_los_intervalos(self,todos_los_datos, ancho_intervalos, num_intervalos):
-        frecuencia_intervalos= list()
+        frecuencia_aparicion_intervalos= list()
         iteracion=0
         menor= (min(todos_los_datos) -2)
         mayor= (menor + ancho_intervalos)
@@ -87,15 +87,94 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
                 if (todos_los_datos[i]>=menor and todos_los_datos[i]<=mayor):
                     frecuencia+=1
                     
-            frecuencia_intervalos.append(frecuencia)
+            frecuencia_aparicion_intervalos.append(frecuencia)
             menor+=(ancho_intervalos + 1)
             mayor+= (ancho_intervalos + 1)
             iteracion +=1
             
         #Se envia la lista frecuencias_de_aparicion al objeto un_cuadro_de_frecuencia en el atributo frecuencia_de_aparicion
-        self.un_cuadro_de_frecuencias.set_frecuencias_de_apari(frecuencia_intervalos)
+        self.un_cuadro_de_frecuencias.set_frecuencias_de_apari(frecuencia_aparicion_intervalos)
         
+        self.determinar_las_frecuencias_relativas(frecuencia_aparicion_intervalos, todos_los_datos)   
+        
+        
+    #Metodo para obtener la frecuencia relativa de un dato con base a dividir su frecuencia entre el total de datos ingresados
+    def determinar_las_frecuencias_relativas(self,frecuencias_de_apari, todos_los_datos):
+        frecuencias_relativas= list()
+        
+        for i in range(len(frecuencias_de_apari)):
+            #operacion para dividir la frecuencia de apariciones de cada dato entre el total de datos ingresados, limitando la cantidad de decimales a 4
+            frecuencias_relativas.append(round(frecuencias_de_apari[i]/(len(todos_los_datos)),2))
+        
+         #mandar la lista de frecuencias relativas  al objeto un_cuadro_de_frecuencias para almacenar los datos en el atributo de lista fecuencias_relativas    
+        self.un_cuadro_de_frecuencias.set_frecuencias_relativas(frecuencias_relativas)
+        
+        #Llamado al metodo determinar_las_fecuencias_rel_acum para continuar con la recoleccion de las frecuencias
+        self.determinar_las_fecuencias_rel_acum(frecuencias_relativas)
 
 
+    #Metodo para obtener la frecuencia relativa acumulada sumando consecutivamente los elementos de la lista de las frecuencias relativas    
+    def determinar_las_fecuencias_rel_acum(self, frecuencias_relativas):
+        frecuencias_rel_acum= list()
+        acumulado=0
+        
+        #Ciclo para asignarle a la variable acumulado la suma consecutiva de los elementos de la lista frecuencias_relativas
+        for i in range(len(frecuencias_relativas)):
+            acumulado+= frecuencias_relativas[i]
+            acumulado_redondeado=round(acumulado,2)
+            frecuencias_rel_acum.append(acumulado_redondeado)
+            
+        #mandar la lista de frecuencias relativas acumuladas al objeto un_cuadro_de_frecuencias para almacenar los datos en el atributo de lista fecuencias_rel_acum
+        self.un_cuadro_de_frecuencias.set_frecuencias_relat_acu(frecuencias_rel_acum)
+        
+        self.determinar_frecuencias_porcentuales(frecuencias_relativas)
         
         
+   #Metodo que saca la frecuencia porcentual tras multiplicar por 100 la frecuencia relativa 
+    def determinar_frecuencias_porcentuales(self,frecuencias_relativas):
+        frecuencias_porcentuales= list()
+        
+        for i in range(len(frecuencias_relativas)):
+            frecuencias_porcentuales.append((frecuencias_relativas[i]*100))
+            
+        self.un_cuadro_de_frecuencias.set_frecuencias_procentuales(frecuencias_porcentuales)
+        
+        #Llamado al metodo determinar_las_fecuencias_rel_acum para continuar con la recoleccion de las frecuencias
+        self.determinar_frecuencias_porcent_acum(frecuencias_porcentuales)
+        
+        
+    #Metodo que almacena la sumatoria consecutiva de los datos de la lista de frecuencias_porcentuales
+    def determinar_frecuencias_porcent_acum(self,frecuencias_porcentuales):
+        frecuencias_porcent_acum= list()
+        acumulado=0
+        
+        #Ciclo para asignarle a la variable acumulado la suma consecutiva de los elementos de la lista frecuencias_porcentuales
+        for i in range(len(frecuencias_porcentuales)):
+            acumulado+= frecuencias_porcentuales[i]
+            acumulado_redondeado=round(acumulado,2)
+            frecuencias_porcent_acum.append(acumulado_redondeado)
+            
+        
+        self.un_cuadro_de_frecuencias.set_frecuencias_porcent_acu(frecuencias_porcent_acum)
+        
+        #Llamado al metodo determinar_frecuencias_en_grados para continuar con la recoleccion de las frecuencias
+        self.determinar_frecuencias_en_grados()
+        
+        
+    #Metodo que me permite convertir la frecuencia relativa en grados para poder repartirlos correctamente en un grafico de pastel   
+    def determinar_frecuencias_en_grados(self):
+        frecuencias_en_grados= list()
+        frecuencias_relativas= self.un_cuadro_de_frecuencias.get_frecuencias_relativas()
+        
+        for i in range(len(frecuencias_relativas)):
+            frecuencias_en_grados.append(round(frecuencias_relativas[i]*360,2))
+            
+        self.un_cuadro_de_frecuencias.set_frecuencias_en_grados(frecuencias_en_grados)
+        
+        #Llamado al metodo mostrar_la_tabla_de_frecuencias del objeto un_un_cuadro_de_frecuencias para visualizar correctamente la información
+        self.un_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias()
+
+        
+        
+u=Controlador_vista_cuadro_de_frecuencias_intervalos()
+u.ingresar_y_almacenar_todos_los_datos()
