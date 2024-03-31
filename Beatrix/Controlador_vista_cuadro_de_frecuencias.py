@@ -121,6 +121,7 @@ class Controlador_vista_cuadro_de_frecuencias:
         
         self.un_cuadro_de_frecuencias.set_frecuencias_porcent_acu(frecuencias_porcent_acum)
         
+        #Llamado al metodo determinar_frecuencias_en_grados para continuar con la recoleccion de las frecuencias
         self.determinar_frecuencias_en_grados()
         
         
@@ -133,7 +134,6 @@ class Controlador_vista_cuadro_de_frecuencias:
             
         self.un_cuadro_de_frecuencias.set_frecuencias_en_grados(frecuencias_en_grados)
         
+        #Llamado al metodo mostrar_la_tabla_de_frecuencias del objeto un_un_cuadro_de_frecuencias para visualizar correctamente la información
         self.un_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias()
         
-u=Controlador_vista_cuadro_de_frecuencias()
-u.ingresar_y_almacenar_todos_los_datos()
