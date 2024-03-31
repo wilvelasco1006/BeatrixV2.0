@@ -40,6 +40,7 @@ class Controlador_vista_cuadro_de_frecuencias:
         #Aquí estoy llenando el atributo lista todos_los_datos del objeto cuadro de frecuencias
         self.un_cuadro_de_frecuencias.set_datos_para_evaluar(datos_para_evaluar)
         
+        #Llamado al metodo determinar_la_frecuencia_de_aparicion_de_los_dato para continuar con la recoleccion de las frecuencias
         self.determinar_la_frecuencia_de_aparicion_de_los_datos(datos_para_evaluar)
         
         
@@ -56,16 +57,38 @@ class Controlador_vista_cuadro_de_frecuencias:
             #Se envia la lista frecuencias_de_aparicion al objeto un_cuadro_de_frecuencia en el atributo frecuencia_de_aparicion
         self.un_cuadro_de_frecuencias.set_frecuencias_de_apari(frecuencias_de_apari)
         
+        #Llamado al metodo determinar_las_frecuencias_relativas para continuar con la recoleccion de las frecuencias
         self.determinar_las_frecuencias_relativas(frecuencias_de_apari)
         
     
+    #Metodo para obtener la frecuencia relativa de un dato con base a dividir su frecuencia entre el total de datos ingresados
     def determinar_las_frecuencias_relativas(self,frecuencias_de_apari):
         frecuencias_relativas= list()
         todos_los_datos=self.un_cuadro_de_frecuencias.get_todos_los_datos()
         
+        
         for i in range(len(frecuencias_de_apari)):
+            #operacion para dividir la frecuencia de apariciones de cada dato entre el total de datos ingresados, limitando la cantidad de decimales a 4
             frecuencias_relativas.append(round(frecuencias_de_apari[i]/(len(todos_los_datos)),4))
-            
+        
+         #mandar la lista de frecuencias relativas  al objeto un_cuadro_de_frecuencias para almacenar los datos en el atributo de lista fecuencias_relativas    
         self.un_cuadro_de_frecuencias.set_frecuencias_relativas(frecuencias_relativas)
+        
+        #Llamado al metodo determinar_las_fecuencias_rel_acum para continuar con la recoleccion de las frecuencias
+        self.determinar_las_fecuencias_rel_acum(frecuencias_relativas)
+        
+        
+    #Metodo para obtener la frecuencia relativa acumulada sumando consecutivamente los elementos de la lista de las frecuencias relativas    
+    def determinar_las_fecuencias_rel_acum(self, frecuencias_relativas):
+        frecuencias_rel_acum= list()
+        acumulado=0
+        
+        #Ciclo para asignarle a la variable acumulado la suma consecutiva de los elementos de la lista frecuencias_relativas
+        for i in range(len(frecuencias_relativas)):
+            acumulado+= frecuencias_relativas[i]
+            frecuencias_rel_acum.append(acumulado)
+            
+        #mandar la lista de frecuencias relativas acumuladas al objeto un_cuadro_de_frecuencias para almacenar los datos en el atributo de lista fecuencias_rel_acum
+        self.un_cuadro_de_frecuencias.set_frecuencias_relat_acu(frecuencias_rel_acum)
         
         
