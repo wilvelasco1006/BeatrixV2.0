@@ -1,9 +1,11 @@
 from Cuadro_de_frecuencias import Cuadro_de_frecuencias_datos_individuales as cuadro_de_frecuencias
+from Vista_cuadro_de_frecuencias import Vista_cuadro_de_frecuencias
 
 class Controlador_vista_cuadro_de_frecuencias:
     #Atributos
     #Aquí estoy inicializando un objeto cuadro de frecuencias
     un_cuadro_de_frecuencias= cuadro_de_frecuencias()
+    una_vista_cuadro_de_frecuencias= Vista_cuadro_de_frecuencias()
     
     
     #Metodos
@@ -65,7 +67,6 @@ class Controlador_vista_cuadro_de_frecuencias:
     def determinar_las_frecuencias_relativas(self,frecuencias_de_apari):
         frecuencias_relativas= list()
         todos_los_datos=self.un_cuadro_de_frecuencias.get_todos_los_datos()
-        
         
         for i in range(len(frecuencias_de_apari)):
             #operacion para dividir la frecuencia de apariciones de cada dato entre el total de datos ingresados, limitando la cantidad de decimales a 4
@@ -134,6 +135,16 @@ class Controlador_vista_cuadro_de_frecuencias:
             
         self.un_cuadro_de_frecuencias.set_frecuencias_en_grados(frecuencias_en_grados)
         
-        #Llamado al metodo mostrar_la_tabla_de_frecuencias del objeto un_un_cuadro_de_frecuencias para visualizar correctamente la información
-        self.un_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias()
+        #Llamado al metodo mostrar_la_tabla_de_frecuencias del objeto un_cuadro_de_frecuencias para obtener 
+        #una variable de tipo string que contiene todos los datos de la tabla de frecuencia
+        tabla= self.un_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias()
         
+        self.llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(tabla)
+        
+        
+    def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla):
+        self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla)
+        
+
+u= Controlador_vista_cuadro_de_frecuencias()
+u.ingresar_y_almacenar_todos_los_datos()
