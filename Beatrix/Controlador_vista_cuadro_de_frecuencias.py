@@ -7,7 +7,6 @@ class Controlador_vista_cuadro_de_frecuencias:
     un_cuadro_de_frecuencias= cuadro_de_frecuencias()
     una_vista_cuadro_de_frecuencias= Vista_cuadro_de_frecuencias()
     
-    
     #Metodos
     #Metodo constructor
     def __init__(self):
@@ -15,24 +14,58 @@ class Controlador_vista_cuadro_de_frecuencias:
     
     #Este metodo va a recibir todos los datos a los que se les va a sacar las frecuencias
     def ingresar_y_almacenar_todos_los_datos(self):
+        organizar_datos=False
         continuar= 1
         todos_los_datos= list()
         
+        #Proceso para determinar si los datos que se van a ingresar son numéricos o de tipo texto, para decidir si organizar la lista todos_los_datos
+        #esto ayudará para facilitar la busqueda de la mediana de los datos numericos 
+        desicion= int(input("Que tipo de datos va a ingresar?  1.Numericos  2. De texto o nombres\n"))
+        while (desicion<1 or desicion>2):
+                desicion= int(input("Se ingresó un numero distinto a  1.Numericos  2.De texto o nombres  Por favor inténtelo de nuevo\n"))
+        if (desicion== 1):
+            organizar_datos=True
+        else:
+            organizar_datos= False
+            
+            
         #Metodo para llenar una lista con todos los datos para analizar
         while(continuar== 1):
             dato=input("Por favor ingrese los datos que desee analizar:  ")
-            todos_los_datos.append(dato)
+            todos_los_datos.append(dato.lower())
             continuar= int(input("\nDesea agregar otro dato? 1.Si  2.No\n"))
             while (continuar<1 or continuar>2):
                 continuar= int(input("Se ingresó un numero distinto a  1.Si  2.No  Por favor inténtelo de nuevo\n"))
         
-        #Aquí estoy llenando el atributo lista todos_los_datos del objeto cuadro de frecuencias
+        if(desicion==2):
+            #Aquí estoy llenando el atributo lista todos_los_datos del objeto cuadro de frecuencias
+            self.un_cuadro_de_frecuencias.set_todos_los_datos(todos_los_datos)
+        
+            #Llamado al metodo determinar_los_datos_repetidos para continuar con la recoleccion de las frecuencias
+            self.determinar_los_datos_repetidos(todos_los_datos)
+        
+        else:
+            self.organizar_los_datos(todos_los_datos)
+            
+            
+    #Metodo para organizar la lista de todos los datos a traves del metodo de insercion            
+    def organizar_los_datos(self, todos_los_datos):
+          
+        #metodo de ordenamiento por insercion  
+        for i in range(len(todos_los_datos)):
+            pos=i
+            auxiliar=todos_los_datos[i]
+            
+            while ((pos >0) and (auxiliar < todos_los_datos[pos-1])):
+                todos_los_datos[pos]= todos_los_datos[pos-1]  
+                todos_los_datos[pos-1]=auxiliar
+                pos-=1
+                auxiliar= todos_los_datos[pos]
+  
         self.un_cuadro_de_frecuencias.set_todos_los_datos(todos_los_datos)
         
-        #Llamado al metodo determinar_los_datos_repetidos para continuar con la recoleccion de las frecuencias
         self.determinar_los_datos_repetidos(todos_los_datos)
-            
-            
+        
         #metodo para crear una lista que solo contendrá los datos que se repiten 
     def determinar_los_datos_repetidos(self, todos_los_datos):
         
@@ -145,6 +178,6 @@ class Controlador_vista_cuadro_de_frecuencias:
     def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla):
         self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla)
         
-
-u= Controlador_vista_cuadro_de_frecuencias()
+    
+u=Controlador_vista_cuadro_de_frecuencias()
 u.ingresar_y_almacenar_todos_los_datos()

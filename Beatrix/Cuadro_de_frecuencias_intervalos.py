@@ -88,9 +88,9 @@ class Cuadro_de_frecuencias_intervalos:
             self.frecuencias_en_grados.append(dato)
     
     def mostrar_la_tabla_de_frecuencias(self):
-        
-        print ("     Intervalos     |   F   |   Fr   |    FrA  |   F%   |   F%A  |   F°  |")
+        tabla=""
         #Ciclo para mostrar la tabla de frecuencia
         for i in range(len(self.datos_para_evaluar)):
-            print (" ",self.datos_para_evaluar[i], "\t", self.frecuencias_de_apari[i], "    ", self.frecuencias_relativas[i], "   ", self.frecuencias_relat_acu[i],
-                    "\t ", self.frecuencias_porcentuales[i], "\t   ", self.frecuencias_porcent_acu[i], "   ", self.frecuencias_en_grados[i],  "\n") 
+            tabla += str(self.datos_para_evaluar[i])+ "\t   "+ str(self.frecuencias_de_apari[i])+ "      "+ str(self.frecuencias_relativas[i])+ "      "+ str(self.frecuencias_relat_acu[i])+"    "+ str(self.frecuencias_porcentuales[i])+ "\t "+ str(self.frecuencias_porcent_acu[i])+ "     "+ str(self.frecuencias_en_grados[i])+  "\n"
+
+        return tabla

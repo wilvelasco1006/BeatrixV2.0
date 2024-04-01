@@ -1,6 +1,18 @@
-import Controlador_vista_cuadro_de_frecuencias_intervalos 
 
 class Vista_cuadro_de_frecuencias_intervalos:
-    pass
+    #Atributos
+
+    
+    #Metodos
+    #Metodo constructor
+    def __init__(self):
+        pass
+    
+    def mostrar_la_tabla_de_frecuencias(self, tabla):
+        print ("|      Intervalos      |   F   |   Fr   |    FrA  |   F%   |    F%A  |   F°  |")
+        
+        print(tabla)
+        
+        
     
             
