@@ -178,6 +178,3 @@ class Controlador_vista_cuadro_de_frecuencias:
     def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla):
         self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla)
         
-    
-u=Controlador_vista_cuadro_de_frecuencias()
-u.ingresar_y_almacenar_todos_los_datos()
