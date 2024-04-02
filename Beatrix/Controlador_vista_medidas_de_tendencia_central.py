@@ -85,42 +85,134 @@ class Controlador_vista_medidas_de_tendencia_central:
             cuartil_1= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
         
         else:
-            cuartil_1="No es posible calcular un cuartil 1 para datos de tipo texto"
+            i=(0.25 * len(todos_los_datos))
+            cuartil_1= round(i)
+            falso_cuartil_1="No es posible definir un dato como cuartil, los datos son de tipo texto"
+
         
-        self.unas_medidias_de_tendencia.set_cuartil_1(cuartil_1)
-        self.calcular_el_cuartil_2(todos_los_datos,desicion)
+        self.unas_medidias_de_tendencia.set_cuartil_1(falso_cuartil_1)
+        self.calcular_el_cuartil_2(todos_los_datos,desicion,cuartil_1)
         
         
-    def calcular_el_cuartil_2(self,todos_los_datos,desicion):
+    def calcular_el_cuartil_2(self,todos_los_datos,desicion,cuartil_1):
         if(desicion==True):
             i=(0.5 * len(todos_los_datos))
             i_redondeado= round(i)
             cuartil_2= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
         
         else:
-            cuartil_2="No es posible calcular un cuartil 2 para datos de tipo texto"
+            i=(0.5 * len(todos_los_datos))
+            cuartil_2= round(i)
+            falso_cuartil_2="No es posible definir un dato como cuartil, los datos son de tipo texto"
         
-        self.unas_medidias_de_tendencia.set_cuartil_2(cuartil_2)
-        self.calcular_el_cuartil_3(todos_los_datos,desicion)
+        self.unas_medidias_de_tendencia.set_cuartil_2(falso_cuartil_2)
+        self.calcular_el_cuartil_3(todos_los_datos,desicion, cuartil_1,cuartil_2)
         
         
-    def calcular_el_cuartil_3(self,todos_los_datos,desicion):
+    def calcular_el_cuartil_3(self,todos_los_datos,desicion, cuartil_1,cuartil_2):
         if(desicion==True):
             i=(0.75 * len(todos_los_datos))
             i_redondeado= round(i)
             cuartil_3= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
         
         else:
-            cuartil_3="No es posible calcular un cuartil 3 para datos de tipo texto"
+            i=(0.75 * len(todos_los_datos))
+            cuartil_3= round(i)
+            falso_cuartil_3="No es posible definir un dato como cuartil, los datos son de tipo texto"            
         
-        self.unas_medidias_de_tendencia.set_cuartil_3(cuartil_3)
-        self.calcular_el_cuartil_4(todos_los_datos,desicion)
+        self.unas_medidias_de_tendencia.set_cuartil_3(falso_cuartil_3)
+        self.calcular_el_cuartil_4(todos_los_datos,desicion, cuartil_1,cuartil_2,cuartil_3)
         
         
-    def calcular_el_cuartil_4(self,todos_los_datos,desicion):
+    def calcular_el_cuartil_4(self,todos_los_datos,desicion, cuartil_1,cuartil_2,cuartil_3):
         if(desicion==True):
             cuartil_4=max(todos_los_datos)
 
         else:
-            cuartil_4="No es posible calcular un cuartil 4 para datos de tipo texto"
-        self.unas_medidias_de_tendencia.set_cuartil_4(cuartil_4)
+            cuartil_4=len(todos_los_datos)-1
+            falso_cuartil_4="No es posible definir un dato como cuartil, los datos son de tipo texto"
+            
+        self.unas_medidias_de_tendencia.set_cuartil_4(falso_cuartil_4)
+        
+        self.determinar_los_datos_del_cuartil_1(todos_los_datos, desicion, cuartil_1,cuartil_2,cuartil_3,cuartil_4)
+        
+    def determinar_los_datos_del_cuartil_1(self,todos_los_datos, desicion, cuartil_1,cuartil_2,cuartil_3,cuartil_4):
+        datos_cuartil_1=list()
+
+        if(desicion==True):
+            for i in todos_los_datos:
+                if(i>cuartil_1):
+                    break
+                datos_cuartil_1.append(i)
+            
+        else:
+            for i in range(cuartil_1):
+                datos_cuartil_1.append(todos_los_datos[i])    
+            
+        self.unas_medidias_de_tendencia.set_datos_en_el_cuartil_1(datos_cuartil_1)
+        print(datos_cuartil_1)
+        
+        self.determinar_los_datos_del_cuartil_2(todos_los_datos, desicion, cuartil_1,cuartil_2,cuartil_3,cuartil_4)
+        
+        
+    def determinar_los_datos_del_cuartil_2(self,todos_los_datos, desicion, cuartil_1,cuartil_2,cuartil_3,cuartil_4):
+        datos_cuartil_2=list()
+
+        if(desicion==True):
+            for i in todos_los_datos:
+                if(i>cuartil_2):
+                    break
+                if(i>cuartil_1):
+                    datos_cuartil_2.append(i)
+        
+        else:
+            for i in range(cuartil_2):
+                if(i>=cuartil_1):
+                    datos_cuartil_2.append(todos_los_datos[i])    
+    
+            
+        self.unas_medidias_de_tendencia.set_datos_en_el_cuartil_1(datos_cuartil_2)
+        print(datos_cuartil_2)
+        
+        self.determinar_los_datos_del_cuartil_3(todos_los_datos, desicion, cuartil_1,cuartil_2,cuartil_3,cuartil_4)
+        
+        
+        
+    def determinar_los_datos_del_cuartil_3(self,todos_los_datos, desicion, cuartil_1,cuartil_2,cuartil_3,cuartil_4):
+        datos_cuartil_3=list()
+
+        if(desicion==True):
+            for i in todos_los_datos:
+                if(i>cuartil_3):
+                    break
+                if(i>cuartil_2):
+                    datos_cuartil_3.append(i)
+                
+        else:
+            for i in range(cuartil_3 ):
+                if(i>=cuartil_2):
+                    datos_cuartil_3.append(todos_los_datos[i])    
+            
+            
+        self.unas_medidias_de_tendencia.set_datos_en_el_cuartil_1(datos_cuartil_3)
+        print(datos_cuartil_3)
+        self.determinar_los_datos_del_cuartil_4(todos_los_datos, desicion, cuartil_1,cuartil_2,cuartil_3,cuartil_4)
+        
+        
+    def determinar_los_datos_del_cuartil_4(self,todos_los_datos, desicion, cuartil_1,cuartil_2,cuartil_3,cuartil_4):
+        datos_cuartil_4=list()
+
+        if(desicion==True):
+             for i in todos_los_datos:
+                    if (i>cuartil_3):
+                        datos_cuartil_4.append(i)
+        
+        else:
+
+            for i in range(cuartil_4+1):
+
+                if(i>=cuartil_3):
+                    datos_cuartil_4.append(todos_los_datos[i])    
+            
+        self.unas_medidias_de_tendencia.set_datos_en_el_cuartil_1(datos_cuartil_4)
+        print(datos_cuartil_4)
