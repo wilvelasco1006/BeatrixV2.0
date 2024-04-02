@@ -4,15 +4,15 @@ class Medidas_de_tendencia_central:
     media= None
     mediana= None
     moda= None
-    cuartil_1=0
-    cuartil_2=0
-    cuartil_3=0
-    cuartil_4=0
+    cuartil_1=None
+    cuartil_2=None
+    cuartil_3=None
+    cuartil_4=None
     datos_en_el_cuartil_1= list()
     datos_en_el_cuartil_2= list()
     datos_en_el_cuartil_3= list()
     datos_en_el_cuartil_4= list()
-    resultado_percentil=0
+    resultado_percentil=None
     
     #Metodos
     #Metodo constructor

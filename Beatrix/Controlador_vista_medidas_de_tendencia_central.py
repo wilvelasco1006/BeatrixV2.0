@@ -79,36 +79,48 @@ class Controlador_vista_medidas_de_tendencia_central:
         self.calcular_el_cuartil_1(todos_los_datos,desicion)
           
     def calcular_el_cuartil_1(self,todos_los_datos,desicion):
-        i=(0.25 * len(todos_los_datos))
-        i_redondeado= round(i)
-        cuartil_1= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+        if(desicion==True):
+            i=(0.25 * len(todos_los_datos))
+            i_redondeado= round(i)
+            cuartil_1= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+        
+        else:
+            cuartil_1="No es posible calcular un cuartil 1 para datos de tipo texto"
         
         self.unas_medidias_de_tendencia.set_cuartil_1(cuartil_1)
- 
         self.calcular_el_cuartil_2(todos_los_datos,desicion)
         
         
     def calcular_el_cuartil_2(self,todos_los_datos,desicion):
-        i=(0.5 * len(todos_los_datos))
-        i_redondeado= round(i)
-        cuartil_2= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+        if(desicion==True):
+            i=(0.5 * len(todos_los_datos))
+            i_redondeado= round(i)
+            cuartil_2= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+        
+        else:
+            cuartil_2="No es posible calcular un cuartil 2 para datos de tipo texto"
         
         self.unas_medidias_de_tendencia.set_cuartil_2(cuartil_2)
-
         self.calcular_el_cuartil_3(todos_los_datos,desicion)
         
         
     def calcular_el_cuartil_3(self,todos_los_datos,desicion):
-        i=(0.75 * len(todos_los_datos))
-        i_redondeado= round(i)
-        cuartil_3= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+        if(desicion==True):
+            i=(0.75 * len(todos_los_datos))
+            i_redondeado= round(i)
+            cuartil_3= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+        
+        else:
+            cuartil_3="No es posible calcular un cuartil 3 para datos de tipo texto"
         
         self.unas_medidias_de_tendencia.set_cuartil_3(cuartil_3)
-
         self.calcular_el_cuartil_4(todos_los_datos,desicion)
         
         
     def calcular_el_cuartil_4(self,todos_los_datos,desicion):
-        cuartil_4=max(todos_los_datos)
+        if(desicion==True):
+            cuartil_4=max(todos_los_datos)
 
+        else:
+            cuartil_4="No es posible calcular un cuartil 4 para datos de tipo texto"
         self.unas_medidias_de_tendencia.set_cuartil_4(cuartil_4)
