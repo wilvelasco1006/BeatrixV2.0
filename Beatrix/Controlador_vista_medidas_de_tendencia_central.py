@@ -12,7 +12,7 @@ class Controlador_vista_medidas_de_tendencia_central:
         pass
     
     #Se debe agregar la entrada de un dato de tipo booleano tipo desicion para cambiar la forma de sacar el promedio se se ingresan datos string
-    def calcular_la_media(self,todos_los_datos,frecuencia_de_apari,desicion):
+    def calcular_la_media(self,todos_los_datos,frecuencia_de_apari,desicion,datos_para_evaluar):
         suma=0
         if (desicion==1):
             desicion=True
@@ -32,10 +32,10 @@ class Controlador_vista_medidas_de_tendencia_central:
         
         self.unas_medidias_de_tendencia.set_media(promedio_ajustado)
         
-        self.calcular_la_mediana(todos_los_datos,desicion)
+        self.calcular_la_mediana(todos_los_datos,desicion,datos_para_evaluar,frecuencia_de_apari)
         
             
-    def calcular_la_mediana(self,todos_los_datos,desicion):
+    def calcular_la_mediana(self,todos_los_datos,desicion,datos_para_evaluar,frecuencia_de_apari):
         
         if ((len(todos_los_datos) % 2) == 0):
             
@@ -57,5 +57,23 @@ class Controlador_vista_medidas_de_tendencia_central:
             mediana=(todos_los_datos[mitad_redondeada-1])
         
         self.unas_medidias_de_tendencia.set_mediana(mediana)
-            
+        
+        self.calcular_la_moda(todos_los_datos,frecuencia_de_apari,datos_para_evaluar)
+        
     
+    def calcular_la_moda(self,todos_los_datos, frecuencia_de_apari,datos_a_evaluar):
+        posicion_moda=0
+        dato_mas_repetido=max(frecuencia_de_apari)
+        nombre_correspondiente=""
+        
+        for i in range(len(frecuencia_de_apari)):
+            if (dato_mas_repetido== frecuencia_de_apari[i]):
+                posicion_moda=i
+
+        nombre_correspondiente+= str(datos_a_evaluar[posicion_moda])
+        
+        moda= "La moda es "+nombre_correspondiente+" con "+str(dato_mas_repetido)+" repeticiones"
+        
+        print((moda))
+        self.unas_medidias_de_tendencia.set_moda(moda)
+          

@@ -1,9 +1,9 @@
 
 class Medidas_de_tendencia_central:
     #Atributos
-    media= list()
-    mediana= list()
-    moda= list()
+    media= None
+    mediana= None
+    moda= None
     cuartil_1=0
     cuartil_2=0
     cuartil_3=0
