@@ -61,7 +61,6 @@ class Controlador_vista_cuadro_de_frecuencias:
             
     #Metodo para organizar la lista de todos los datos a traves del metodo de insercion            
     def organizar_los_datos(self, todos_los_datos, desicion):
-          
         #metodo de ordenamiento por insercion  
         for i in range(len(todos_los_datos)):
             pos=i
@@ -79,9 +78,18 @@ class Controlador_vista_cuadro_de_frecuencias:
         
         #metodo para crear una lista que solo contendrá los datos que se repiten 
     def determinar_los_datos_repetidos(self, todos_los_datos, desicion):
-        
         #estoy creando una lista datos_para_evaluar que se llenará solo con los datos que se repiten de la lista, o mejor dicho una vez cada vez que un dato aparece
         datos_para_evaluar= list(set(todos_los_datos))    
+        
+        for i in range(len(datos_para_evaluar)):
+            pos=i
+            auxiliar=datos_para_evaluar[i]
+            
+            while ((pos >0) and (auxiliar < datos_para_evaluar[pos-1])):
+                datos_para_evaluar[pos]= datos_para_evaluar[pos-1]  
+                datos_para_evaluar[pos-1]=auxiliar
+                pos-=1
+                auxiliar= datos_para_evaluar[pos]
         
         #Aquí estoy llenando el atributo lista todos_los_datos del objeto cuadro de frecuencias
         self.un_cuadro_de_frecuencias.set_datos_para_evaluar(datos_para_evaluar)
@@ -187,8 +195,7 @@ class Controlador_vista_cuadro_de_frecuencias:
         
         
     def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla,todos_los_datos,frecuencias_de_apari, desicion,datos_para_evaluar):
-    
-        numero_de_datos=len(todos_los_datos)
+        print(self.un_cuadro_de_frecuencias.get_todos_los_datos())
         self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla)
         
         self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari,desicion,datos_para_evaluar)

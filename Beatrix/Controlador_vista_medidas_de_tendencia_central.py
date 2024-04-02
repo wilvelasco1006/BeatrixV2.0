@@ -58,10 +58,10 @@ class Controlador_vista_medidas_de_tendencia_central:
         
         self.unas_medidias_de_tendencia.set_mediana(mediana)
         
-        self.calcular_la_moda(todos_los_datos,frecuencia_de_apari,datos_para_evaluar)
+        self.calcular_la_moda(todos_los_datos,frecuencia_de_apari,datos_para_evaluar,desicion)
         
     
-    def calcular_la_moda(self,todos_los_datos, frecuencia_de_apari,datos_a_evaluar):
+    def calcular_la_moda(self,todos_los_datos, frecuencia_de_apari,datos_a_evaluar,desicion):
         posicion_moda=0
         dato_mas_repetido=max(frecuencia_de_apari)
         nombre_correspondiente=""
@@ -74,6 +74,41 @@ class Controlador_vista_medidas_de_tendencia_central:
         
         moda= "La moda es "+nombre_correspondiente+" con "+str(dato_mas_repetido)+" repeticiones"
         
-        print((moda))
         self.unas_medidias_de_tendencia.set_moda(moda)
+        
+        self.calcular_el_cuartil_1(todos_los_datos,desicion)
           
+    def calcular_el_cuartil_1(self,todos_los_datos,desicion):
+        i=(0.25 * len(todos_los_datos))
+        i_redondeado= round(i)
+        cuartil_1= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+        
+        self.unas_medidias_de_tendencia.set_cuartil_1(cuartil_1)
+ 
+        self.calcular_el_cuartil_2(todos_los_datos,desicion)
+        
+        
+    def calcular_el_cuartil_2(self,todos_los_datos,desicion):
+        i=(0.5 * len(todos_los_datos))
+        i_redondeado= round(i)
+        cuartil_2= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+        
+        self.unas_medidias_de_tendencia.set_cuartil_2(cuartil_2)
+
+        self.calcular_el_cuartil_3(todos_los_datos,desicion)
+        
+        
+    def calcular_el_cuartil_3(self,todos_los_datos,desicion):
+        i=(0.75 * len(todos_los_datos))
+        i_redondeado= round(i)
+        cuartil_3= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+        
+        self.unas_medidias_de_tendencia.set_cuartil_3(cuartil_3)
+
+        self.calcular_el_cuartil_4(todos_los_datos,desicion)
+        
+        
+    def calcular_el_cuartil_4(self,todos_los_datos,desicion):
+        cuartil_4=max(todos_los_datos)
+
+        self.unas_medidias_de_tendencia.set_cuartil_4(cuartil_4)
