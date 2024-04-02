@@ -81,51 +81,52 @@ class Medidas_de_tendencia_central:
         self.cuartil_4= _cuartil_4
     
     def set_datos_en_el_cuartil_1(self, _datos_en_el_cuartil_1):
-        self.datos_en_el_cuartil_1= _datos_en_el_cuartil_1
+        for dato in _datos_en_el_cuartil_1:
+            self.datos_en_el_cuartil_1.append(dato)
 
     def set_datos_en_el_cuartil_2(self, _datos_en_el_cuartil_2):
-        self.datos_en_el_cuartil_2= _datos_en_el_cuartil_2
-    
+        for dato in _datos_en_el_cuartil_2:
+            self.datos_en_el_cuartil_2.append(dato) 
+            
     def set_datos_en_el_cuartil_3(self, _datos_en_el_cuartil_3):
-        self.datos_en_el_cuartil_3= _datos_en_el_cuartil_3
+        for dato in _datos_en_el_cuartil_3:
+            self.datos_en_el_cuartil_3.append(dato) 
     
     def set_datos_en_el_cuartil_4(self, _datos_en_el_cuartil_4):
-        self.datos_en_el_cuartil_4= _datos_en_el_cuartil_4
+        for dato in _datos_en_el_cuartil_4:
+            self.datos_en_el_cuartil_4.append(dato) 
     
     def set_resultado_percentil(self, _resultado_percentil):
         self.resultado_percentil= _resultado_percentil
         
     def acomodar_los_datos_para_mostrar(self,):
-        datos="Media: "+ str(self.media)+"\nMediana: "+ str(self.mediana)+"\nModa: "+ str(self.moda)+"\nCuartil 1"+ str(self.cuartil_1)+"\nCuartil 2"+ str(self.cuartil_2)+"\nCuartil 3"+ str(self.cuartil_3)+"\nCuartil4"+ str(self.cuartil_4)+"\n"
+        datos="Media: "+ str(self.media)+"\nMediana: "+ str(self.mediana)+"\nModa: "+ str(self.moda)+"\nCuartil 1: "+ str(self.cuartil_1)+"\nCuartil 2: "+ str(self.cuartil_2)+"\nCuartil 3: "+ str(self.cuartil_3)+"\nCuartil4: "+ str(self.cuartil_4)+"\n"
         ciclo=True
         datos_de_los_cuartiles=""
         while (ciclo==True):
+            datos_de_los_cuartiles+="Datos_en_el_cuartil_1: "
             for j in self.datos_en_el_cuartil_1:
-                datos_de_los_cuartiles+=j
+                datos_de_los_cuartiles+=(str(j)+", ")
             
-            datos_de_los_cuartiles+="\n"
+            datos_de_los_cuartiles+="\nDatos_en_el_cuartil_2: "
             
             for k in self.datos_en_el_cuartil_2:
-                datos_de_los_cuartiles+=k
+                datos_de_los_cuartiles+=(str(k)+", ")
                 
-            datos_de_los_cuartiles+="\n"
+            datos_de_los_cuartiles+="\nDatos_en_el_cuartil_3: "
             
             for l in self.datos_en_el_cuartil_3:
-                datos_de_los_cuartiles+=l
+                datos_de_los_cuartiles+=(str(l)+", ")
                 
-            datos_de_los_cuartiles+="\n"
+            datos_de_los_cuartiles+="\nDatos_en_el_cuartil_4: "
             
             for m in self.datos_en_el_cuartil_4:
-                datos_de_los_cuartiles+=m
-                
-            datos_de_los_cuartiles+="\n"
+                datos_de_los_cuartiles+=(str(m)+", ")
 
             ciclo=False
         
-        datos+= datos_de_los_cuartiles
+        datos+= datos_de_los_cuartiles+"\n"
         
-        datos+="\n"
-        
-        datos+= str(self.resultado_percentil)
+        datos+= "El dato que se encuentra en ese percentil es: "+str(self.resultado_percentil)
         
         return datos

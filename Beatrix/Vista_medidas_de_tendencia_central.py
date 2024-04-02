@@ -8,4 +8,4 @@ class Vista_medidas_de_tendencia_central:
         pass
     
     def mostrar_las_medidas_de_tendencia(self,datos):
-        pass
+        print("\n"+datos)
