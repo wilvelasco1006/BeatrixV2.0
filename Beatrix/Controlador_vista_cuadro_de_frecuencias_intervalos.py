@@ -119,11 +119,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         self.un_cuadro_de_frecuencias.set_datos_para_evaluar(intervalos)
         
         #Llamado al metodo determinar_la_frecuencia_de_aparicion_de_los_intervalos para continuar con la recoleccion de las frecuencias
-        self.determinar_la_frecuencia_de_aparicion_de_los_intervalos(todos_los_datos,ancho_intervalos, num_intervalos,desicion)
+        self.determinar_la_frecuencia_de_aparicion_de_los_intervalos(todos_los_datos,ancho_intervalos, num_intervalos,desicion,intervalos)
         
         
     #Metoto para determinar la cantidad de veces que un numero se encuentra en los rangos de cada intervalo 
-    def determinar_la_frecuencia_de_aparicion_de_los_intervalos(self,todos_los_datos, ancho_intervalos, num_intervalos,desicion):
+    def determinar_la_frecuencia_de_aparicion_de_los_intervalos(self,todos_los_datos, ancho_intervalos, num_intervalos,desicion, intervalos):
         frecuencia_aparicion_intervalos= list()
         iteracion=0
         if (desicion== True):
@@ -154,11 +154,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         #Se envia la lista frecuencias_de_aparicion al objeto un_cuadro_de_frecuencia en el atributo frecuencia_de_aparicion
         self.un_cuadro_de_frecuencias.set_frecuencias_de_apari(frecuencia_aparicion_intervalos)
         
-        self.determinar_las_frecuencias_relativas(frecuencia_aparicion_intervalos, todos_los_datos,desicion)   
+        self.determinar_las_frecuencias_relativas(frecuencia_aparicion_intervalos, todos_los_datos,desicion, intervalos)   
         
         
     #Metodo para obtener la frecuencia relativa de un dato con base a dividir su frecuencia entre el total de datos ingresados
-    def determinar_las_frecuencias_relativas(self,frecuencias_de_apari, todos_los_datos,desicion):
+    def determinar_las_frecuencias_relativas(self,frecuencias_de_apari, todos_los_datos,desicion, intervalos):
         frecuencias_relativas= list()
         
         for i in range(len(frecuencias_de_apari)):
@@ -169,11 +169,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         self.un_cuadro_de_frecuencias.set_frecuencias_relativas(frecuencias_relativas)
         
         #Llamado al metodo determinar_las_fecuencias_rel_acum para continuar con la recoleccion de las frecuencias
-        self.determinar_las_fecuencias_rel_acum(frecuencias_relativas,desicion,todos_los_datos, frecuencias_de_apari)
+        self.determinar_las_fecuencias_rel_acum(frecuencias_relativas,desicion,todos_los_datos, frecuencias_de_apari, intervalos)
 
 
     #Metodo para obtener la frecuencia relativa acumulada sumando consecutivamente los elementos de la lista de las frecuencias relativas    
-    def determinar_las_fecuencias_rel_acum(self, frecuencias_relativas,desicion,todos_los_datos, frecuencias_de_apari):
+    def determinar_las_fecuencias_rel_acum(self, frecuencias_relativas,desicion,todos_los_datos, frecuencias_de_apari, intervalos):
         frecuencias_rel_acum= list()
         acumulado=0
         
@@ -186,11 +186,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         #mandar la lista de frecuencias relativas acumuladas al objeto un_cuadro_de_frecuencias para almacenar los datos en el atributo de lista fecuencias_rel_acum
         self.un_cuadro_de_frecuencias.set_frecuencias_relat_acu(frecuencias_rel_acum)
         
-        self.determinar_frecuencias_porcentuales(frecuencias_relativas,desicion,todos_los_datos, frecuencias_de_apari)
+        self.determinar_frecuencias_porcentuales(frecuencias_relativas,desicion,todos_los_datos, frecuencias_de_apari, intervalos)
         
         
    #Metodo que saca la frecuencia porcentual tras multiplicar por 100 la frecuencia relativa 
-    def determinar_frecuencias_porcentuales(self,frecuencias_relativas,desicion,todos_los_datos, frecuencias_de_apari):
+    def determinar_frecuencias_porcentuales(self,frecuencias_relativas,desicion,todos_los_datos, frecuencias_de_apari, intervalos):
         frecuencias_porcentuales= list()
 
         for i in range(len(frecuencias_relativas)):
@@ -200,11 +200,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         self.un_cuadro_de_frecuencias.set_frecuencias_procentuales(frecuencias_porcentuales)
         
         #Llamado al metodo determinar_las_fecuencias_rel_acum para continuar con la recoleccion de las frecuencias
-        self.determinar_frecuencias_porcent_acum(frecuencias_porcentuales,desicion,todos_los_datos, frecuencias_de_apari)
+        self.determinar_frecuencias_porcent_acum(frecuencias_porcentuales,desicion,todos_los_datos, frecuencias_de_apari, intervalos)
         
         
     #Metodo que almacena la sumatoria consecutiva de los datos de la lista de frecuencias_porcentuales
-    def determinar_frecuencias_porcent_acum(self,frecuencias_porcentuales,desicion,todos_los_datos, frecuencias_de_apari):
+    def determinar_frecuencias_porcent_acum(self,frecuencias_porcentuales,desicion,todos_los_datos, frecuencias_de_apari, intervalos):
         frecuencias_porcent_acum= list()
         acumulado=0
         
@@ -218,11 +218,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         self.un_cuadro_de_frecuencias.set_frecuencias_porcent_acu(frecuencias_porcent_acum)
         
         #Llamado al metodo determinar_frecuencias_en_grados para continuar con la recoleccion de las frecuencias
-        self.determinar_frecuencias_en_grados(desicion,todos_los_datos, frecuencias_de_apari)
+        self.determinar_frecuencias_en_grados(desicion,todos_los_datos, frecuencias_de_apari, intervalos)
         
         
     #Metodo que me permite convertir la frecuencia relativa en grados para poder repartirlos correctamente en un grafico de pastel   
-    def determinar_frecuencias_en_grados(self,desicion,todos_los_datos, frecuencias_de_apari):
+    def determinar_frecuencias_en_grados(self,desicion,todos_los_datos, frecuencias_de_apari, intervalos):
         frecuencias_en_grados= list()
         frecuencias_relativas= self.un_cuadro_de_frecuencias.get_frecuencias_relativas()
         
@@ -233,11 +233,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         
         tabla= self.un_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(desicion)
         
-        self.llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(tabla,desicion,todos_los_datos, frecuencias_de_apari)
+        self.llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(tabla,desicion,todos_los_datos, frecuencias_de_apari, intervalos)
 
 
-    def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla, desicion, todos_los_datos, frecuencias_de_apari):
+    def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla, desicion, todos_los_datos, frecuencias_de_apari, intervalos):
         self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla,desicion)
 
         opcion=True
-        self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari,opcion)
+        self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari,opcion, intervalos)
