@@ -109,11 +109,11 @@ class Controlador_vista_cuadro_de_frecuencias:
         self.un_cuadro_de_frecuencias.set_frecuencias_relativas(frecuencias_relativas)
         
         #Llamado al metodo determinar_las_fecuencias_rel_acum para continuar con la recoleccion de las frecuencias
-        self.determinar_las_fecuencias_rel_acum(frecuencias_relativas)
+        self.determinar_las_fecuencias_rel_acum(frecuencias_relativas,todos_los_datos)
         
         
     #Metodo para obtener la frecuencia relativa acumulada sumando consecutivamente los elementos de la lista de las frecuencias relativas    
-    def determinar_las_fecuencias_rel_acum(self, frecuencias_relativas):
+    def determinar_las_fecuencias_rel_acum(self, frecuencias_relativas, todos_los_datos):
         frecuencias_rel_acum= list()
         acumulado=0
         
@@ -126,10 +126,10 @@ class Controlador_vista_cuadro_de_frecuencias:
         #mandar la lista de frecuencias relativas acumuladas al objeto un_cuadro_de_frecuencias para almacenar los datos en el atributo de lista fecuencias_rel_acum
         self.un_cuadro_de_frecuencias.set_frecuencias_relat_acu(frecuencias_rel_acum)
         
-        self.determinar_frecuencias_porcentuales(frecuencias_relativas)
+        self.determinar_frecuencias_porcentuales(frecuencias_relativas, todos_los_datos)
         
         
-    def determinar_frecuencias_porcentuales(self,frecuencias_relativas):
+    def determinar_frecuencias_porcentuales(self,frecuencias_relativas,todos_los_datos):
         frecuencias_porcentuales= list()
         
         for i in range(len(frecuencias_relativas)):
@@ -138,11 +138,11 @@ class Controlador_vista_cuadro_de_frecuencias:
         self.un_cuadro_de_frecuencias.set_frecuencias_procentuales(frecuencias_porcentuales)
         
         #Llamado al metodo determinar_las_fecuencias_rel_acum para continuar con la recoleccion de las frecuencias
-        self.determinar_frecuencias_porcent_acum(frecuencias_porcentuales)
+        self.determinar_frecuencias_porcent_acum(frecuencias_porcentuales,todos_los_datos)
         
         
         
-    def determinar_frecuencias_porcent_acum(self,frecuencias_porcentuales):
+    def determinar_frecuencias_porcent_acum(self,frecuencias_porcentuales,todos_los_datos):
         frecuencias_porcent_acum= list()
         acumulado=0
         
@@ -156,10 +156,10 @@ class Controlador_vista_cuadro_de_frecuencias:
         self.un_cuadro_de_frecuencias.set_frecuencias_porcent_acu(frecuencias_porcent_acum)
         
         #Llamado al metodo determinar_frecuencias_en_grados para continuar con la recoleccion de las frecuencias
-        self.determinar_frecuencias_en_grados()
+        self.determinar_frecuencias_en_grados(todos_los_datos)
         
         
-    def determinar_frecuencias_en_grados(self):
+    def determinar_frecuencias_en_grados(self,todos_los_datos):
         frecuencias_en_grados= list()
         frecuencias_relativas= self.un_cuadro_de_frecuencias.get_frecuencias_relativas()
         
@@ -172,9 +172,10 @@ class Controlador_vista_cuadro_de_frecuencias:
         #una variable de tipo string que contiene todos los datos de la tabla de frecuencia
         tabla= self.un_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias()
         
-        self.llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(tabla)
+        self.llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(tabla,todos_los_datos)
         
         
-    def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla):
-        self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla)
+    def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla,todos_los_datos):
+        numero_de_datos=len(todos_los_datos)
+        self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla,numero_de_datos)
         
