@@ -92,10 +92,8 @@ class Controlador_vista_medidas_de_tendencia_central:
             falso_cuartil_1="No es posible definir un dato como cuartil, los datos son de tipo texto"
             self.unas_medidias_de_tendencia.set_cuartil_1(falso_cuartil_1)
         
-        self.unas_medidias_de_tendencia.set_cuartil_1(cuartil_1)
         
         self.calcular_el_cuartil_2(todos_los_datos,desicion,cuartil_1)
-        
         
         
     def calcular_el_cuartil_2(self,todos_los_datos,desicion,cuartil_1):
@@ -103,15 +101,14 @@ class Controlador_vista_medidas_de_tendencia_central:
             i=(0.5 * len(todos_los_datos))
             i_redondeado= round(i)
             cuartil_2= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
-            self.unas_medidias_de_tendencia.set_cuartil_1(cuartil_2)
+            self.unas_medidias_de_tendencia.set_cuartil_2(cuartil_2)
             
         else:
             i=(0.5 * len(todos_los_datos))
             cuartil_2= round(i)
             falso_cuartil_2="No es posible definir un dato como cuartil, los datos son de tipo texto"
             self.unas_medidias_de_tendencia.set_cuartil_2(falso_cuartil_2)
-        
-        self.unas_medidias_de_tendencia.set_cuartil_2(cuartil_2)
+
         
         self.calcular_el_cuartil_3(todos_los_datos,desicion, cuartil_1,cuartil_2)
         
@@ -121,7 +118,7 @@ class Controlador_vista_medidas_de_tendencia_central:
             i=(0.75 * len(todos_los_datos))
             i_redondeado= round(i)
             cuartil_3= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
-            self.unas_medidias_de_tendencia.set_cuartil_1(cuartil_3)
+            self.unas_medidias_de_tendencia.set_cuartil_3(cuartil_3)
             
         else:
             i=(0.75 * len(todos_los_datos))
@@ -129,7 +126,6 @@ class Controlador_vista_medidas_de_tendencia_central:
             falso_cuartil_3="No es posible definir un dato como cuartil, los datos son de tipo texto"               
             self.unas_medidias_de_tendencia.set_cuartil_3(falso_cuartil_3)
         
-        self.unas_medidias_de_tendencia.set_cuartil_3(cuartil_3)
         
         self.calcular_el_cuartil_4(todos_los_datos,desicion, cuartil_1,cuartil_2,cuartil_3)
         
@@ -137,13 +133,12 @@ class Controlador_vista_medidas_de_tendencia_central:
     def calcular_el_cuartil_4(self,todos_los_datos,desicion, cuartil_1,cuartil_2,cuartil_3):
         if(desicion==True):
             cuartil_4=max(todos_los_datos)
-            self.unas_medidias_de_tendencia.set_cuartil_1(cuartil_4)
+            self.unas_medidias_de_tendencia.set_cuartil_4(cuartil_4)
         else:
             cuartil_4=len(todos_los_datos)-1
             falso_cuartil_4="No es posible definir un dato como cuartil, los datos son de tipo texto"
             self.unas_medidias_de_tendencia.set_cuartil_4(falso_cuartil_4)
         
-        self.unas_medidias_de_tendencia.set_cuartil_4(cuartil_4)
         
         self.determinar_los_datos_del_cuartil_1(todos_los_datos, desicion, cuartil_1,cuartil_2,cuartil_3,cuartil_4)
         
@@ -234,15 +229,27 @@ class Controlador_vista_medidas_de_tendencia_central:
         if(necesita_percentil==True):
             if(desicion==True):
                 porcentaje= float(input("Por favor ingrese el porcentaje del dato a encontrar: "))
+                while(porcentaje<1 or porcentaje>100):
+                    porcentaje= float(input("Por favor ingrese un numero entre el 1 y el 100: "))
                 i=(porcentaje/100)*len(todos_los_datos)
                 i_redondeado= round(i)
                 percentil= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
+                if(porcentaje==100):
+                    percentil=max(todos_los_datos)
+                
+                elif (porcentaje==1):
+                    percentil=min(todos_los_datos)
                 
             else:
                 porcentaje= float(input("\nPor favor ingrese el porcentaje del dato a encontrar: "))
+                while(porcentaje<1 or porcentaje>100):
+                    porcentaje= float(input("Por favor ingrese un numero entre el 1 y el 100: "))
                 i=(porcentaje/100)*len(todos_los_datos)
                 i_redondeado= round(i)
-                percentil=todos_los_datos[i_redondeado]
+                if(i_redondeado>=len(todos_los_datos)):
+                    percentil=todos_los_datos[i_redondeado-1]
+                else:  
+                    percentil=todos_los_datos[i_redondeado]
         else:
             percentil="No se ingresó ningun percentil"
             

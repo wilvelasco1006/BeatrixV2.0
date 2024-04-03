@@ -97,6 +97,6 @@ class Cuadro_de_frecuencias_intervalos:
         else:
             for i in range(len(self.datos_para_evaluar)):
             
-                tabla += str(self.datos_para_evaluar[i])+ "\t   "+ str(self.frecuencias_de_apari[i])+ "      "+ str(self.frecuencias_relativas[i])+ "      "+ str(self.frecuencias_relat_acu[i])+"    "+ str(self.frecuencias_porcentuales[i])+ "\t "+ str(self.frecuencias_porcent_acu[i])+ "     "+ str(self.frecuencias_en_grados[i])+  "\n"
+                tabla += str(self.datos_para_evaluar[i])+ "         "+ str(self.frecuencias_de_apari[i])+ "      "+ str(self.frecuencias_relativas[i])+ "       "+ str(self.frecuencias_relat_acu[i])+"      "+ str(self.frecuencias_porcentuales[i])+ "     "+ str(self.frecuencias_porcent_acu[i])+ "     "+ str(self.frecuencias_en_grados[i])+  "\n"
 
         return tabla

@@ -100,7 +100,7 @@ class Medidas_de_tendencia_central:
         self.resultado_percentil= _resultado_percentil
         
     def acomodar_los_datos_para_mostrar(self,):
-        datos="Media: "+ str(self.media)+"\nMediana: "+ str(self.mediana)+"\nModa: "+ str(self.moda)+"\nCuartil 1: "+ str(self.cuartil_1)+"\nCuartil 2: "+ str(self.cuartil_2)+"\nCuartil 3: "+ str(self.cuartil_3)+"\nCuartil4: "+ str(self.cuartil_4)+"\n"
+        datos="Media: "+ str(self.media)+"\nMediana: "+ str(self.mediana)+"\nModa: "+ str(self.moda)+"\n\nCuartil 1: "+ str(self.cuartil_1)+"\nCuartil 2: "+ str(self.cuartil_2)+"\nCuartil 3: "+ str(self.cuartil_3)+"\nCuartil 4: "+ str(self.cuartil_4)+"\n\n"
         ciclo=True
         datos_de_los_cuartiles=""
         while (ciclo==True):
@@ -125,7 +125,7 @@ class Medidas_de_tendencia_central:
 
             ciclo=False
         
-        datos+= datos_de_los_cuartiles+"\n"
+        datos+= datos_de_los_cuartiles+"\n\n"
         
         datos+= "El dato que se encuentra en ese percentil es: "+str(self.resultado_percentil)
         
