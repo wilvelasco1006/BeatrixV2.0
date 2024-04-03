@@ -1,8 +1,10 @@
 from Medidas_de_variabilidad import Medidas_de_variabilidad
+from Vista_medidas_de_variabilidad import Vista_medidas_de_variabilidad
 
 class Controlador_vista_medidas_de_variabilidad:
     #atributos
     un_cuadro_de_variabilidad= Medidas_de_variabilidad()
+    una_vista_medidas_de_variabilidad= Vista_medidas_de_variabilidad()
     #metodos
     #metodo constructor
     def __init__(self):
@@ -138,11 +140,19 @@ class Controlador_vista_medidas_de_variabilidad:
         while(desea_puntos_z<1 or desea_puntos_z>2):
             desea_puntos_z=int(input("por favor elija una de las 2 opciones:  1.Si  2.No \n"))
         
-        numero= float(input("Por favor ingrese el numero el cual desee conocer a cuantas desviaciones estandar se encuentra de la media_muestral:  "))
-        
         if(desea_puntos_z==1):
+            numero= float(input("Por favor ingrese el numero el cual desee conocer a cuantas desviaciones estandar se encuentra de la media_muestral:  "))
             resultado_desicion= (numero - media_muestral)/ desviacion_estandar
+            
         else:
+            numero= "No se ingresó ningún numero"
             resultado_desicion= "No se ingresó ningún numero"
             
+            
+        self.un_cuadro_de_variabilidad.set_numero_puntos_z(numero)    
         self.un_cuadro_de_variabilidad.set_puntos_z(resultado_desicion)
+        
+    
+    def llamado_para_mostrar_los_datos(self):
+        medidas_de_variabilidad= self.un_cuadro_de_variabilidad.mostrar_los_datos_de_las_medidas_de_variabilidad()
+            
