@@ -7,6 +7,7 @@ class Medidas_de_variabilidad:
     cuadrado_de_la_desviación_respecto_a_la_medida= list()
     suma_del_cuadrado_de_desviaciacion_respecto_a_la_medida=None
     varianza=None
+    poblacion_o_muestra=None
     desviacion_estandar=None
     num_menor_rango=None
     num_mayor_rango=None
@@ -38,6 +39,9 @@ class Medidas_de_variabilidad:
 
     def get_varianza(self):
         return self.varianza
+    
+    def get_poblacion_o_muestra(self):
+        return self.poblacion_o_muestra
 
     def get_desviacion_estandar(self):
         return self.desviacion_estandar
@@ -76,6 +80,9 @@ class Medidas_de_variabilidad:
     def set_varianza(self,_varianza):
         self.varianza=_varianza
 
+    def set_poblacion_o_muestra(self, _poblacion_o_muestra):
+        self.poblacion_o_muestra= _poblacion_o_muestra
+    
     def set_desviacion_estandar(self,_desviacion_estandar):
         self.desviacion_estandar=_desviacion_estandar
 
