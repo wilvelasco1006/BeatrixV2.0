@@ -220,9 +220,9 @@ class Controlador_vista_medidas_de_tendencia_central:
              
         self.unas_medidias_de_tendencia.set_datos_en_el_cuartil_4(datos_cuartil_4)
 
-        self.calcular_el_percentil_requerido(todos_los_datos,desicion,cuartil_1,cuartil_3)
+        self.calcular_el_percentil_requerido(todos_los_datos,desicion,cuartil_1,cuartil_3,cuartil_2)
         
-    def calcular_el_percentil_requerido(self, todos_los_datos,desicion,cuartil_1,cuartil_3):
+    def calcular_el_percentil_requerido(self, todos_los_datos,desicion,cuartil_1,cuartil_3,cuartil_2):
         peticion=int(input("Desea conocer la ubicación de algún dato con base a su porcentaje?: 1.Si  2.No\n: "))
         if(peticion==1):
             necesita_percentil=True
@@ -258,15 +258,15 @@ class Controlador_vista_medidas_de_tendencia_central:
             
         self.unas_medidias_de_tendencia.set_resultado_percentil(percentil)
         
-        self.llamado_para_mostrar_los_datos(todos_los_datos,cuartil_1,cuartil_3,desicion)
+        self.llamado_para_mostrar_los_datos(todos_los_datos,cuartil_1,cuartil_3,desicion,cuartil_2)
         
         
-    def llamado_para_mostrar_los_datos(self,todos_los_datos,cuartil_1,cuartil_3,desicion):
+    def llamado_para_mostrar_los_datos(self,todos_los_datos,cuartil_1,cuartil_3,desicion,cuartil_2):
 
         datos= (self.unas_medidias_de_tendencia.acomodar_los_datos_para_mostrar())
         self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos)
         
         if(desicion==True):
-            self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3)
+            self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3,cuartil_2)
         else:
             self.una_vista_de_medidas_variabilidad.mostrar_las_medidas_de_variabilidad("No es posible calcular las medidas de variabiliada a datos de tipo texto")

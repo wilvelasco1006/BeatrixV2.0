@@ -195,7 +195,6 @@ class Controlador_vista_cuadro_de_frecuencias:
         
     def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla,todos_los_datos,frecuencias_de_apari, desicion,datos_para_evaluar):
         #self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla)
-        print(tabla)
         self.una_grafica_de_frecuencias.dibujar(tabla)
         self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari,desicion,datos_para_evaluar)
         

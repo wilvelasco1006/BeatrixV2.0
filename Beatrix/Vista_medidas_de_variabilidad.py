@@ -14,5 +14,4 @@ class Vista_medidas_de_variabilidad:
         self.mostrar_el_diagrama_de_chevyshev(tabla)
         
     def mostrar_el_diagrama_de_chevyshev(self,tabla):
-        print(tabla)
         self.un_teorema_de_chevyshev.dibujar(tabla)

@@ -1,17 +1,18 @@
 from Medidas_de_variabilidad import Medidas_de_variabilidad
 from Vista_medidas_de_variabilidad import Vista_medidas_de_variabilidad
-
+from Diagrama_de_caja import accion_9
 class Controlador_vista_medidas_de_variabilidad:
     #atributos
     un_cuadro_de_variabilidad= Medidas_de_variabilidad()
     una_vista_medidas_de_variabilidad= Vista_medidas_de_variabilidad()
+    un_diagrama_de_caja= accion_9()
     #metodos
     #metodo constructor
     def __init__(self):
         pass
     
     #Metodo que me permite calcular el rango de los datos
-    def calcular_el_rango(self,todos_los_datos, cuartil_1, cuartil_3):
+    def calcular_el_rango(self,todos_los_datos, cuartil_1, cuartil_3,cuartil_2):
         rango= (max(todos_los_datos) - min(todos_los_datos))
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
@@ -19,21 +20,21 @@ class Controlador_vista_medidas_de_variabilidad:
         self.un_cuadro_de_variabilidad.set_rango(rango)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.calcular_el_rango_intercuartico(todos_los_datos, cuartil_1, cuartil_3)
+        self.calcular_el_rango_intercuartico(todos_los_datos, cuartil_1, cuartil_3,cuartil_2)
         
     #metrodo que me permite calcular el rango intercuartico
-    def calcular_el_rango_intercuartico(self, todos_los_datos,cuartil_1,cuartil_3):
+    def calcular_el_rango_intercuartico(self, todos_los_datos,cuartil_1,cuartil_3,cuartil_2):
         rango_inter_cuartico= cuartil_3 - cuartil_1
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
         self.un_cuadro_de_variabilidad.set_rango_intercuartico(rango_inter_cuartico)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.calcular_la_media_muestral(todos_los_datos)
+        self.calcular_la_media_muestral(todos_los_datos, cuartil_1, cuartil_3,cuartil_2)
         
     
     #metodo para calcular la media muestral
-    def calcular_la_media_muestral(self, todos_los_datos):
+    def calcular_la_media_muestral(self, todos_los_datos, cuartil_1, cuartil_3,cuartil_2):
         sumatoria=0
         for i in todos_los_datos:
             sumatoria+=i
@@ -45,11 +46,11 @@ class Controlador_vista_medidas_de_variabilidad:
         self.un_cuadro_de_variabilidad.set_media_muestral(media_muestral)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.determinar_el_cuadrado_de_la_desviacion_estandar_respecto_a_la_media(todos_los_datos,media_muestral)
+        self.determinar_el_cuadrado_de_la_desviacion_estandar_respecto_a_la_media(todos_los_datos,media_muestral, cuartil_1, cuartil_3,cuartil_2)
     
     
     #metodo que me permite determinar_el_cuadrado_de_la_desviacion_estandar_respecto_a_la_media
-    def determinar_el_cuadrado_de_la_desviacion_estandar_respecto_a_la_media(self,todos_los_datos, media_muestral):
+    def determinar_el_cuadrado_de_la_desviacion_estandar_respecto_a_la_media(self,todos_los_datos, media_muestral, cuartil_1, cuartil_3,cuartil_2):
         cuadrado_desvi_estand_resp_media=list()
 
         #ciclo para sacar el_cuadrado_de_la_desviacion_estandar_respecto_a_la_media restando cada dato con la media muestral y luego elevandolos al cuadrado
@@ -60,11 +61,11 @@ class Controlador_vista_medidas_de_variabilidad:
         self.un_cuadro_de_variabilidad.set_cuadrado_de_la_desviación_respecto_a_la_medida(cuadrado_desvi_estand_resp_media)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.calcular_la_suma_del_cuadrado_de_la_desviacion_estandar_respecto_a_la_media(todos_los_datos,  cuadrado_desvi_estand_resp_media)    
+        self.calcular_la_suma_del_cuadrado_de_la_desviacion_estandar_respecto_a_la_media(todos_los_datos,  cuadrado_desvi_estand_resp_media, cuartil_1, cuartil_3,cuartil_2)    
     
     
     #metodo para hacer la sumatoria total del_cuadrado_de_la_desviacion_estandar_respecto_a_la_media
-    def calcular_la_suma_del_cuadrado_de_la_desviacion_estandar_respecto_a_la_media(self, todos_los_datos, cuadrado_desvi_estand_resp_media):
+    def calcular_la_suma_del_cuadrado_de_la_desviacion_estandar_respecto_a_la_media(self, todos_los_datos, cuadrado_desvi_estand_resp_media, cuartil_1, cuartil_3,cuartil_2):
         sumatoria=0
         
         #ciclo para hacer la sumatoria consecutiva
@@ -77,11 +78,11 @@ class Controlador_vista_medidas_de_variabilidad:
         self.un_cuadro_de_variabilidad.set_suma_del_cuadrado_de_desviaciacion_respecto_a_la_medida(sumatoria_redondeada)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.calcular_la_varianza(todos_los_datos,sumatoria_redondeada)
+        self.calcular_la_varianza(todos_los_datos,sumatoria_redondeada, cuartil_1, cuartil_3,cuartil_2)
     
     
     #metodo para calcular la varianza, tanto poblacional como muestral
-    def calcular_la_varianza(self, todos_los_datos, sum_cuadra_desvi_resp_media):
+    def calcular_la_varianza(self, todos_los_datos, sum_cuadra_desvi_resp_media, cuartil_1, cuartil_3,cuartil_2):
         tipo_de_varianza=int(input("¿Que tipo de varianza desea que se emplee? 1.Poblacional  2.Muestral \n"))
         desicion_varianza=False
         
@@ -106,22 +107,22 @@ class Controlador_vista_medidas_de_variabilidad:
         self.un_cuadro_de_variabilidad.set_poblacion_o_muestra(desicion_varianza)
         
          #llamado al siguiente metodo para continuar con el programa
-        self.calcular_desviacion_estandar(varianza, desicion_varianza)
+        self.calcular_desviacion_estandar(varianza, desicion_varianza, cuartil_1, cuartil_3,cuartil_2)
         
     
     #metodo para calcular la desviacion estandar
-    def calcular_desviacion_estandar(self, varianza, desicion_varianza):
+    def calcular_desviacion_estandar(self, varianza, desicion_varianza, cuartil_1, cuartil_3,cuartil_2):
         desviacion_estandar= round(varianza ** 0.5,2) #sacar la raiz cuadrada de la varianza
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
         self.un_cuadro_de_variabilidad.set_desviacion_estandar(desviacion_estandar)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.definir_el_numero_menor_del_rango(desviacion_estandar)
+        self.definir_el_numero_menor_del_rango(desviacion_estandar, cuartil_1, cuartil_3,cuartil_2)
         
         
     #metodo para definir tanto el numero menor como el numero mayor del rango que se va a evaluar con el teorema de shevychev
-    def definir_el_numero_menor_del_rango(self, desviacion_estandar):
+    def definir_el_numero_menor_del_rango(self, desviacion_estandar, cuartil_1, cuartil_3,cuartil_2):
         num_menor_rango= float(input("Por favor ingrese el numero menor que desee que se analice con el teorema de chevyshev: "))
         
         num_mayor_rango= float(input("Por favor ingrese el numero mayor que desee que se analice con el teorema de chevyshev: "))
@@ -131,11 +132,11 @@ class Controlador_vista_medidas_de_variabilidad:
         self.un_cuadro_de_variabilidad.set_num_mayor_rango(num_mayor_rango)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.calcular_puntos_z_interno(desviacion_estandar, num_menor_rango, num_mayor_rango)
+        self.calcular_puntos_z_interno(desviacion_estandar, num_menor_rango, num_mayor_rango, cuartil_1, cuartil_3,cuartil_2)
         
     
     #metodo para calcular puntos z que se usa solo para los datos que se van a evaluar en el teorema de chevyshev
-    def calcular_puntos_z_interno(self, desviacion_estandar, num_menor_rango, num_mayor_rango):
+    def calcular_puntos_z_interno(self, desviacion_estandar, num_menor_rango, num_mayor_rango, cuartil_1, cuartil_3,cuartil_2):
         media_muestral= self.un_cuadro_de_variabilidad.get_media_muestral()#Se obtiene la lista todos los datos tras usar el metodo get para pedirsela al objeto un)cuadro_de_varibilidad
         
         #me dice a cuantas desviaciones estandar se encuentra un numero de la media muestra
@@ -143,11 +144,11 @@ class Controlador_vista_medidas_de_variabilidad:
         desviacion_num_mayor= round((num_mayor_rango - media_muestral)/ desviacion_estandar,4)
 
          #llamado al siguiente metodo para continuar con el programa
-        self.calcular_el_porcentaje_segun_el_teorema_de_chevyshev(desviacion_estandar, desviacion_num_menor, desviacion_num_mayor)
+        self.calcular_el_porcentaje_segun_el_teorema_de_chevyshev(desviacion_estandar, desviacion_num_menor, desviacion_num_mayor, cuartil_1, cuartil_3,cuartil_2)
     
     
     #Metodo para calcular el porcentaje que abarca el rango determinado por el rango introducido anteriormente
-    def calcular_el_porcentaje_segun_el_teorema_de_chevyshev(self, desviacion_estandar, desviaciones_num_menor, desviaciones_num_mayor):
+    def calcular_el_porcentaje_segun_el_teorema_de_chevyshev(self, desviacion_estandar, desviaciones_num_menor, desviaciones_num_mayor, cuartil_1, cuartil_3,cuartil_2):
         
         #si la desviacion de los dos numeros es igual aprovecho para acortar un poco el codigo usando los datos de solo una variable
         if(desviaciones_num_mayor == desviaciones_num_menor):
@@ -182,10 +183,10 @@ class Controlador_vista_medidas_de_variabilidad:
         self.un_cuadro_de_variabilidad.set_porcentaje_chevyshev(porcentaje_real)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.puntos_z_requeridos(desviacion_estandar)
+        self.puntos_z_requeridos(desviacion_estandar, cuartil_1, cuartil_3,cuartil_2)
     
     #metodo para calcular cuantas desviaciones estandar de la media muestral se encuantra algun dato que desee conocer el usuario
-    def puntos_z_requeridos(self, desviacion_estandar):
+    def puntos_z_requeridos(self, desviacion_estandar, cuartil_1, cuartil_3,cuartil_2):
         media_muestral= self.un_cuadro_de_variabilidad.get_media_muestral()
         
         #pregunta para saber si desea saber los puntos z de un dato extra o no
@@ -209,9 +210,9 @@ class Controlador_vista_medidas_de_variabilidad:
         self.un_cuadro_de_variabilidad.set_puntos_z(resultado_desicion)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.definir_media_y_desviaciones_estandar(desea_puntos_z,desviacion_estandar)
+        self.definir_media_y_desviaciones_estandar(desea_puntos_z,desviacion_estandar, cuartil_1, cuartil_3,cuartil_2)
     
-    def definir_media_y_desviaciones_estandar(self,desea_puntos_z,desviacion_estandar):
+    def definir_media_y_desviaciones_estandar(self,desea_puntos_z,desviacion_estandar, cuartil_1, cuartil_3,cuartil_2):
         tabla=[[]]
         media_muestral= self.un_cuadro_de_variabilidad.get_media_muestral()
 
@@ -223,13 +224,25 @@ class Controlador_vista_medidas_de_variabilidad:
             
         self.un_cuadro_de_variabilidad.set_media_y_desviaciones_estandar(tabla)    
             
-        self.llamado_para_mostrar_los_datos(desea_puntos_z,tabla)
+        self.preparar_para_mostrar_diagrama_de_caja(desea_puntos_z,tabla, cuartil_1, cuartil_3,cuartil_2)
+        
+    def preparar_para_mostrar_diagrama_de_caja(self,desea_puntos_z,tabla, cuartil_1, cuartil_3,cuartil_2):
+        todos_los_datos= self.un_cuadro_de_variabilidad.get_todos_los_datos()
+        rango_intercuartico=self.un_cuadro_de_variabilidad.get_rango_intercuartico()
+        limite_inferior=cuartil_1- rango_intercuartico
+        limite_superior= cuartil_3 + rango_intercuartico
+        
+        lista=[[limite_inferior,cuartil_1,cuartil_2,cuartil_3,limite_superior]]
+        
+        
+        self.llamado_para_mostrar_los_datos(desea_puntos_z,tabla,lista)
         
     #metodo para enviarle los datos organizados a la vista para que los muestre allá
-    def llamado_para_mostrar_los_datos(self,desea_puntos_z,tabla):
+    def llamado_para_mostrar_los_datos(self,desea_puntos_z,tabla,lista):
         #obteniendo los datos ordenados en una sola variable
         medidas_de_variabilidad= self.un_cuadro_de_variabilidad.mostrar_los_datos_de_las_medidas_de_variabilidad(desea_puntos_z)
         
         #llamada a la vista
         self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)
-            
+        self.un_diagrama_de_caja.dibujar(lista)
+        
