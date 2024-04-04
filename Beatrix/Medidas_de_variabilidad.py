@@ -111,6 +111,8 @@ class Medidas_de_variabilidad:
     def set_puntos_z(self,_puntos_z):
         self.puntos_z=_puntos_z
     
+    
+    #Metodo que me permite almacenar y organizar todos los datos en una sola variable
     def mostrar_los_datos_de_las_medidas_de_variabilidad(self,desicion_punt_z):
         todos_los_datos=self.get_todos_los_datos()
         cuadrado_de_la_desviación_respecto_a_la_medida=self.get_cuadrado_de_la_desviación_respecto_a_la_medida()
@@ -137,4 +139,5 @@ class Medidas_de_variabilidad:
         
         medidas_de_variabilidad+="\n El numero "+str(self.get_numero_puntos_z())+", se encuentra a "+ str(self.get_puntos_z()) +", de desviaciones estandar de la media muestral"
         
+        #retorno de la variable con todos los datos organizados
         return medidas_de_variabilidad

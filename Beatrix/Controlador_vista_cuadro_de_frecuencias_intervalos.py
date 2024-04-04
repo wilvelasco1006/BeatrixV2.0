@@ -24,6 +24,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         while (desicion<1 or desicion>2):
                 desicion= int(input("Se ingresó un numero distinto a  1.Enteros  2.Decimales o reales  Por favor inténtelo de nuevo\n"))
         
+        #proceso para almacenar los datos de tipo entero
         if(desicion==1):
             while(continuar== 1):
                 dato=int(input("Por favor ingrese los datos que desee analizar:  "))
@@ -32,6 +33,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
                 while (continuar<1 or continuar>2):
                     continuar= int(input("Se ingresó un numero distinto a  1.Si  2.No  Por favor inténtelo de nuevo\n"))
             
+            #proceso para almacenar los datos de tipo float
         else:
             while(continuar== 1):
                 dato=float(input("Por favor ingrese los datos que desee analizar:  "))
@@ -40,10 +42,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
                 continuar= int(input("\nDesea agregar otro dato? 1.Si  2.No\n"))
                 while (continuar<1 or continuar>2):
                     continuar= int(input("Se ingresó un numero distinto a  1.Si  2.No  Por favor inténtelo de nuevo\n"))
-
+        
+        #llamada al metodo para organizar los datos
         self.organizar_los_datos(todos_los_datos,desicion)
             
-            
+    #Metodo para organizar los datos ingresados        
     def organizar_los_datos(self, todos_los_datos,desicion):
           
         #metodo de ordenamiento por insercion  
@@ -56,9 +59,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
                 todos_los_datos[pos-1]=auxiliar
                 pos-=1
                 auxiliar= todos_los_datos[pos]
-  
+
+        #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
         self.un_cuadro_de_frecuencias.set_todos_los_datos(todos_los_datos)   
         
+        #llamada a 
         self.determinar_la_cantidad_de_intevalos_a_crear(todos_los_datos,desicion)
         
         
@@ -71,6 +76,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         #Llamado al metodo determinar_el_ancho_de_cada_intervalo para decifrar la cantidad de elementos que se encontrarán en el rango de cada
         #intervalo    
         
+        #llamada a la siguiente clase para continuar el el flujo del programa
         self.determinar_el_ancho_de_cada_intervalo(todos_los_datos, num_intervalos,desicion)
     
     
@@ -229,13 +235,16 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         for i in range(len(frecuencias_relativas)):
             frecuencias_en_grados.append(round(frecuencias_relativas[i]*360,2))
             
+        
         self.un_cuadro_de_frecuencias.set_frecuencias_en_grados(frecuencias_en_grados)
         
         tabla= self.un_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(desicion)
         
+        
+        #llamado al metodo para mostrar los datos organizados
         self.llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(tabla,desicion,todos_los_datos, frecuencias_de_apari, intervalos)
 
-
+    #metodo para llamar a la vista y mostrar los datos organizados
     def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla, desicion, todos_los_datos, frecuencias_de_apari, intervalos):
         self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla,desicion)
 
