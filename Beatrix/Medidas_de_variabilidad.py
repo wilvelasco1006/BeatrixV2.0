@@ -12,6 +12,7 @@ class Medidas_de_variabilidad:
     desviacion_estandar=None
     num_menor_rango=None
     num_mayor_rango=None
+    media_y_desviaciones_estandar=[[]]
     porcentaje_chevyshev=None
     numero_puntos_z=None
     puntos_z=None
@@ -55,6 +56,9 @@ class Medidas_de_variabilidad:
 
     def get_num_mayor_rango(self):
         return self.num_mayor_rango
+    
+    def get_media_y_desviaciones_estandar(self):
+            return self.cuadrado_de_la_desviación_respecto_a_la_medida
 
     def get_porcentaje_chevyshev(self):
         return self.porcentaje_chevyshev
@@ -101,7 +105,13 @@ class Medidas_de_variabilidad:
 
     def set_num_mayor_rango(self,_num_mayor_rango):
         self.num_mayor_rango=_num_mayor_rango
-
+        
+    def set_media_y_desviaciones_estandar(self,_media_y_desviaciones_estandar):
+            
+            for i in _media_y_desviaciones_estandar:
+                self.media_y_desviaciones_estandar[0].append(i)
+                print (self.media_y_desviaciones_estandar)
+                
     def set_porcentaje_chevyshev(self,_porcentaje_chevyshev):
         self.porcentaje_chevyshev=_porcentaje_chevyshev
 

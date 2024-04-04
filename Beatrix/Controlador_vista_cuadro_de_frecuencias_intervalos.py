@@ -1,12 +1,14 @@
 from Cuadro_de_frecuencias_intervalos import Cuadro_de_frecuencias_intervalos as cuadro_de_frecuencias
 from Vista_cuadro_de_frecuencias_intervalos import Vista_cuadro_de_frecuencias_intervalos
 from Controlador_vista_medidas_de_tendencia_central import Controlador_vista_medidas_de_tendencia_central
+from Grafica_de_frecuencias import accion_1
 
 class Controlador_vista_cuadro_de_frecuencias_intervalos():
     #Atributos
     un_cuadro_de_frecuencias= cuadro_de_frecuencias()
     una_vista_cuadro_de_frecuencias= Vista_cuadro_de_frecuencias_intervalos()
     unas_medidas_de_tendencia= Controlador_vista_medidas_de_tendencia_central()
+    una_grafica_de_frecuencias= accion_1()
 
     #Metodos
     #Metodo constructor
@@ -109,7 +111,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         if (desicion== True):
             #ciclo para rellenar la lista intervalos con los mensajes de los intervalos que se evaluaran en un rato
             for i in range(num_intervalos):
-                intervalo= "("+str(menor)+" - "+str(mayor)+")"
+                intervalo= "("+str(menor)+"-"+str(mayor)+")"
                 intervalos.append(intervalo)
                 menor+=(ancho_intervalos + 1)
                 mayor+= (ancho_intervalos + 1)
@@ -117,7 +119,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         else:
             #ciclo para rellenar la lista intervalos con los mensajes de los intervalos que se evaluaran en un rato
             for i in range(num_intervalos):
-                intervalo= "("+str(round(menor,2))+" - "+str(round(mayor,2))+")"
+                intervalo= str(round(menor,2))+"-"+str(round(mayor,2))
                 intervalos.append(intervalo)
                 menor+=(ancho_intervalos + 0.1)
                 mayor+= (ancho_intervalos + 0.1)
@@ -238,7 +240,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         
         self.un_cuadro_de_frecuencias.set_frecuencias_en_grados(frecuencias_en_grados)
         
-        tabla= self.un_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(desicion)
+        tabla= self.un_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias()
         
         
         #llamado al metodo para mostrar los datos organizados
@@ -246,7 +248,9 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
 
     #metodo para llamar a la vista y mostrar los datos organizados
     def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla, desicion, todos_los_datos, frecuencias_de_apari, intervalos):
-        self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla,desicion)
+        #self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla,desicion)
+
+        self.una_grafica_de_frecuencias.dibujar(tabla)
 
         opcion=True
         self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari,opcion, intervalos)

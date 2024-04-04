@@ -88,12 +88,15 @@ class Cuadro_de_frecuencias_datos_individuales:
             self.frecuencias_en_grados.append(dato)
     
     def mostrar_la_tabla_de_frecuencias(self):
-        tabla=""
+        #tabla=[[self.datos_para_evaluar], [self.frecuencias_de_apari], [self.frecuencias_relativas], [self.frecuencias_relat_acu], [self.frecuencias_porcentuales], [self.frecuencias_porcent_acu], [self.frecuencias_en_grados]]
         
-        #Ciclo para mostrar la tabla de frecuencia
+        tabla=[]
+        
+        
         for i in range(len(self.datos_para_evaluar)):
-           tabla+= " "+str(self.datos_para_evaluar[i])+ "        "+ str(self.frecuencias_de_apari[i])+ "     "+ str(self.frecuencias_relativas[i])+ "     "+ str(self.frecuencias_relat_acu[i])+"      "+ str(self.frecuencias_porcentuales[i])+ "     "+ str(self.frecuencias_porcent_acu[i])+ "   "+ str(self.frecuencias_en_grados[i])+  "\n"
+            tabla.append([self.datos_para_evaluar[i], self.frecuencias_de_apari[i],self.frecuencias_relativas[i],self.frecuencias_relat_acu[i],self.frecuencias_porcentuales[i],self.frecuencias_porcent_acu[i],self.frecuencias_en_grados[i]])
         
+    
         return tabla
 
     

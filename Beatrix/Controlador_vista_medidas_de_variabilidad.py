@@ -209,13 +209,27 @@ class Controlador_vista_medidas_de_variabilidad:
         self.un_cuadro_de_variabilidad.set_puntos_z(resultado_desicion)
         
         #llamado al siguiente metodo para continuar con el programa
-        self.llamado_para_mostrar_los_datos(desea_puntos_z)
+        self.definir_media_y_desviaciones_estandar(desea_puntos_z,desviacion_estandar)
+    
+    def definir_media_y_desviaciones_estandar(self,desea_puntos_z,desviacion_estandar):
+        tabla=[[]]
+        media_muestral= self.un_cuadro_de_variabilidad.get_media_muestral()
+
+        for i in range (3, 0, -1 ):
+            tabla[0].append(str(round(media_muestral - (desviacion_estandar*i) , 1)))    
+        
+        for i in range(4):
+            tabla[0].append(str(round(media_muestral + (desviacion_estandar*i), 1)))  
+            
+        self.un_cuadro_de_variabilidad.set_media_y_desviaciones_estandar(tabla)    
+            
+        self.llamado_para_mostrar_los_datos(desea_puntos_z,tabla)
         
     #metodo para enviarle los datos organizados a la vista para que los muestre allá
-    def llamado_para_mostrar_los_datos(self,desea_puntos_z):
+    def llamado_para_mostrar_los_datos(self,desea_puntos_z,tabla):
         #obteniendo los datos ordenados en una sola variable
         medidas_de_variabilidad= self.un_cuadro_de_variabilidad.mostrar_los_datos_de_las_medidas_de_variabilidad(desea_puntos_z)
         
         #llamada a la vista
-        self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad)
+        self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)
             

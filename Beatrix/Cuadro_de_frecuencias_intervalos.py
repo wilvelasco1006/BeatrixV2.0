@@ -87,8 +87,15 @@ class Cuadro_de_frecuencias_intervalos:
         for dato in _frecuencias_en_grados:
             self.frecuencias_en_grados.append(dato)
     
-    def mostrar_la_tabla_de_frecuencias(self,desicion):
-        tabla=""
+    def mostrar_la_tabla_de_frecuencias(self):
+        tabla=[]
+        
+        
+        for i in range(len(self.datos_para_evaluar)):
+            tabla.append([self.datos_para_evaluar[i], self.frecuencias_de_apari[i],self.frecuencias_relativas[i],self.frecuencias_relat_acu[i],self.frecuencias_porcentuales[i],self.frecuencias_porcent_acu[i],self.frecuencias_en_grados[i]])
+        
+        
+        '''tabla=""
         #Ciclo para mostrar la tabla de frecuencia
         if (desicion == True):
             for i in range(len(self.datos_para_evaluar)):
@@ -98,5 +105,5 @@ class Cuadro_de_frecuencias_intervalos:
             for i in range(len(self.datos_para_evaluar)):
             
                 tabla += str(self.datos_para_evaluar[i])+ "         "+ str(self.frecuencias_de_apari[i])+ "      "+ str(self.frecuencias_relativas[i])+ "       "+ str(self.frecuencias_relat_acu[i])+"      "+ str(self.frecuencias_porcentuales[i])+ "     "+ str(self.frecuencias_porcent_acu[i])+ "     "+ str(self.frecuencias_en_grados[i])+  "\n"
-
+'''
         return tabla

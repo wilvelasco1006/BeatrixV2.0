@@ -1,6 +1,7 @@
 from Cuadro_de_frecuencias import Cuadro_de_frecuencias_datos_individuales as cuadro_de_frecuencias
 from Vista_cuadro_de_frecuencias import Vista_cuadro_de_frecuencias
 from Controlador_vista_medidas_de_tendencia_central import Controlador_vista_medidas_de_tendencia_central
+from Grafica_de_frecuencias import accion_1
 
 class Controlador_vista_cuadro_de_frecuencias:
     #Atributos
@@ -8,7 +9,7 @@ class Controlador_vista_cuadro_de_frecuencias:
     un_cuadro_de_frecuencias= cuadro_de_frecuencias()
     una_vista_cuadro_de_frecuencias= Vista_cuadro_de_frecuencias()
     unas_medidas_de_tendencia= Controlador_vista_medidas_de_tendencia_central()
-    
+    una_grafica_de_frecuencias= accion_1()
     #Metodos
     #Metodo constructor
     def __init__(self):
@@ -32,8 +33,6 @@ class Controlador_vista_cuadro_de_frecuencias:
             organizar_datos= False
             opcion=False
             
-        
-            
         #Metodo para llenar una lista con todos los datos para analizar
         while(continuar== 1):
             
@@ -41,7 +40,7 @@ class Controlador_vista_cuadro_de_frecuencias:
                 dato=int(input("Por favor ingrese los datos que desee analizar:  "))
                 todos_los_datos.append(dato)
             else:
-                dato=input("Por favor ingrese los datos que desee analizar:  ")
+                dato=input("Por favor ingrese los datos que desee analizar (maximo 10 letras):  ")
                 todos_los_datos.append(dato.lower())
             
             continuar= int(input("\nDesea agregar otro dato? 1.Si  2.No\n"))
@@ -195,7 +194,8 @@ class Controlador_vista_cuadro_de_frecuencias:
         
         
     def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla,todos_los_datos,frecuencias_de_apari, desicion,datos_para_evaluar):
-        self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla)
-        
+        #self.una_vista_cuadro_de_frecuencias.mostrar_la_tabla_de_frecuencias(tabla)
+        print(tabla)
+        self.una_grafica_de_frecuencias.dibujar(tabla)
         self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari,desicion,datos_para_evaluar)
         
