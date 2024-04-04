@@ -119,10 +119,10 @@ class Medidas_de_variabilidad:
         
         medidas_de_variabilidad+="El rango es: "+ str(self.get_rango())+"\nEl rango intercuartico es: "+str(self.get_rango_intercuartico())+"\n"
         
-        cuadro_de_medidas_de_variabilidad="|  Xi  |  media_muestral(Xˉ) | (Xi - Xˉ )^2 | \n"
+        cuadro_de_medidas_de_variabilidad="\n|  Xi  |  media_muestral(Xˉ) | (Xi - Xˉ )^2 | \n"
         
         for i in range(len(todos_los_datos)):
-            cuadro_de_medidas_de_variabilidad+= "   "+ str(todos_los_datos[i])+ "        "+ str(self.get_media_muestral())+ "         "  + str(cuadrado_de_la_desviación_respecto_a_la_medida[i])+"\n"
+            cuadro_de_medidas_de_variabilidad+= "   "+ str(todos_los_datos[i])+ "                "+ str(self.get_media_muestral())+ "            "  + str(cuadrado_de_la_desviación_respecto_a_la_medida[i])+"\n"
  
 
         medidas_de_variabilidad+= cuadro_de_medidas_de_variabilidad + "\n"
@@ -135,4 +135,6 @@ class Medidas_de_variabilidad:
             
         medidas_de_variabilidad+="La desviacion estandar es de: "+ str(self.get_desviacion_estandar())+ "\n el porcentaje en el que se encuentra el rango ingresado anteriormente segun la media muestral es de: "+str(self.get_porcentaje_chevyshev())
         
-        medidas_de_variabilidad+="\n El numero "+str(self.get_numero_puntos_z())+" se encuentra a "+ str(self.get_puntos_z) +" desviaciones estandar de la media muestral"
+        medidas_de_variabilidad+="\n El numero "+str(self.get_numero_puntos_z())+", se encuentra a "+ str(self.get_puntos_z()) +", de desviaciones estandar de la media muestral"
+        
+        return medidas_de_variabilidad

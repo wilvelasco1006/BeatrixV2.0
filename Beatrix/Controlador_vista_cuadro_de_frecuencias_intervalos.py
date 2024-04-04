@@ -26,7 +26,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         
         if(desicion==1):
             while(continuar== 1):
-                dato=int(input("Por favor numeros los datos que desee analizar:  "))
+                dato=int(input("Por favor ingrese los datos que desee analizar:  "))
                 todos_los_datos.append(dato)
                 continuar= int(input("\nDesea agregar otro dato? 1.Si  2.No\n"))
                 while (continuar<1 or continuar>2):
@@ -34,7 +34,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
             
         else:
             while(continuar== 1):
-                dato=float(input("Por favor numeros los datos que desee analizar:  "))
+                dato=float(input("Por favor ingrese los datos que desee analizar:  "))
                 dato_redondeado= round(dato,2)
                 todos_los_datos.append(dato_redondeado)
                 continuar= int(input("\nDesea agregar otro dato? 1.Si  2.No\n"))
