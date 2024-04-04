@@ -150,35 +150,28 @@ class Controlador_vista_medidas_de_variabilidad:
     #Metodo para calcular el porcentaje que abarca el rango determinado por el rango introducido anteriormente
     def calcular_el_porcentaje_segun_el_teorema_de_chevyshev(self, desviacion_estandar, desviaciones_num_menor, desviaciones_num_mayor, cuartil_1, cuartil_3,cuartil_2):
         
-        #si la desviacion de los dos numeros es igual aprovecho para acortar un poco el codigo usando los datos de solo una variable
-        if(desviaciones_num_mayor == desviaciones_num_menor):
-            porcentaje= (1-(1/(desviaciones_num_menor*2)))
-            porcentaje_real=round(porcentaje*100 , 2)
-        
-        #Este condicional seguira solo si ambos datos introducidos no son simetricos, osea, las desviaciones estandar entre los datos y la media muestral no es la misma
+         #si la desviacion de los dos numeros es igual aprovecho para acortar un poco el codigo usando los datos de solo una variable
+        if desviaciones_num_mayor == desviaciones_num_menor:
+            porcentaje = (1 - (1 / (desviaciones_num_menor * 2)))
+            porcentaje_real = round(porcentaje * 100, 2)
         else:
-           #Ciclos para convertir las desviaciones en numeros positivos para manejarlos mas facilmente
-            if(desviaciones_num_menor<0):
-                desviaciones_num_menor*=-1
-            
-            if(desviaciones_num_mayor<0):
-                desviaciones_num_mayor*=-1
-                
-            #uso de la formula k para las desviaciones simetricas de ambos datos
-            k1= round(1- (1/desviaciones_num_menor**2) , 4)
-            
-            k2= round(1- (1/desviaciones_num_mayor**2) , 4)
-            
-            #Condicional para solo restar el numero mayor con el menor, para evitar numeros negativos
-            if(k1>k2):
-                residuo_resta=k1-k2
-                porcentaje_parcial=round(k1-(residuo_resta)/2 , 2)
-            
-            else:
-                residuo_resta=k2-k1
-                porcentaje_parcial=k2-(residuo_resta)/2
-            porcentaje_real= round((porcentaje_parcial)*100 )
+            # Asegura valores positivos para las desviaciones
+            desviaciones_num_menor = abs(desviaciones_num_menor)
+            desviaciones_num_mayor = abs(desviaciones_num_mayor)
         
+            # Cálculo de k para las desviaciones simétricas de ambos datos
+            k1 = abs(round(1 - (1 / desviaciones_num_menor ** 2), 4))
+            k2 = abs(round(1 - (1 / desviaciones_num_mayor ** 2), 4))
+            # Determina el k más grande y el más pequeño
+            max_k = max(k1, k2)
+            min_k = min(k1, k2)
+        
+            min_k=min_k
+            max_k=max_k
+            # Calcula el porcentaje parcial según Chevyshev
+            porcentaje_parcial = max_k - ((max_k - min_k))
+            porcentaje_real = round((porcentaje_parcial) * 100)
+
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
         self.un_cuadro_de_variabilidad.set_porcentaje_chevyshev(porcentaje_real)
         
@@ -229,10 +222,12 @@ class Controlador_vista_medidas_de_variabilidad:
     def preparar_para_mostrar_diagrama_de_caja(self,desea_puntos_z,tabla, cuartil_1, cuartil_3,cuartil_2):
         todos_los_datos= self.un_cuadro_de_variabilidad.get_todos_los_datos()
         rango_intercuartico=self.un_cuadro_de_variabilidad.get_rango_intercuartico()
-        limite_inferior=cuartil_1- rango_intercuartico
-        limite_superior= cuartil_3 + rango_intercuartico
+        limite_inferior=round((cuartil_1- rango_intercuartico) , 1)
+        limite_superior= round((cuartil_3 + rango_intercuartico) , 1)
         
-        lista=[[limite_inferior,cuartil_1,cuartil_2,cuartil_3,limite_superior]]
+        cuartil_1_redondeado=round(cuartil_1 , 1)
+        
+        lista=[[limite_inferior,cuartil_1_redondeado,cuartil_2,cuartil_3,limite_superior]]
         
         
         self.llamado_para_mostrar_los_datos(desea_puntos_z,tabla,lista)
