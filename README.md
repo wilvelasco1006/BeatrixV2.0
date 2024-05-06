@@ -1,1 +1,1 @@
-# Beatrix
+Defiinición: Beatrix es un paquete estadístico que permite importar a través de un archivo .csv que separa los datos a través de comas ","  
