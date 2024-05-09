@@ -1,12 +1,12 @@
 from Cuadro_de_frecuencias_intervalos import Cuadro_de_frecuencias_intervalos as cuadro_de_frecuencias
-#from Controlador_vista_medidas_de_tendencia_central import Controlador_vista_medidas_de_tendencia_central
+from Controlador_vista_medidas_de_tendencia_central import Controlador_vista_medidas_de_tendencia_central
 from Grafica_de_frecuencias import accion_1
 import csv
 
 class Controlador_vista_cuadro_de_frecuencias_intervalos():
     #Atributos
     un_cuadro_de_frecuencias= cuadro_de_frecuencias()
-    #unas_medidas_de_tendencia= Controlador_vista_medidas_de_tendencia_central()
+    unas_medidas_de_tendencia= Controlador_vista_medidas_de_tendencia_central()
     una_grafica_de_frecuencias= accion_1()
 
     #Metodos
@@ -33,16 +33,24 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
             # Convertir los datos de temperatura y presion de String a float
             # Convertir los datos de humedad de String a int
             for fila in reader:
-                datos_temperatura_interior.append(float(fila[3]))
-                datos_humedad_interior.append(int(fila[4]))
-                if(fila[5]!='--.-'):
+                if(fila[3]!=''):
+                    datos_temperatura_interior.append(float(fila[3]))
+                
+                if(fila[4]!=''):    
+                    datos_humedad_interior.append(int(fila[4]))
+                
+                if(fila[5]!='--.-' and fila[5]!=''):
                     datos_temperatura_exterior.append(float(fila[5]))
                     
-                if(fila[6]!='--'):
+                    
+                if(fila[6]!='--' and fila[6]!=''):
                     datos_humedad_exterior.append(int(fila[6]))    
                 
-                datos_presion_relativa.append(float(fila[7]))
-                datos_presion_absoluta.append(float(fila[8]))
+                if(fila[7]!=''):
+                    datos_presion_relativa.append(float(fila[7]))
+                
+                if(fila[8]!=''):
+                    datos_presion_absoluta.append(float(fila[8]))
 
         
         self.un_cuadro_de_frecuencias.set_datos_temperatura_interior(datos_temperatura_interior)
@@ -307,10 +315,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         
         '''if(self.un_cuadro_de_frecuencias.get_numero_lista() < 7 ):
             self.determinar_el_ancho_de_cada_intervalo()'''
-         
-         
-        
-        #opcion=True
-        #self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari,opcion, intervalos)
+
+        self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari, intervalos)
     
   
