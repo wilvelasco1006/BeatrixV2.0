@@ -1,14 +1,14 @@
 from Medidas_de_tendencia_central import Medidas_de_tendencia_central 
 from Vista_medidas_de_tendencia_central import Vista_medidas_de_tendencia_central
-#from Controlador_vista_medidas_de_variabilidad import Controlador_vista_medidas_de_variabilidad
-#from Vista_medidas_de_variabilidad import Vista_medidas_de_variabilidad
+from Controlador_vista_medidas_de_variabilidad import Controlador_vista_medidas_de_variabilidad
+from Vista_medidas_de_variabilidad import Vista_medidas_de_variabilidad
 
 class Controlador_vista_medidas_de_tendencia_central:
     #Atributos
     unas_medidias_de_tendencia= Medidas_de_tendencia_central()
     una_vista_de_medidas_de_tendencia= Vista_medidas_de_tendencia_central()
-    #unas_medidas_de_variabilidad= Controlador_vista_medidas_de_variabilidad()
-    #una_vista_de_medidas_variabilidad=Vista_medidas_de_variabilidad()
+    unas_medidas_de_variabilidad= Controlador_vista_medidas_de_variabilidad()
+    una_vista_de_medidas_variabilidad=Vista_medidas_de_variabilidad()
     #metodos
     #metodo constructor
     def __init__(self):
@@ -104,7 +104,7 @@ class Controlador_vista_medidas_de_tendencia_central:
         self.unas_medidias_de_tendencia.set_cuartil_4(cuartil_4)
 
         self.calcular_el_percentil_requerido(todos_los_datos,cuartil_1,cuartil_2,cuartil_3)
-            
+
     def calcular_el_percentil_requerido(self, todos_los_datos,cuartil_1,cuartil_2,cuartil_3):
         peticion=int(input("Desea conocer la ubicación de algún dato con base a su porcentaje?: 1.Si  2.No\n: "))
         if(peticion==1):
@@ -141,4 +141,4 @@ class Controlador_vista_medidas_de_tendencia_central:
         self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos)
         
         
-        #self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3,cuartil_2)
+        self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3,cuartil_2)
