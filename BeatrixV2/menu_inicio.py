@@ -1,4 +1,4 @@
-from Vista_seleccion_tipo_cuadro_de_frecuencias import Vista_seleccion_tipo_cuadro_de_frecuencias
+from Controlador_vista_cuadro_de_frecuencias_intervalos import Controlador_vista_cuadro_de_frecuencias_intervalos
 class menu:
     #Constructor 
     def __init__(self):
@@ -25,10 +25,10 @@ class menu:
         print ("\033["+"7;30;45"+"m "+"| --------------------------------------------------------------------------------------------- |"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"|                                                                                               |"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"|                                                                                               |"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"|                               Ingrese el numero 1 para iniciar                                |"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"|                      Por favor presione enter para iniciar el programa                        |"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"|                                                                                               |"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"|                                                                                               |"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+" ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ "+" \033[0m")
-        respuesta = int(input (""))
-        vistaa = Vista_seleccion_tipo_cuadro_de_frecuencias()
-        vistaa.vista_seleccion_tipo_de_datos_a_ingresar()
+        archivo_csv = input ("")
+        vistaa = Controlador_vista_cuadro_de_frecuencias_intervalos()
+        vistaa.ingresar_y_almacenar_todos_los_datos()
