@@ -79,7 +79,8 @@ class Medidas_de_variabilidad:
         self.media_muestral= _media_muestral    
 
     def set_rango (self,_rango):
-        self.rango=_rango
+        self.rango= round(_rango, 2)
+        
 
     def set_rango_intercuartico(self,_rango_intercuartico):
         self.rango_intercuartico= _rango_intercuartico
@@ -110,7 +111,6 @@ class Medidas_de_variabilidad:
             
             for i in _media_y_desviaciones_estandar:
                 self.media_y_desviaciones_estandar[0].append(i)
-                print (self.media_y_desviaciones_estandar)
                 
     def set_porcentaje_chevyshev(self,_porcentaje_chevyshev):
         self.porcentaje_chevyshev=_porcentaje_chevyshev
@@ -129,12 +129,12 @@ class Medidas_de_variabilidad:
         medidas_de_variabilidad= ""
         cuadro_de_medidas_de_variabilidad=""
         
-        medidas_de_variabilidad+="El rango es: "+ str(self.get_rango())+"\nEl rango intercuartico es: "+str(self.get_rango_intercuartico())+"\n"
+        medidas_de_variabilidad+="El rango es: "+ str( self.get_rango())+"\nEl rango intercuartico es: "+str(self.get_rango_intercuartico())+"\n"
         
-        cuadro_de_medidas_de_variabilidad="\n|  Xi  |  media_muestral(Xˉ) | (Xi - Xˉ )^2 | \n"
+        #cuadro_de_medidas_de_variabilidad="\n|  Xi  |  media_muestral(Xˉ) | (Xi - Xˉ )^2 | \n"
         
-        for i in range(len(todos_los_datos)):
-            cuadro_de_medidas_de_variabilidad+= "   "+ str(todos_los_datos[i])+ "                "+ str(self.get_media_muestral())+ "            "  + str(cuadrado_de_la_desviación_respecto_a_la_medida[i])+"\n"
+        #for i in range(len(todos_los_datos)):
+            #cuadro_de_medidas_de_variabilidad+= "   "+ str(todos_los_datos[i])+ "                "+ str(self.get_media_muestral())+ "            "  + str(cuadrado_de_la_desviación_respecto_a_la_medida[i])+"\n"
  
 
         medidas_de_variabilidad+= cuadro_de_medidas_de_variabilidad + "\n"
@@ -147,7 +147,7 @@ class Medidas_de_variabilidad:
             
         medidas_de_variabilidad+="La desviacion estandar es de: "+ str(self.get_desviacion_estandar())+ "\n el porcentaje en el que se encuentra el rango ingresado anteriormente segun la media muestral es de: "+str(self.get_porcentaje_chevyshev())
         
-        medidas_de_variabilidad+="\n El numero "+str(self.get_numero_puntos_z())+", se encuentra a "+ str(self.get_puntos_z()) +", de desviaciones estandar de la media muestral"
+        medidas_de_variabilidad+="\n\n El numero: "+str(self.get_numero_puntos_z())+", se encuentra a "+ str(self.get_puntos_z()) +", de desviaciones estandar de la media muestral"
         
         #retorno de la variable con todos los datos organizados
         return medidas_de_variabilidad

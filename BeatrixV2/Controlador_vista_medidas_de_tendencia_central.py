@@ -1,14 +1,14 @@
 from Medidas_de_tendencia_central import Medidas_de_tendencia_central 
 from Vista_medidas_de_tendencia_central import Vista_medidas_de_tendencia_central
 from Controlador_vista_medidas_de_variabilidad import Controlador_vista_medidas_de_variabilidad
-from Vista_medidas_de_variabilidad import Vista_medidas_de_variabilidad
+#from Vista_medidas_de_variabilidad import Vista_medidas_de_variabilidad
 
 class Controlador_vista_medidas_de_tendencia_central:
     #Atributos
     unas_medidias_de_tendencia= Medidas_de_tendencia_central()
     una_vista_de_medidas_de_tendencia= Vista_medidas_de_tendencia_central()
     unas_medidas_de_variabilidad= Controlador_vista_medidas_de_variabilidad()
-    una_vista_de_medidas_variabilidad=Vista_medidas_de_variabilidad()
+    #una_vista_de_medidas_variabilidad=Vista_medidas_de_variabilidad()
     #metodos
     #metodo constructor
     def __init__(self):
