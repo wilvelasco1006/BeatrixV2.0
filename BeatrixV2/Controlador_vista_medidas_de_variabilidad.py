@@ -24,7 +24,7 @@ class Controlador_vista_medidas_de_variabilidad:
         
     #metrodo que me permite calcular el rango intercuartico
     def calcular_el_rango_intercuartico(self, todos_los_datos,cuartil_1,cuartil_3,cuartil_2):
-        rango_inter_cuartico= cuartil_3 - cuartil_1
+        rango_inter_cuartico= round(cuartil_3 - cuartil_1, 3)
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
         self.un_cuadro_de_variabilidad.set_rango_intercuartico(rango_inter_cuartico)

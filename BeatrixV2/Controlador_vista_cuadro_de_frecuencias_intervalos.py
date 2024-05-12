@@ -101,6 +101,8 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         for dato in self.copiar_lista():
             todos_los_datos.append(dato)
 
+        todos_los_datos.sort()
+ 
         if(self.un_cuadro_de_frecuencias.numero_lista==2 or self.un_cuadro_de_frecuencias.numero_lista==6):
             num_intervalos= 10
         else:
