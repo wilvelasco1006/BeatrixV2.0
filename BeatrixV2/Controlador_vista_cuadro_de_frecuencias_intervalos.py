@@ -16,7 +16,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
 
     #Metodo para llenar una lista con todos los datos para analizar
     def ingresar_y_almacenar_todos_los_datos(self):
-        archivo_csv= input("Por favor ingrese la raiz del archivo .csv a evaluar, asegurese de que los datos se encuentren seaparados por comas ','\n Ej: C:\\Users\\felip\\Downloads\\base de datos para pruebas meteorologica\\datos1.csv\n : ")
+        archivo_csv= input("Por favor ingrese la raiz del archivo .csv a evaluar, asegurese de que los datos se encuentren seaparados por comas ','\n Ej: D:\Programacion\repositorios\BeatrixV2\base de datos para pruebas meteorologica\datos1.csv\n : ")
         #i=0
         datos_temperatura_interior=[]
         datos_humedad_interior=[]

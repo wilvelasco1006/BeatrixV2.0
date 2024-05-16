@@ -87,7 +87,8 @@ class accion_1:
             tamano = 12
         mensaje="\033["+"7;30;45"+"m"+dato_acomodar.center(tamano-1," ")+"|"+" \033[0m"
         return (mensaje)
-
 #INSTACIA DE LA CLASE ACCION_1
-
-
+'''
+creacion_accion_1 = accion_1()
+intervalos = [['jusb',5456456,67867867866,742345345,4564568,123457894855690,123457894855690],['jusb',5456456,67867867866,742345345,4564568,123457894855690,123457894855690]]
+creacion_accion_1.dibujar(intervalos)'''
