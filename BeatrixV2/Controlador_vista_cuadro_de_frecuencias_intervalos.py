@@ -1,7 +1,6 @@
 from Cuadro_de_frecuencias_intervalos import Cuadro_de_frecuencias_intervalos as cuadro_de_frecuencias
 from Controlador_vista_medidas_de_tendencia_central import Controlador_vista_medidas_de_tendencia_central
 from Grafica_de_frecuencias import accion_1
-import csv
 
 class Controlador_vista_cuadro_de_frecuencias_intervalos():
     #Atributos
@@ -16,7 +15,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
 
     #Metodo para llenar una lista con todos los datos para analizar
     def ingresar_y_almacenar_todos_los_datos(self):
-        archivo_csv= input("Por favor ingrese la raiz del archivo .csv a evaluar, asegurese de que los datos se encuentren seaparados por comas ','\n Ej: D:\Programacion\repositorios\BeatrixV2\base de datos para pruebas meteorologica\datos1.csv\n : ")
+        archivo_csv= input("Por favor ingrese la raiz del archivo .csv a evaluar, asegurese de que los datos se encuentren seaparados por comas ','\n Ej: D:\\Programacion\\repositorios\\BeatrixV2\\base de datos para pruebas meteorologica\\datos1.csv\n : ")
         #i=0
         datos_temperatura_interior=[]
         datos_humedad_interior=[]
@@ -25,14 +24,14 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         datos_presion_relativa=[]
         datos_presion_absoluta=[]
         
-        with open(archivo_csv, mode='r') as file:
-            # Crear un objeto reader
-            reader = csv.reader(file)
-       
+        with open(archivo_csv, mode='r') as archivo:
             # Leer los datos del archivo CSV fila por fila 
             # Convertir los datos de temperatura y presion de String a float
             # Convertir los datos de humedad de String a int
-            for fila in reader:
+            for linea in archivo:
+                # Eliminar caracteres de nueva línea y separar por comas
+                fila = linea.strip().split(',')
+                
                 if(fila[3]!=''):
                     datos_temperatura_interior.append(float(fila[3]))
                 
@@ -104,7 +103,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         todos_los_datos.sort()
 
         num_intervalos= int(input("Por favor ingrese el numero de intervalos que quiere que aparezcan en la tabla de frecuenncias, minimo 5:  "))
-        while (num_intervalos>4):
+        while (num_intervalos<4):
             num_intervalos= int(input("Por favor ingrese el numero de intervalos que quiere que aparezcan en la tabla de frecuenncias, minimo 5:  "))
          
         numero_mas_pequeno= min(todos_los_datos)
