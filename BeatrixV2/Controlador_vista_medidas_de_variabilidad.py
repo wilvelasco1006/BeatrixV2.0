@@ -12,8 +12,10 @@ class Controlador_vista_medidas_de_variabilidad:
         pass
     
     #Metodo que me permite calcular el rango de los datos
-    def calcular_el_rango(self,todos_los_datos, cuartil_1, cuartil_3,cuartil_2):
+    def calcular_el_rango(self,todos_los_datos, cuartil_1, cuartil_3,cuartil_2, grafico_seleccionado):
         rango= (max(todos_los_datos) - min(todos_los_datos))
+        
+        self.un_cuadro_de_variabilidad.set_grafico_seleccionado(grafico_seleccionado)
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
         self.un_cuadro_de_variabilidad.set_todos_los_datos(todos_los_datos)
@@ -238,6 +240,9 @@ class Controlador_vista_medidas_de_variabilidad:
         medidas_de_variabilidad= self.un_cuadro_de_variabilidad.mostrar_los_datos_de_las_medidas_de_variabilidad(desea_puntos_z)
         
         #llamada a la vista
-        self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)
-        self.un_diagrama_de_caja.dibujar(lista)
+        if(self.un_cuadro_de_variabilidad.get_grafico_seleccionado()==8 or self.un_cuadro_de_variabilidad.get_grafico_seleccionado()==12):
+            self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)
+        
+        if(self.un_cuadro_de_variabilidad.get_grafico_seleccionado()==9 or self.un_cuadro_de_variabilidad.get_grafico_seleccionado()==12):    
+            self.un_diagrama_de_caja.dibujar(lista)
         

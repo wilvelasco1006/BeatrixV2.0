@@ -1,5 +1,3 @@
-from Controlador_vista_cuadro_de_frecuencias_intervalos import Controlador_vista_cuadro_de_frecuencias_intervalos
-
 class menu:
     #Constructor 
     def __init__(self):
@@ -24,12 +22,16 @@ class menu:
         print ("\033["+"7;30;45"+"m "+"\u2503                         \u2514\u2500\u2500\u2500\u256F  \u2514\u2500\u2500\u2500  \u2571     \u2572    \u2502    \u2502  \u2572   \u2500\u2500\u2500\u2534\u2500\u2500\u2500   \u2571 \u2572                     \u2503"+" \033[0m") 
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2523" +('\u2501')*95+"\u252B"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503                                DIGITE LA OPEACION QUE SEA HACER                               \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503  1. MOSTRAR TABLA DE FRECUENCIA    5. GRAFICO DE PUNTOS              9. DIAGRAMA DE CAJA      \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503  2. MEDIDAS DE TENDENCIA CENTRAL   6. MOSTRAR DIAGRAMA DE BARRAS    10. OJIVA                 \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503  3. MOSTRAR HISTOGRAMA             7. TEOREMA DE CHEBYSHEV Y        11.                       \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503                                        MEDIDAS DE VARIABILIDAD                                \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503                                    PRESIONE ENTER PARA CONTINUAR                              \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503  4. DIAGRAMA DE TORTAS             8. DIAGRAMA DE DISPERSION        12. TODOS LOS GRAFICOS     \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+'\u2517'+('\u2501')*95+'\u251B'+" \033[0m")
-        respuesta = input ("")
-        controlador= Controlador_vista_cuadro_de_frecuencias_intervalos()
-        controlador.ingresar_y_almacenar_todos_los_datos()
+        respuesta = int(input (""))
+        while(respuesta<1 or respuesta>12):
+            respuesta = int(input ("debe ingresar una de las 12 opciones"))
+        return (respuesta)
+ 

@@ -1,6 +1,7 @@
 
 class Medidas_de_variabilidad:
     #atributos
+    grafico_seleccionado=None
     todos_los_datos=list()
     rango=None
     rango_intercuartico=None
@@ -24,6 +25,9 @@ class Medidas_de_variabilidad:
     
 
     #metodos_get
+    def get_grafico_seleccionado(self):
+        return self.grafico_seleccionado
+    
     def get_todos_los_datos(self):
         return self.todos_los_datos
     
@@ -70,6 +74,8 @@ class Medidas_de_variabilidad:
         return self.puntos_z
 
     #metodos set//////////////////////////////////////////
+    def set_grafico_seleccionado(self, _grafico_seleccionado):
+        self.grafico_seleccionado=_grafico_seleccionado  
 
     def set_todos_los_datos(self, _todos_los_datos):
         for dato in _todos_los_datos:

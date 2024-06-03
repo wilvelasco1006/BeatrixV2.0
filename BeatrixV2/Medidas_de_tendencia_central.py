@@ -1,6 +1,7 @@
 
 class Medidas_de_tendencia_central:
     #Atributos
+    grafico_seleccionado=None
     media= None
     mediana= None
     moda= None
@@ -16,6 +17,8 @@ class Medidas_de_tendencia_central:
         pass
     
     #Metodos get
+    def get_grafico_seleccionado(self):
+        return self.grafico_seleccionado
     
     def get_media(self):
         return self.media
@@ -42,7 +45,9 @@ class Medidas_de_tendencia_central:
         return self.resultado_percentil
     
     #Metodos set //////////////////////////////////////////
-
+    def set_grafico_seleccionado(self, _grafico_seleccionado):
+        self.grafico_seleccionado=_grafico_seleccionado    
+    
     def set_media(self, _media):
         self.media=_media
     

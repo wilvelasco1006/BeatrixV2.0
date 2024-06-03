@@ -15,7 +15,9 @@ class Controlador_vista_medidas_de_tendencia_central:
         pass
     
     #Se debe agregar la entrada de un dato de tipo booleano tipo desicion para cambiar la forma de sacar el promedio se se ingresan datos string
-    def calcular_la_media(self,todos_los_datos,frecuencia_de_apari,datos_para_evaluar):
+    def calcular_la_media(self,todos_los_datos,frecuencia_de_apari,datos_para_evaluar, grafico_seleccionado):
+        
+        self.unas_medidias_de_tendencia.set_grafico_seleccionado(grafico_seleccionado)
         suma=0
         
         for i in todos_los_datos:
@@ -138,7 +140,10 @@ class Controlador_vista_medidas_de_tendencia_central:
     def llamado_para_mostrar_los_datos(self,todos_los_datos,cuartil_1,cuartil_3,cuartil_2):
 
         datos= (self.unas_medidias_de_tendencia.acomodar_los_datos_para_mostrar())
-        self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos)
+        if(self.unas_medidias_de_tendencia.get_grafico_seleccionado()==2 or self.unas_medidias_de_tendencia.get_grafico_seleccionado() ==12):
+            self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos)
         
+        if(self.unas_medidias_de_tendencia.get_grafico_seleccionado() !=2):
         
-        self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3,cuartil_2)
+            self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3,cuartil_2, self.unas_medidias_de_tendencia.get_grafico_seleccionado())
+        
