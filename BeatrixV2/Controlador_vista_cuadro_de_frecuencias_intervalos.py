@@ -102,12 +102,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
             todos_los_datos.append(dato)
 
         todos_los_datos.sort()
- 
-        if(self.un_cuadro_de_frecuencias.numero_lista==2 or self.un_cuadro_de_frecuencias.numero_lista==6):
-            num_intervalos= 10
-        else:
-            num_intervalos= 10
-        
+
+        num_intervalos= int(input("Por favor ingrese el numero de intervalos que quiere que aparezcan en la tabla de frecuenncias, minimo 5:  "))
+        while (num_intervalos>4):
+            num_intervalos= int(input("Por favor ingrese el numero de intervalos que quiere que aparezcan en la tabla de frecuenncias, minimo 5:  "))
+         
         numero_mas_pequeno= min(todos_los_datos)
         numero_mas_grande=max(todos_los_datos)
         
