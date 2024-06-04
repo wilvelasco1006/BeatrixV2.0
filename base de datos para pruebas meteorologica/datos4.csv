@@ -1,3 +1,4 @@
+NO.,Fecha/hora,Intervalo,Temperatura interior,Humedad interior,Temperatura exterior,Humedad exterior,Presion relativa,Presion absoluta,Velocidad del viento(mph),ráfaga(mph),Direccion del viento,Punto de rocio(c°),Sensacion termica(C°),Hora de lluvia(mm),24 Hour Rainfall(mm),Semana de lluvia(mm),Mes de lluvia(mm),Total de lluvia(mm)
 1,23/05/2022 07:55,5,23.4,71,21.2,21,29.97,26.4,0,0.7,NW,-2,21.2,0,0,0,147.9,5341.8
 2,23/05/2022 08:00,5,23.6,71,21.1,20,29.96,26.4,0,0,W,-2.7,21.1,0,0,0,147.9,5341.8
 3,23/05/2022 08:05,5,23.6,71,20.9,22,29.97,26.4,0,0,WSW,-1.6,20.9,0,0,0,147.9,5341.8

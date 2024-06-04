@@ -1,3 +1,4 @@
+NO.,Fecha/hora,Intervalo,Temperatura interior,Humedad interior,Temperatura exterior,Humedad exterior,Presion relativa,Presion absoluta,Velocidad del viento(mph),ráfaga(mph),Direccion del viento,Punto de rocio(c°),sensacion termica(°C),Hora de lluvia(mm),24 Hour Rainfall(mm),Semana de lluvia(mm),Mes de lluvia(mm),Total de lluvia(mm)
 1192,21/09/2018 08:57,5,24.6,64,24.6,63,29.89,26.34,0,0,---,17.1,24.6,0,0,0,0,0
 1193,21/09/2018 09:00,5,24.1,60,23.6,60,29.89,26.34,0,0,---,15.4,23.6,0,0,0,0,0
 1194,21/09/2018 09:02,5,24.7,64,24.6,63,29.89,26.35,0,0,---,17.1,24.6,0,0,0,0,0

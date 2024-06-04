@@ -1,6 +1,7 @@
 
 class Medidas_de_tendencia_central:
     #Atributos
+    nombre_archivo_final= None
     grafico_seleccionado=None
     media= None
     mediana= None
@@ -17,6 +18,10 @@ class Medidas_de_tendencia_central:
         pass
     
     #Metodos get
+    
+    def get_nombre_archivo_final(self):
+        return self.nombre_archivo_final
+    
     def get_grafico_seleccionado(self):
         return self.grafico_seleccionado
     
@@ -41,10 +46,12 @@ class Medidas_de_tendencia_central:
     def get_cuartil_4(self):
         return self.cuartil_4
     
-    def get_resultado_percentil(self):
-        return self.resultado_percentil
     
     #Metodos set //////////////////////////////////////////
+    
+    def set_nombre_archivo_final(self, _nombre_archivo_final):
+        self.nombre_archivo_final= _nombre_archivo_final
+    
     def set_grafico_seleccionado(self, _grafico_seleccionado):
         self.grafico_seleccionado=_grafico_seleccionado    
     
@@ -68,15 +75,10 @@ class Medidas_de_tendencia_central:
     
     def set_cuartil_4(self, _cuartil_4):
         self.cuartil_4= _cuartil_4
-    
-    def set_resultado_percentil(self, _resultado_percentil):
-        self.resultado_percentil= _resultado_percentil
-        
+
     #metodo para organizar y almacenar todos los datos en una sola variable
     def acomodar_los_datos_para_mostrar(self,):
         datos="Media: "+ str(self.media)+"\nMediana: "+ str(self.mediana)+"\nModa: "+ str(self.moda)+"\n\nCuartil 1: "+ str(self.cuartil_1)+"\nCuartil 2: "+ str(self.cuartil_2)+"\nCuartil 3: "+ str(self.cuartil_3)+"\nCuartil 4: "+ str(self.cuartil_4)+"\n\n"
-        
-        datos+= "El dato que se encuentra en ese percentil es: "+str(self.resultado_percentil)
         
         #retorno de los datos en una sola variable
         return datos

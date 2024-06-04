@@ -15,7 +15,9 @@ class Controlador_vista_medidas_de_tendencia_central:
         pass
     
     #Se debe agregar la entrada de un dato de tipo booleano tipo desicion para cambiar la forma de sacar el promedio se se ingresan datos string
-    def calcular_la_media(self,todos_los_datos,frecuencia_de_apari,datos_para_evaluar, grafico_seleccionado):
+    def calcular_la_media(self,todos_los_datos,frecuencia_de_apari,datos_para_evaluar, grafico_seleccionado, nombre_archivo_final):
+        
+        self.unas_medidias_de_tendencia.set_nombre_archivo_final(nombre_archivo_final)
         
         self.unas_medidias_de_tendencia.set_grafico_seleccionado(grafico_seleccionado)
         suma=0
@@ -105,45 +107,21 @@ class Controlador_vista_medidas_de_tendencia_central:
         cuartil_4=max(todos_los_datos)
         self.unas_medidias_de_tendencia.set_cuartil_4(cuartil_4)
 
-        self.calcular_el_percentil_requerido(todos_los_datos,cuartil_1,cuartil_2,cuartil_3)
-
-    def calcular_el_percentil_requerido(self, todos_los_datos,cuartil_1,cuartil_2,cuartil_3):
-        peticion=int(input("Desea conocer la ubicación de algún dato con base a su porcentaje?: 1.Si  2.No\n: "))
-        if(peticion==1):
-            necesita_percentil=True
-        else:
-            necesita_percentil=False
-        
-        if(necesita_percentil==True):
-            
-            porcentaje= float(input("Por favor ingrese el porcentaje del dato a encontrar: "))
-            while(porcentaje<1 or porcentaje>100):
-                porcentaje= float(input("Por favor ingrese un numero entre el 1 y el 100: "))
-            i=(porcentaje/100)*len(todos_los_datos)
-            i_redondeado= round(i)
-            percentil= (todos_los_datos[i_redondeado-1]+ todos_los_datos[i_redondeado])/2
-            if(porcentaje==100):
-                percentil=max(todos_los_datos)
-                
-            elif (porcentaje==1):
-                percentil=min(todos_los_datos)
-                
-        
-        else:
-            percentil="No se ingresó ningun percentil"
-            
-        self.unas_medidias_de_tendencia.set_resultado_percentil(percentil)
-        
         self.llamado_para_mostrar_los_datos(todos_los_datos,cuartil_1,cuartil_3,cuartil_2)
         
         
     def llamado_para_mostrar_los_datos(self,todos_los_datos,cuartil_1,cuartil_3,cuartil_2):
 
         datos= (self.unas_medidias_de_tendencia.acomodar_los_datos_para_mostrar())
+        
         if(self.unas_medidias_de_tendencia.get_grafico_seleccionado()==2 or self.unas_medidias_de_tendencia.get_grafico_seleccionado() ==12):
             self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos)
         
-        if(self.unas_medidias_de_tendencia.get_grafico_seleccionado() !=2):
+        nombre_archivo_final=self.unas_medidias_de_tendencia.get_nombre_archivo_final()
         
-            self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3,cuartil_2, self.unas_medidias_de_tendencia.get_grafico_seleccionado())
+        grafico_seleccionado= self.unas_medidias_de_tendencia.get_grafico_seleccionado()
+        
+        if(self.unas_medidias_de_tendencia.get_grafico_seleccionado() !=2):
+
+            self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3,cuartil_2, grafico_seleccionado , nombre_archivo_final)
         

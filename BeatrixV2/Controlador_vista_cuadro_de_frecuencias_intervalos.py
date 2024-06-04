@@ -15,7 +15,9 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         pass
 
     #Metodo para llenar una lista con todos los datos para analizar
-    def ingresar_y_almacenar_todos_los_datos(self):
+    def ingresar_y_almacenar_todos_los_datos(self, nombre_archivo_final):
+        self.un_cuadro_de_frecuencias.set_nombre_archivo_final(nombre_archivo_final)
+        
         datos_temperatura_interior=[]
         datos_humedad_interior=[]
         datos_temperatura_exterior=[]
@@ -27,33 +29,40 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
      
         while (llenado == False):
             try:
-                print("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+                print('\u2501'*120)
                 archivo_csv= input("Por favor ingrese la raiz del archivo .csv a evaluar, asegurese de que los datos se encuentren seaparados por comas ',' Ej: \nD://Programacion//repositorios//BeatrixV2//base de datos para pruebas meteorologica//datos1.csv\n\n")
+                with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+                    f.write("dirección ingresada: "+ archivo_csv + '\n')
                 
+               # abrir el archivo csv
                 with open(archivo_csv, mode='r') as archivo:
-                    # Leer los datos del archivo CSV fila por fila 
-                    # Convertir los datos de temperatura y presion de String a float
+                    # Leer los datos del archivo CSV fila por fila
+                    # Convertir los datos de temperatura y presión de String a float
                     # Convertir los datos de humedad de String a int
-                    for linea in archivo:
+                    for indice, linea in enumerate(archivo):
+                        # Saltar la primera fila (índice 0)
+                        if indice == 0:
+                            continue
+        
                         # Eliminar caracteres de nueva línea y separar por comas
                         fila = linea.strip().split(',')
-
-                        if(fila[3]!=''):
+        
+                        if fila[3] != '':
                             datos_temperatura_interior.append(float(fila[3]))
-
-                        if(fila[4]!=''):    
+        
+                        if fila[4] != '':    
                             datos_humedad_interior.append(int(fila[4]))
-
-                        if(fila[5]!='--.-' and fila[5]!=''):
+        
+                        if fila[5] != '--.-' and fila[5] != '':
                             datos_temperatura_exterior.append(float(fila[5]))
-
-                        if(fila[6]!='--' and fila[6]!=''):
+        
+                        if fila[6] != '--' and fila[6] != '':
                             datos_humedad_exterior.append(int(fila[6]))    
-
-                        if(fila[7]!=''):
+        
+                        if fila[7] != '':
                             datos_presion_relativa.append(float(fila[7]))
-
-                        if(fila[8]!=''):
+        
+                        if fila[8] != '':
                             datos_presion_absoluta.append(float(fila[8]))
                         
                     llenado=True
@@ -72,13 +81,29 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
          
         #aparicion de menu para seleccionar el grafico o contenido que desee ver 
         menu_graficos= menu()
-        grafico_seleccionado=menu_graficos.dibujar()
+        grafico_seleccionado=menu_graficos.dibujar(nombre_archivo_final)
         self.un_cuadro_de_frecuencias.set_grafico_seleccionado(grafico_seleccionado)
+        
+        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+            f.write("grafico seleccionado: "+ str(grafico_seleccionado) + '\n\n')
                 
-        #Seleccion de la fila de contenido que desee ver
-        numero_lista=int(input("Que columna desea evaluar?: \n\n1. Datos temperatura interior      2. Datos humedad interior \n\n3. Datos tempeatura exterior       4. Datos humedad exterior \n\n5. Datos presion relativa          6. Datos presion_ bsoluta\n\n"))
-        while (numero_lista<1 or numero_lista>6):
-            numero_lista=int(input("Que columna desea evaluar?: \n1.datos_temperatura_interior \n2.datos_humedad_interior \n3.datos_tempeatura_exterior \n 4.datos_humedad_exterior \n 5.datos_presion_relativa \n6.datos_presion_absoluta"))
+        #Seleccion de la fila de contenido que desee verD://Programacion//repositorios//BeatrixV2//base de datos para pruebas meteorologica//datos1.csv
+        
+        while True:
+            try:
+                numero_lista = int(input("¿Qué columna desea evaluar?: \n\n1. Datos temperatura interior      2. Datos humedad interior \n\n3. Datos temperatura exterior       4. Datos humedad exterior \n\n5. Datos presión relativa          6. Datos presión absoluta\n\n"))
+                if 1 <= numero_lista <= 6:
+                    break
+                else:
+                    print("Debe ingresar un número entre 1 y 6.")
+                    
+            except ValueError:
+                print("Debe ingresar un número válido.")
+                
+        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+            f.write("Que columna desea evaluar?: \n\n1. Datos temperatura interior      2. Datos humedad interior \n\n3. Datos tempeatura exterior       4. Datos humedad exterior \n\n5. Datos presion relativa          6. Datos presion_ bsoluta\n\n"+                         "numero de columna seleccionado: "+str(numero_lista) + '\n\n')
+        
+        
         self.un_cuadro_de_frecuencias.set_numero_lista(numero_lista)    
         #Llamado al metodo determinar_el_ancho_de_cada_intervalo para decifrar la cantidad de elementos que se encontrarán en el rango de cada
         #intervalo
@@ -122,10 +147,22 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
             todos_los_datos.append(dato)
 
         todos_los_datos.sort()
-
-        num_intervalos= int(input("Por favor ingrese el numero de intervalos que quiere que aparezcan en la tabla de frecuenncias, minimo 5:  "))
-        while (num_intervalos<4):
-            num_intervalos= int(input("Por favor ingrese el numero de intervalos que quiere que aparezcan en la tabla de frecuenncias, minimo 5:  "))
+        
+        while True:
+            try:
+                num_intervalos= int(input("Por favor ingrese el numero de intervalos con los que se va a análizar los datos, minimo 5:  "))
+                if num_intervalos>=5:
+                    break
+                else:
+                    print("Debe ingresar un número mayor o igual a 5.")
+                    
+            except ValueError:
+                print("Debe ingresar un número válido.")                
+            
+            
+        with open(self.un_cuadro_de_frecuencias.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:
+            f.write("numero de intervalos seleccionado: "+str(num_intervalos) + '\n\n')
+            
          
         numero_mas_pequeno= min(todos_los_datos)
         numero_mas_grande=max(todos_los_datos)
@@ -235,7 +272,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         suma=0
         for i in frecuencia_aparicion_intervalos:
             suma+=i
-        print (suma)
+            
+        print ("Total de datos análizados: "+str(suma))
+        
+        with open(self.un_cuadro_de_frecuencias.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:
+            f.write("Total de datos análizados: "+str(suma) + '\n\n')
             
         #Se envia la lista frecuencias_de_aparicion al objeto un_cuadro_de_frecuencia en el atributo frecuencia_de_aparicion
         self.un_cuadro_de_frecuencias.set_frecuencias_de_apari(frecuencia_aparicion_intervalos)
@@ -329,13 +370,19 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
     #metodo para llamar a la vista y mostrar los datos organizados
     def llamar_a_la_vista_para_mostrar_la_tabla_de_frecuencia(self, tabla, todos_los_datos, frecuencias_de_apari, intervalos):
 
+        grafico_seleccionado= self.un_cuadro_de_frecuencias.get_grafico_seleccionado()
+        nombre_archivo_final=self.un_cuadro_de_frecuencias.get_nombre_archivo_final()
+        
         if(self.un_cuadro_de_frecuencias.get_grafico_seleccionado() ==1 or self.un_cuadro_de_frecuencias.get_grafico_seleccionado() ==12):
             
-            print("\n\n Tabla ",self.un_cuadro_de_frecuencias.get_numero_lista())
+            print("Tabla ",self.un_cuadro_de_frecuencias.get_numero_lista())
+            
+            with open(self.un_cuadro_de_frecuencias.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:
+                f.write("Tabla " +str(self.un_cuadro_de_frecuencias.get_numero_lista()) + '\n')
 
-            self.una_grafica_de_frecuencias.dibujar(tabla)
-
+            self.una_grafica_de_frecuencias.dibujar(tabla,nombre_archivo_final)
+            
         if(self.un_cuadro_de_frecuencias.get_grafico_seleccionado() !=1):        
-            self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari, intervalos, self.un_cuadro_de_frecuencias.get_numero_lista())
+            self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari, intervalos, grafico_seleccionado, nombre_archivo_final)
         
   

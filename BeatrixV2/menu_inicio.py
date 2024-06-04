@@ -25,11 +25,17 @@ class menu:
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2523" +('\u2501')*95+"\u252B"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503                                    PRESIONE ENTER PARA CONTINUAR                              \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503                              POR FAVOR INGRESE EL NOMBRE QUE QUIERA QUE                       \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503                               TENGA EL ARCHIVO FINAL CON LOS RESULTADOS                       \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+'\u2517'+('\u2501')*95+'\u251B'+" \033[0m")
-        respuesta = input ("")
+        nombre_archivo_final = input("")
+        #Creación del archivo .txt que contendrá los resultados de los análisis
+        # Abre el archivo en modo append (crea el archivo si no existe) 
+        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+            f.write("" + '\n')
         controlador= Controlador_vista_cuadro_de_frecuencias_intervalos()
-        controlador.ingresar_y_almacenar_todos_los_datos()
+        controlador.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)
+        
+        

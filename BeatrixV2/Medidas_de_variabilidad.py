@@ -1,6 +1,7 @@
 
 class Medidas_de_variabilidad:
     #atributos
+    nombre_archivo_final= None
     grafico_seleccionado=None
     todos_los_datos=list()
     rango=None
@@ -25,6 +26,10 @@ class Medidas_de_variabilidad:
     
 
     #metodos_get
+    
+    def get_nombre_archivo_final(self):
+        return self.nombre_archivo_final
+    
     def get_grafico_seleccionado(self):
         return self.grafico_seleccionado
     
@@ -74,6 +79,10 @@ class Medidas_de_variabilidad:
         return self.puntos_z
 
     #metodos set//////////////////////////////////////////
+    
+    def set_nombre_archivo_final(self, _nombre_archivo_final):
+        self.nombre_archivo_final= _nombre_archivo_final
+    
     def set_grafico_seleccionado(self, _grafico_seleccionado):
         self.grafico_seleccionado=_grafico_seleccionado  
 

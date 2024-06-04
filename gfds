@@ -1,0 +1,43 @@
+
+dirección ingresada: D://Programacion//repositorios//BeatrixV2//base de datos para pruebas meteorologica//datos3.csv
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                                               ┃ 
+┃                ╲     ╱‾╲     ╱  ┌───   │    ┌───  ╭───╮   ╱‾╲   ╱‾╲   ┌───                    ┃ 
+┃                 ╲   ╱   ╲   ╱   ├───   │    │     │   │  ╱   ╲_╱   ╲  ├───                    ┃  
+┃                  ╲_╱     ╲_╱    └───   └─── └───  ╰───╯ ╱           ╲ └───                    ┃  
+┃                                                                                               ┃  
+┃                                                                                               ┃  
+┃                                       ───┬─── ╭───╮                                           ┃  
+┃                                          │    │   │                                           ┃  
+┃                                          │    ╰───╯                                           ┃  
+┃                                                                                               ┃  
+┃                                                                                               ┃  
+┃                         ┌───╮  ┌───    ╱‾╲   ───┬─── ┌───┐  ───┬───   ╲ ╱                     ┃  
+┃                         ├───┤  ├───   ╱ ─ ╲     │    │───┘     │       ╳                      ┃  
+┃                         └───╯  └───  ╱     ╲    │    │  ╲   ───┴───   ╱ ╲                     ┃  
+┃                                                                                               ┃  
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫  
+┃                                DIGITE LA OPEACION QUE SEA HACER                               ┃  
+┃  1. MOSTRAR TABLA DE FRECUENCIA    5. GRAFICO DE PUNTOS              9. DIAGRAMA DE CAJA      ┃  
+┃  2. MEDIDAS DE TENDENCIA CENTRAL   6. MOSTRAR DIAGRAMA DE BARRAS    10. OJIVA                 ┃  
+┃  3. MOSTRAR HISTOGRAMA             7. TEOREMA DE CHEBYSHEV Y        11.                       ┃  
+┃                                        MEDIDAS DE VARIABILIDAD                                ┃  
+┃                                                                                               ┃  
+┃  4. DIAGRAMA DE TORTAS             8. DIAGRAMA DE DISPERSION        12. TODOS LOS GRAFICOS    ┃  
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  
+grafico seleccionado: 2
+
+Que columna desea evaluar?: 
+
+1. Datos temperatura interior      2. Datos humedad interior 
+
+3. Datos tempeatura exterior       4. Datos humedad exterior 
+
+5. Datos presion relativa          6. Datos presion_ bsoluta
+
+numero de columna seleccionado: 5
+
+numero de intervalos seleccionado: 9
+
+Total de datos análizados: 10116
+

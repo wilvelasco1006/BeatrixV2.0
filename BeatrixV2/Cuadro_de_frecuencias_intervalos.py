@@ -2,8 +2,9 @@ class Cuadro_de_frecuencias_intervalos:
     #atributos
     
     #Aquí estoy diciendo que los atributos son listas o arreglos, solo que en python de por sí los arreglos son dinámicos
+    nombre_archivo_final= None
     grafico_seleccionado=None
-    numero_lista=1
+    numero_lista=None
     ver_grafico_num=None
     datos_temperatura_interior=[]
     datos_humedad_interior=[]
@@ -26,6 +27,9 @@ class Cuadro_de_frecuencias_intervalos:
         pass
     
     #Metodos get//////////////////////////////////////
+    def get_nombre_archivo_final(self):
+        return self.nombre_archivo_final
+    
     def get_grafico_seleccionado(self):
         return self.grafico_seleccionado
     
@@ -72,6 +76,8 @@ class Cuadro_de_frecuencias_intervalos:
         return self.numero_lista
     
     #Metodos set//////////////////////////////////////
+    def set_nombre_archivo_final(self, _nombre_archivo_final):
+        self.nombre_archivo_final= _nombre_archivo_final
 
     def set_grafico_seleccionado(self, _grafico_seleccionado):
         self.grafico_seleccionado=_grafico_seleccionado
