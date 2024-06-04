@@ -114,14 +114,14 @@ class Controlador_vista_medidas_de_tendencia_central:
 
         datos= (self.unas_medidias_de_tendencia.acomodar_los_datos_para_mostrar())
         
-        if(self.unas_medidias_de_tendencia.get_grafico_seleccionado()==2 or self.unas_medidias_de_tendencia.get_grafico_seleccionado() ==12):
+        grafico_seleccionado= self.unas_medidias_de_tendencia.get_grafico_seleccionado()
+        
+        if(grafico_seleccionado==2 or grafico_seleccionado ==12):
             self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos)
         
         nombre_archivo_final=self.unas_medidias_de_tendencia.get_nombre_archivo_final()
         
-        grafico_seleccionado= self.unas_medidias_de_tendencia.get_grafico_seleccionado()
         
-        if(self.unas_medidias_de_tendencia.get_grafico_seleccionado() !=2):
-
+        if(grafico_seleccionado !=2):
             self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3,cuartil_2, grafico_seleccionado , nombre_archivo_final)
         

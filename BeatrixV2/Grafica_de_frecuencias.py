@@ -4,11 +4,11 @@ class accion_1:
     def __init__(self):
         pass
     #METODO PARA DIBUJAR LA TABLA DE FRECUENCIA
-    def dibujar (self,intervalos,nombre_archivo_final):
-        
+    def dibujar (self,intervalos):
+        print("\n\n")
         #CILO UTILIZADO PARA ASIGNARLE LOS VALORES A VARIABLES LAS CUALES SRAN LAS QUE SE VAN A IMPRIMIR
         tamano= self.saber_mayor (intervalos) +1
-        self.dibujar_indice (tamano,nombre_archivo_final)
+        self.dibujar_indice (tamano)
         for intervalo in (intervalos):          
             valor_intervalo= intervalo [0]
             valor_intervalo= self.modificador_dibujar_primario (valor_intervalo,tamano)
@@ -31,21 +31,13 @@ class accion_1:
                             str(valor_fra),
                             str(valor_frp),
                             str(valor_frpa),
-                            str(valor_fo)])
-            with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
-                f.write(( "|"+" "* tamano +"|"+" "* tamano+"|"+" "* tamano+"|"+" "* tamano+"|"+" "* tamano+"|"+" "* tamano+"|"+" "* tamano+"|" ) + '\n') 
-            print ( "|"+" "* tamano +"|"+" "* tamano+"|"+" "* tamano+"|"+" "* tamano+"|"+" "* tamano+"|"+" "* tamano+"|"+" "* tamano+"|"+" ")
-            
-            with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
-                f.write((linea+"\n") + '\n')
+                            str(valor_fo)]) 
+            print ("\033["+"7;30;45"+"m "+"\u2503"+" ".center(tamano," ") +"\u2503"+" ".center(tamano," ")+"\u2503"+" ".center(tamano," ")+"\u2503"+" ".center(tamano," ")+"\u2503"+" ".center(tamano," ")+"\u2503"+" ".center(tamano," ")+"\u2503"+" ".center(tamano," ")+"\u2503"+" \033[0m")
             print (linea)
-            
-            with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
-                f.write(( " -"+"-"* (tamano*7)+"----- " ) + '\n')
-            print ( " -"+"-"* (tamano*7)+"----- "+" ")
+            print ("\033["+"7;30;45"+"m "+"\u2523"+("\u2501"* (tamano)+"\u254B")*6+("\u2501"*tamano)+"\u252B"+" \033[0m")
 
     def saber_mayor (self, intervalos):
-        tamaño_mayor = 0
+        tamaño_mayor = 14
         for intervalo in intervalos:
             valor_1 = len(str(intervalo [0]))
             valor_2 = len(str(intervalo [1]))
@@ -59,58 +51,45 @@ class accion_1:
             if (nuermo_selecto > tamaño_mayor):
                 tamaño_mayor = nuermo_selecto
         return (tamaño_mayor)
-    def dibujar_indice (self, tamaño_mayor,nombre_archivo_final):
+    def dibujar_indice (self, tamaño_mayor):
         if (tamaño_mayor < 12):
             tamaño_mayor = 12
 
-        indice= "".join ([str("| "+"INTERVALO".center(tamaño_mayor-2," ")+" |"),
-                            str(" "+"FRECUENCIA".center(tamaño_mayor-2," ")+" | "),
-                            str(" "+"FR".center(tamaño_mayor-2," ")+"| "),
-                            str(" "+"FRA".center(tamaño_mayor-2," ")+"| "),
-                            str(" "+"FRP".center(tamaño_mayor-2," ")+"| "),
-                            str(" "+"FRPA".center(tamaño_mayor-2," ")+"| "),
-                            str(" "+"F°".center(tamaño_mayor-2," ")+"|")])
-        linea_superior = "|"+" "*(tamaño_mayor)+"|"+" "*(tamaño_mayor)+"|"+" "*(tamaño_mayor)+"|"+" "*(tamaño_mayor)+"|"+" "*(tamaño_mayor)+"|"+" "*(tamaño_mayor)+"|"+" "*(tamaño_mayor)+"|"
-        
-        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
-            f.write(( " _"+"_"*(tamaño_mayor*7)+"_____ " ) + '\n')        
-        print ( " _"+"_"*(tamaño_mayor*7)+"_____ "+" ")
-        
-        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
-            f.write( ( linea_superior ) + '\n')
-        print ( linea_superior+" ")
-        
-        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
-            f.write(( indice ) + '\n')
-        print ( indice+" ")
-        
-        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
-            f.write(( " -"+"-"*(tamaño_mayor*7)+"----- " )   + '\n')
-        print ( " -"+"-"*(tamaño_mayor*7)+"----- "+" ")       
-        
+        indice= "".join ([str("\u2503 "+"INTERVALO".center(tamaño_mayor-2," ")+" \u2503"),
+                            str(" "+"FRECUENCIA".center(tamaño_mayor-2," ")+" \u2503 "),
+                            str(" "+"FR".center(tamaño_mayor-2," ")+"\u2503 "),
+                            str(" "+"FRA".center(tamaño_mayor-2," ")+"\u2503 "),
+                            str(" "+"FRP".center(tamaño_mayor-2," ")+"\u2503 "),
+                            str(" "+"FRPA".center(tamaño_mayor-2," ")+"\u2503 "),
+                            str(" "+"F°".center(tamaño_mayor-2," ")+"\u2503")])
+        linea_superior = "\u2503"+" "*(tamaño_mayor)+"\u2503"+" "*(tamaño_mayor)+"\u2503"+" "*(tamaño_mayor)+"\u2503"+" "*(tamaño_mayor)+"\u2503"+" "*(tamaño_mayor)+"\u2503"+" "*(tamaño_mayor)+"\u2503"+" "*(tamaño_mayor)+"\u2503"
+        print ("\033["+"7;30;45"+"m "+"\u250F"+("\u2501"*(tamaño_mayor)+"\u2533")*6+"\u2501"*tamaño_mayor+"\u2513"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+linea_superior+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+indice+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2523"+("\u2501"*(tamaño_mayor)+"\u254B")*6+("\u2501")*tamaño_mayor+"\u252B"+" \033[0m")       
     #SIRVE PARA ACOMODAR EL TAMAÑO DEL DATO A AGREGAR EN VALORES DIFERENTES AL PRIMERO Y AL ULTIMO
     def modificador_dibujar_general (self,dato_acomodar,tamano):
         dato_acomodar = str(dato_acomodar)
         if (tamano < 12):
             tamano = 12
-        mensaje="\033["+"7;30;45"+"m"+dato_acomodar.center(tamano-1," ")+"|"+" "
+        mensaje="\033["+"7;30;45"+"m"+dato_acomodar.center(tamano-1," ")+"\u2503"+" \033[0m"
         return (mensaje)
     #SIRVE PARA ACOMODAR EL TAMAÑO DEL PRIMER DATO
     def modificador_dibujar_primario (self,dato_acomodar,tamano):
         dato_acomodar = str(dato_acomodar)
         if (tamano < 12):
             tamano = 12
-        mensaje="\033["+"7;30;45"+"m"+" |"+dato_acomodar.center(tamano," ")+"|"+" "
+        mensaje="\033["+"7;30;45"+"m"+" \u2503"+dato_acomodar.center(tamano," ")+"\u2503"+" \033[0m"
         return (mensaje)
     #SIRVE PARA ACOMODAR EL TAMAÑO DEL ULTIMO DAÑO
     def modificador_dibujar_ultimo (self,dato_acomodar,tamano):
         dato_acomodar = str(dato_acomodar)
         if (tamano < 12):
             tamano = 12
-        mensaje="\033["+"7;30;45"+"m"+dato_acomodar.center(tamano-1," ")+"|"+" "
+        mensaje="\033["+"7;30;45"+"m"+dato_acomodar.center(tamano-1," ")+"\u2503"+" \033[0m"
         return (mensaje)
+
 #INSTACIA DE LA CLASE ACCION_1
-'''
-creacion_accion_1 = accion_1()
-intervalos = [['jusb',5456456,67867867866,742345345,4564568,123457894855690,123457894855690],['jusb',5456456,67867867866,742345345,4564568,123457894855690,123457894855690]]
+'''creacion_accion_1 = accion_1()
+intervalos = [['1',2,1,3,4,5,14],['1',1,1,45,89,456,1234]]
 creacion_accion_1.dibujar(intervalos)'''

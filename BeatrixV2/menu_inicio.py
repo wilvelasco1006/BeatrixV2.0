@@ -30,7 +30,30 @@ class menu:
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+'\u2517'+('\u2501')*95+'\u251B'+" \033[0m")
-        nombre_archivo_final = input("")
+        
+    
+        caracteres_no_permitidos = ['/', '\\', ':', '*', '?', '"', '<', '>', '|']
+    
+        while True:
+            nombre_archivo_final = input("Ingrese el nombre del archivo: ")
+            try:
+                for caracter in caracteres_no_permitidos:
+                    if caracter in nombre_archivo_final:
+                        raise ValueError(f"El nombre del archivo contiene un carácter no permitido: {caracter}")
+                
+                # Intentar abrir el archivo para verificar si el nombre es válido
+                with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+                    pass
+                
+                break
+
+            except ValueError as ve:
+                print(f"Error: {ve}")
+            except OSError as e:
+                print(f"Error al intentar usar el nombre del archivo: {e}")
+            except Exception as e:
+                print(f"Error inesperado: {e}")
+        
         #Creación del archivo .txt que contendrá los resultados de los análisis
         # Abre el archivo en modo append (crea el archivo si no existe) 
         with open(nombre_archivo_final, 'a', encoding='utf-8') as f:

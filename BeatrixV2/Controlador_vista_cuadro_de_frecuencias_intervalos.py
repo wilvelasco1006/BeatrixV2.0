@@ -1,15 +1,21 @@
 from Cuadro_de_frecuencias_intervalos import Cuadro_de_frecuencias_intervalos as cuadro_de_frecuencias
 from Controlador_vista_medidas_de_tendencia_central import Controlador_vista_medidas_de_tendencia_central
-from Grafica_de_frecuencias import accion_1
+from Grafica_de_frecuencias import accion_1 
+from Grafica_de_frecuencias_para_txt import Grafica_de_frecuencias_para_txt 
+from Grafica_de_barras import Grafica_de_barras
 from menu_opciones import menu
+from Grafica_histograma import Grafica_histograma
 
 class Controlador_vista_cuadro_de_frecuencias_intervalos():
     #Atributos
     un_cuadro_de_frecuencias= cuadro_de_frecuencias()
+    un_diagra_de_barras= Grafica_de_barras()
     unas_medidas_de_tendencia= Controlador_vista_medidas_de_tendencia_central()
     una_grafica_de_frecuencias= accion_1()
+    grafico_frecuencia_para_txt= Grafica_de_frecuencias_para_txt()
+    una_grafica_histograma= Grafica_histograma()
 
-    #Metodos
+    #Metodoss
     #Metodo constructor
     def __init__(self,):
         pass
@@ -373,16 +379,20 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         grafico_seleccionado= self.un_cuadro_de_frecuencias.get_grafico_seleccionado()
         nombre_archivo_final=self.un_cuadro_de_frecuencias.get_nombre_archivo_final()
         
-        if(self.un_cuadro_de_frecuencias.get_grafico_seleccionado() ==1 or self.un_cuadro_de_frecuencias.get_grafico_seleccionado() ==12):
+        if(grafico_seleccionado ==1 or grafico_seleccionado ==12):
             
-            print("Tabla ",self.un_cuadro_de_frecuencias.get_numero_lista())
+            self.una_grafica_de_frecuencias.dibujar(tabla)
+            self.grafico_frecuencia_para_txt.dibujar(tabla,nombre_archivo_final)
             
-            with open(self.un_cuadro_de_frecuencias.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:
-                f.write("Tabla " +str(self.un_cuadro_de_frecuencias.get_numero_lista()) + '\n')
-
-            self.una_grafica_de_frecuencias.dibujar(tabla,nombre_archivo_final)
+        if(grafico_seleccionado== 3 or grafico_seleccionado==12 ):
+            self.una_grafica_histograma.dibujar(tabla,nombre_archivo_final)
             
-        if(self.un_cuadro_de_frecuencias.get_grafico_seleccionado() !=1):        
+        #condicional para llamar a la grafica de barras si se el usuario ingresa el número que lo llam (6)    
+        if(grafico_seleccionado ==6 or grafico_seleccionado ==12):
+            
+            self.un_diagra_de_barras.dibujar(tabla,nombre_archivo_final)
+        
+            
+        if(grafico_seleccionado==2 or grafico_seleccionado ==7 or grafico_seleccionado==9 or grafico_seleccionado==12):        
             self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari, intervalos, grafico_seleccionado, nombre_archivo_final)
         
-  

@@ -87,7 +87,16 @@ class Controlador_vista_medidas_de_variabilidad:
     
     #metodo para calcular la varianza, tanto poblacional como muestral
     def calcular_la_varianza(self, todos_los_datos, sum_cuadra_desvi_resp_media, cuartil_1, cuartil_3,cuartil_2):
-        tipo_de_varianza=int(input("¿Que tipo de varianza desea que se emplee? 1.Poblacional  2.Muestral \n"))
+        while True:
+            try:
+                tipo_de_varianza = int(input("¿Qué tipo de varianza desea que se emplee? 1. Poblacional  2. Muestral \n"))
+                if tipo_de_varianza>=1 and tipo_de_varianza <=2:
+                    break
+                else:
+                    print("Por favor, ingrese 1 para Poblacional o 2 para Muestral.")
+            except ValueError:
+                print("Entrada no válida. Por favor, ingrese un número (1 o 2).")
+
         desicion_varianza=False
         
         #condicional para definirt tipo de varianza se empleará
@@ -127,9 +136,21 @@ class Controlador_vista_medidas_de_variabilidad:
         
     #metodo para definir tanto el numero menor como el numero mayor del rango que se va a evaluar con el teorema de shevychev
     def definir_el_numero_menor_del_rango(self, desviacion_estandar, cuartil_1, cuartil_3,cuartil_2):
-        num_menor_rango= float(input("Por favor ingrese el numero menor que desee que se analice con el teorema de chevyshev: "))
+        while True:
+            try:
+                num_menor_rango= float(input("Por favor ingrese el numero menor que desee que se analice con el teorema de chevyshev: "))
+                break
+            except ValueError:
+                print("Entrada no válida. Por favor, ingrese un número.")
         
-        num_mayor_rango= float(input("Por favor ingrese el numero mayor que desee que se analice con el teorema de chevyshev: "))
+
+        while True:
+            try:
+                num_mayor_rango= float(input("Por favor ingrese el numero mayor que desee que se analice con el teorema de chevyshev: "))
+                break
+            except ValueError:
+                print("Entrada no válida. Por favor, ingrese un número.")
+        
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
         self.un_cuadro_de_variabilidad.set_num_menor_rango(num_menor_rango)
@@ -187,12 +208,24 @@ class Controlador_vista_medidas_de_variabilidad:
         media_muestral= self.un_cuadro_de_variabilidad.get_media_muestral()
         
         #pregunta para saber si desea saber los puntos z de un dato extra o no
-        desea_puntos_z=int(input("\n¿Desea conocer a cuantas desviaciones estandar de la media muestral se encuentra algún numero en específico?  1.Si  2.No \n"))
-        while(desea_puntos_z<1 or desea_puntos_z>2):
-            desea_puntos_z=int(input("por favor elija una de las 2 opciones:  1.Si  2.No \n"))
+        while True:
+            try:
+                desea_puntos_z=int(input("\n¿Desea conocer a cuantas desviaciones estandar de la media muestral se encuentra algún numero en específico?  1.Si  2.No \n"))
+                if(desea_puntos_z==1 or desea_puntos_z==2):
+                    break
+                 
+            except ValueError:
+                print("Entrada no válida. Por favor, ingrese un número entre 1  y 2.")
         
         if(desea_puntos_z==1):
-            numero= float(input("Por favor ingrese el numero el cual desee conocer a cuantas desviaciones estandar se encuentra de la media_muestral:  "))
+            
+            while True:
+                try:
+                    numero= float(input("Por favor ingrese el numero el cual desee conocer a cuantas desviaciones estandar se encuentra de la media_muestral:  "))
+                    break
+                except ValueError:
+                    print("Por favor ingrese un número")
+            
             resultado_desicion= round((numero - media_muestral)/ desviacion_estandar,2)
             if (resultado_desicion<0):
                 resultado_desicion*=-1
@@ -241,10 +274,12 @@ class Controlador_vista_medidas_de_variabilidad:
         #obteniendo los datos ordenados en una sola variable
         medidas_de_variabilidad= self.un_cuadro_de_variabilidad.mostrar_los_datos_de_las_medidas_de_variabilidad(desea_puntos_z)
         
+        grafico_seleccionado=self.un_cuadro_de_variabilidad.get_grafico_seleccionado()
+        
         #llamada a la vista
-        if(self.un_cuadro_de_variabilidad.get_grafico_seleccionado()==7 or self.un_cuadro_de_variabilidad.get_grafico_seleccionado()==12):
+        if(grafico_seleccionado==7 or grafico_seleccionado==12):
             self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)
         
-        if(self.un_cuadro_de_variabilidad.get_grafico_seleccionado()==9 or self.un_cuadro_de_variabilidad.get_grafico_seleccionado()==12):    
+        if(grafico_seleccionado==9 or grafico_seleccionado==12):    
             self.un_diagrama_de_caja.dibujar(lista)
         
