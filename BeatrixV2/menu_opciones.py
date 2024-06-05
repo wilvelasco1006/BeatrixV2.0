@@ -60,7 +60,7 @@ class menu:
                     "\u2503  3. MOSTRAR HISTOGRAMA             7. TEOREMA DE CHEBYSHEV Y        11.                       \u2503"+"  \n"+
                     "\u2503                                        MEDIDAS DE VARIABILIDAD                                \u2503"+"  \n"+
                     "\u2503                                                                                               \u2503"+"  \n"+
-                    "\u2503  4. DIAGRAMA DE TORTAS             8. DIAGRAMA DE DISPERSION        12. TODOS LOS GRAFICOS    \u2503"+"  \n"+
+                    "\u2503  4. DIAGRAMA DE PASTEL             8. DIAGRAMA DE DISPERSION        12. TODOS LOS GRAFICOS    \u2503"+"  \n"+
                     '\u2517'+('\u2501')*95+'\u251B'+"  \n"
                 
                     )

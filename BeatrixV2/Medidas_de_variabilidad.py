@@ -1,9 +1,9 @@
 
 class Medidas_de_variabilidad:
     #atributos
-    nombre_archivo_final= None
-    grafico_seleccionado=None
-    todos_los_datos=list()
+    nombre_archivo_final= None#nombre del archivo.txt en el que se almacenarán todos los resultados del programa
+    grafico_seleccionado= None#numero de la operación a realizar seleccionado por  el usuario
+    todos_los_datos=list()#lista que contiene todos los datos de la lista que eligió el usuario
     rango=None
     rango_intercuartico=None
     media_muestral=None 

@@ -1,8 +1,8 @@
 
 class Medidas_de_tendencia_central:
     #Atributos
-    nombre_archivo_final= None
-    grafico_seleccionado=None
+    nombre_archivo_final= None#nombre del archivo.txt en el que se almacenarán todos los resultados del programa
+    grafico_seleccionado=None#numero de la operación a realizar seleccionado por  el usuario
     media= None
     mediana= None
     moda= None

@@ -5,6 +5,7 @@ from Grafica_de_frecuencias_para_txt import Grafica_de_frecuencias_para_txt
 from Grafica_de_barras import Grafica_de_barras
 from menu_opciones import menu
 from Grafica_histograma import Grafica_histograma
+from Grafica_de_pastel import Grafica_de_pastel
 
 class Controlador_vista_cuadro_de_frecuencias_intervalos():
     #Atributos
@@ -15,6 +16,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
     grafico_frecuencia_para_txt= Grafica_de_frecuencias_para_txt() # objeto para crear la gráfica de barras en el documento .txt con los resultados
     una_grafica_histograma= Grafica_histograma() # objeto para crear un histograma
     menu_graficos= menu() #objeto que me permite crear la gráfica que contiene las opciones de las operaciones a elegir
+    un_grafico_de_pastel= Grafica_de_pastel() # objeto que me permite crear un diagramma de pastel
 
     #Metodoss
     #Metodo constructor
@@ -432,6 +434,11 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         if(grafico_seleccionado== 3 or grafico_seleccionado==12 ): # condicional para que se ejecute en el caso de que la opción elegida haya sido el 1 o el 12 (tabla de frecuencias o todas las tablas)
             
             self.una_grafica_histograma.dibujar(tabla,nombre_archivo_final) #llamado a el metodo dibujar de la clase una_grafica_histograma que contruirá el histograma
+              
+              
+        if(grafico_seleccionado==4 or grafico_seleccionado==12): # condicional para que se ejecute en el caso de que la opción elegida haya sido el 4 o el 12 (diagrama de pastel o todas las tablas)
+            
+            self.un_grafico_de_pastel.dibujar(tabla, nombre_archivo_final) #llamado a el metodo dibujar de la clase Grafica_de_pastel que contruirá el diagrama de pastel
               
               
         if(grafico_seleccionado ==6 or grafico_seleccionado ==12):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 6 o el 12 (diagrama de barras o todas las tablas)

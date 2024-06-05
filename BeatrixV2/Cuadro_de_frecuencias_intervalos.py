@@ -1,11 +1,11 @@
 class Cuadro_de_frecuencias_intervalos:
     #atributos
     
+    nombre_archivo_final= None#nombre del archivo.txt en el que se almacenarán todos los resultados del programa
+    grafico_seleccionado= None#numero de la operación a realizar seleccionado por  el usuario
+    numero_lista=None #Número de la lista ingresado por el usuario sobre la cual se realizarán los análisis
+    
     #Aquí estoy diciendo que los atributos son listas o arreglos, solo que en python de por sí los arreglos son dinámicos
-    nombre_archivo_final= None
-    grafico_seleccionado=None
-    numero_lista=None
-    ver_grafico_num=None
     datos_temperatura_interior=[]
     datos_humedad_interior=[]
     datos_temperatura_exterior=[]
