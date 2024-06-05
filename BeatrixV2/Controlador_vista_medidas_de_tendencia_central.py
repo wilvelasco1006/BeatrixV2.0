@@ -136,5 +136,6 @@ class Controlador_vista_medidas_de_tendencia_central:
         
         if(grafico_seleccionado !=2):# condicional para que se ejecute en el caso de que la opción elegida haya sido cualquier número distinto al 2 (medidas de tendencia central)
             
+            #variable para crear un objeto medidas de variabilidad para rellenar y luego acceder a sus atributos
             self.unas_medidas_de_variabilidad.calcular_el_rango(todos_los_datos,cuartil_1,cuartil_3,cuartil_2, grafico_seleccionado , nombre_archivo_final)
         

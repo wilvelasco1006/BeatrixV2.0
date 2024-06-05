@@ -9,7 +9,7 @@ from Grafica_de_pastel import Grafica_de_pastel
 
 class Controlador_vista_cuadro_de_frecuencias_intervalos():
     #Atributos
-    un_cuadro_de_frecuencias= cuadro_de_frecuencias() #objeto para crear una tabla de frecuecias par a rellenar y luego acceder a sus atributos
+    un_cuadro_de_frecuencias= cuadro_de_frecuencias() #objeto para crear una tabla de frecuencias par a rellenar y luego acceder a sus atributos
     un_diagra_de_barras= Grafica_de_barras()# objeto para crear la gráfica de barras en la consola
     unas_medidas_de_tendencia= Controlador_vista_medidas_de_tendencia_central()# variable que me crea el objeto medidas de tendencia para luego llenar sus atributos y acceder a ellos
     una_grafica_de_frecuencias= accion_1() # objeto para crear una gráfica de barras

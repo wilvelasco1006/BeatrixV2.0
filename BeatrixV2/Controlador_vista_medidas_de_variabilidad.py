@@ -3,9 +3,9 @@ from Vista_medidas_de_variabilidad import Vista_medidas_de_variabilidad
 from Diagrama_de_caja import accion_9
 class Controlador_vista_medidas_de_variabilidad:
     #atributos
-    un_cuadro_de_variabilidad= Medidas_de_variabilidad()
-    una_vista_medidas_de_variabilidad= Vista_medidas_de_variabilidad()
-    un_diagrama_de_caja= accion_9()
+    un_cuadro_de_variabilidad= Medidas_de_variabilidad()#variable para crear un objeto medidas de variabilidad para rellenar y luego acceder a sus atributos
+    una_vista_medidas_de_variabilidad= Vista_medidas_de_variabilidad()# permite mostrar las medidas de variabilidad junto con el teorema de chevyshev
+    un_diagrama_de_caja= accion_9()# objeto que me permite mostrar el diagrama de caja 
     #metodos
     #metodo constructor
     def __init__(self):
@@ -15,12 +15,13 @@ class Controlador_vista_medidas_de_variabilidad:
     def calcular_el_rango(self,todos_los_datos, cuartil_1, cuartil_3,cuartil_2, grafico_seleccionado, nombre_archivo_final):
         rango= (max(todos_los_datos) - min(todos_los_datos))
         
-        self.un_cuadro_de_variabilidad.set_nombre_archivo_final(nombre_archivo_final)
+        self.un_cuadro_de_variabilidad.set_nombre_archivo_final(nombre_archivo_final)# proceso para almacenar el nombre del archivo .txt en el que se almacenan todo los resultados del análisis
         
-        self.un_cuadro_de_variabilidad.set_grafico_seleccionado(grafico_seleccionado)
+        self.un_cuadro_de_variabilidad.set_grafico_seleccionado(grafico_seleccionado)# proceso para almacenar el número de la operación a realizar ingresado por el usuario
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
-        self.un_cuadro_de_variabilidad.set_todos_los_datos(todos_los_datos)
+        self.un_cuadro_de_variabilidad.set_todos_los_datos(todos_los_datos)#proceso para guardar la lista de datos con las que se va a trabajar
+        
         self.un_cuadro_de_variabilidad.set_rango(rango)
         
         #llamado al siguiente metodo para continuar con el programa
@@ -28,7 +29,8 @@ class Controlador_vista_medidas_de_variabilidad:
         
     #metrodo que me permite calcular el rango intercuartico
     def calcular_el_rango_intercuartico(self, todos_los_datos,cuartil_1,cuartil_3,cuartil_2):
-        rango_inter_cuartico= round(cuartil_3 - cuartil_1, 3)
+        
+        rango_inter_cuartico= round(cuartil_3 - cuartil_1, 3)#proceso para callcular cual es el rango intercuartico
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
         self.un_cuadro_de_variabilidad.set_rango_intercuartico(rango_inter_cuartico)
@@ -88,31 +90,38 @@ class Controlador_vista_medidas_de_variabilidad:
     #metodo para calcular la varianza, tanto poblacional como muestral
     def calcular_la_varianza(self, todos_los_datos, sum_cuadra_desvi_resp_media, cuartil_1, cuartil_3,cuartil_2):
         while True:
-            try:
-                tipo_de_varianza = int(input("¿Qué tipo de varianza desea que se emplee? 1. Poblacional  2. Muestral \n"))
-                if tipo_de_varianza>=1 and tipo_de_varianza <=2:
+            
+            try:#try catch para que el programa no se detenga en el caso en que se ingresen datos en lugar de números 
+                
+                tipo_de_varianza = int(input("¿Qué tipo de varianza desea que se emplee? 1. Poblacional  2. Muestral \n")) #input para que el usuario defina el tipo de varianza que prefiera el usuario
+                
+                
+                if tipo_de_varianza>=1 and tipo_de_varianza <=2: # condicional para verificar que el dato ingresado se encuentre dentro del rango 1-2   S
                     break
                 else:
                     print("Por favor, ingrese 1 para Poblacional o 2 para Muestral.")
-            except ValueError:
+                    
+                    
+            except ValueError:# mensaje de error para cuand ose ingrese una letra en lugar de un número
                 print("Entrada no válida. Por favor, ingrese un número (1 o 2).")
 
         desicion_varianza=False
         
         #condicional para definirt tipo de varianza se empleará
-        if (tipo_de_varianza==1):
-            desicion_varianza=True
+        if (tipo_de_varianza==1): #condicional para convetir el tipo de varianza seleccionada de un numero a un valor booleano 
+            
+            desicion_varianza=True #1=poblacional
         
         else:
-            desicion_varianza=False 
+            desicion_varianza=False #2=muestral
         
             
         #condicional para definir si la varianza será muestral o poblacional
         if(desicion_varianza==True):
-            varianza= round(sum_cuadra_desvi_resp_media/len(todos_los_datos),2)
+            varianza= round(sum_cuadra_desvi_resp_media/len(todos_los_datos),2) # proceso para calcular la varianza poblacional
             
         else:
-            varianza= round(sum_cuadra_desvi_resp_media/(len(todos_los_datos )- 1),2)
+            varianza= round(sum_cuadra_desvi_resp_media/(len(todos_los_datos )- 1),2) # proceso pra calcular la varianza muestral
             
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
@@ -125,6 +134,7 @@ class Controlador_vista_medidas_de_variabilidad:
     
     #metodo para calcular la desviacion estandar
     def calcular_desviacion_estandar(self, varianza, desicion_varianza, cuartil_1, cuartil_3,cuartil_2):
+        
         desviacion_estandar= round(varianza ** 0.5,2) #sacar la raiz cuadrada de la varianza
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
@@ -136,20 +146,24 @@ class Controlador_vista_medidas_de_variabilidad:
         
     #metodo para definir tanto el numero menor como el numero mayor del rango que se va a evaluar con el teorema de shevychev
     def definir_el_numero_menor_del_rango(self, desviacion_estandar, cuartil_1, cuartil_3,cuartil_2):
-        while True:
+        
+        
+        while True:# try catch para que el programa no deje de ejecutarse en el caso de que se ingrese texto en lugar de números     
             try:
-                num_menor_rango= float(input("Por favor ingrese el numero menor que desee que se analice con el teorema de chevyshev: "))
+                num_menor_rango= float(input("Por favor ingrese el numero menor que desee que se analice con el teorema de chevyshev: "))#numero menor para definir un rango y calcular el porcentaje de datos que se encuentran en ese reango
                 break
+            
             except ValueError:
-                print("Entrada no válida. Por favor, ingrese un número.")
+                print("Entrada no válida. Por favor, ingrese un número.")# mensaje de error para el caso de que se ingrese texto en lugar de números
         
 
         while True:
-            try:
-                num_mayor_rango= float(input("Por favor ingrese el numero mayor que desee que se analice con el teorema de chevyshev: "))
+            try:# try catch para que el programa no deje de ejecutarse en el caso de que se ingrese texto en lugar de números 
+                
+                num_mayor_rango= float(input("Por favor ingrese el numero mayor que desee que se analice con el teorema de chevyshev: "))#numero mayor para definir un rango y calcular el porcentaje de datos que se encuentran en ese reango
                 break
             except ValueError:
-                print("Entrada no válida. Por favor, ingrese un número.")
+                print("Entrada no válida. Por favor, ingrese un número.")# menjsae de error para el caso de que se ingrese texto en lugar de números
         
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
@@ -164,7 +178,7 @@ class Controlador_vista_medidas_de_variabilidad:
     def calcular_puntos_z_interno(self, desviacion_estandar, num_menor_rango, num_mayor_rango, cuartil_1, cuartil_3,cuartil_2):
         media_muestral= self.un_cuadro_de_variabilidad.get_media_muestral()#Se obtiene la lista todos los datos tras usar el metodo get para pedirsela al objeto un)cuadro_de_varibilidad
         
-        #me dice a cuantas desviaciones estandar se encuentra un numero de la media muestra
+        #proceso para saber la cantidad de desviaciones estandar entre el numero mayor y menor de la media muestral o poblacional
         desviacion_num_menor= round((num_menor_rango -media_muestral)/ desviacion_estandar,4)
         desviacion_num_mayor= round((num_mayor_rango - media_muestral)/ desviacion_estandar,4)
 
@@ -203,28 +217,32 @@ class Controlador_vista_medidas_de_variabilidad:
         #llamado al siguiente metodo para continuar con el programa
         self.puntos_z_requeridos(desviacion_estandar, cuartil_1, cuartil_3,cuartil_2)
     
+    
     #metodo para calcular cuantas desviaciones estandar de la media muestral se encuantra algun dato que desee conocer el usuario
     def puntos_z_requeridos(self, desviacion_estandar, cuartil_1, cuartil_3,cuartil_2):
         media_muestral= self.un_cuadro_de_variabilidad.get_media_muestral()
         
         #pregunta para saber si desea saber los puntos z de un dato extra o no
         while True:
-            try:
+            try:#try catch para que el programa no deje de ejecutarse en el caso
+                
                 desea_puntos_z=int(input("\n¿Desea conocer a cuantas desviaciones estandar de la media muestral se encuentra algún numero en específico?  1.Si  2.No \n"))
                 if(desea_puntos_z==1 or desea_puntos_z==2):
                     break
                  
-            except ValueError:
-                print("Entrada no válida. Por favor, ingrese un número entre 1  y 2.")
+            except ValueError:  
+                print("Entrada no válida. Por favor, ingrese un número entre 1  y 2.")# mensaje de error para el caso de que se ingrese texto en lugar de números
         
         if(desea_puntos_z==1):
             
             while True:
                 try:
+                    #En el caso de que el usuario si desee conocer la cantidad de vaiaciones estandar a la que se encuentra un número lo podrá ingresar a cotinuación 
                     numero= float(input("Por favor ingrese el numero el cual desee conocer a cuantas desviaciones estandar se encuentra de la media_muestral:  "))
                     break
                 except ValueError:
-                    print("Por favor ingrese un número")
+                    
+                    print("Por favor ingrese un número")# mensaje de error para el caso de que se ingrese texto en lugar de números
             
             resultado_desicion= round((numero - media_muestral)/ desviacion_estandar,2)
             if (resultado_desicion<0):
