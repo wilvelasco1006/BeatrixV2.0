@@ -104,6 +104,8 @@ class Controlador_vista_medidas_de_variabilidad:
                     
             except ValueError:# mensaje de error para cuand ose ingrese una letra en lugar de un número
                 print("Entrada no válida. Por favor, ingrese un número (1 o 2).")
+                
+        
 
         desicion_varianza=False
         
@@ -111,10 +113,13 @@ class Controlador_vista_medidas_de_variabilidad:
         if (tipo_de_varianza==1): #condicional para convetir el tipo de varianza seleccionada de un numero a un valor booleano 
             
             desicion_varianza=True #1=poblacional
-        
+            with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# proceso para guardar que la varianza escogida fue la poblacional
+                f.write("tipo de varianza escogida: varianza poblacional \n")
+                    
         else:
             desicion_varianza=False #2=muestral
-        
+            with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# # proceso para guardar que la varianza escogida fue la muestral
+                f.write("tipo de varianza escogida: varianza muestral \n")
             
         #condicional para definir si la varianza será muestral o poblacional
         if(desicion_varianza==True):
@@ -156,7 +161,9 @@ class Controlador_vista_medidas_de_variabilidad:
             except ValueError:
                 print("Entrada no válida. Por favor, ingrese un número.")# mensaje de error para el caso de que se ingrese texto en lugar de números
         
-
+        with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# proceso para innsertar el numero menor escogido para definir un rango con el teorema de chevyshev en el archivo .txt
+                    f.write("numero menor escogido para definir un rango con el teorema de chevyshev: "+ num_menor_rango +"\n")
+            
         while True:
             try:# try catch para que el programa no deje de ejecutarse en el caso de que se ingrese texto en lugar de números 
                 
@@ -164,6 +171,9 @@ class Controlador_vista_medidas_de_variabilidad:
                 break
             except ValueError:
                 print("Entrada no válida. Por favor, ingrese un número.")# menjsae de error para el caso de que se ingrese texto en lugar de números
+        
+        with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# proceso para innsertar el numero mayor escogido para definir un rango con el teorema de chevyshev en el archivo .txt
+                    f.write("numero mayor escogido para definir un rango con el teorema de chevyshev: "+ num_mayor_rango +"\n")
         
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
@@ -233,6 +243,10 @@ class Controlador_vista_medidas_de_variabilidad:
             except ValueError:  
                 print("Entrada no válida. Por favor, ingrese un número entre 1  y 2.")# mensaje de error para el caso de que se ingrese texto en lugar de números
         
+        with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# proceso para insertar la pregunta sobre si se desea conocer la distancia en desviaciones estandar de un número enel archivo .txt
+                    f.write("\n¿Desea conocer a cuantas desviaciones estandar de la media muestral se encuentra algún numero en específico?  1.Si  2.No \n")
+                    
+        
         if(desea_puntos_z==1):
             
             while True:
@@ -241,17 +255,24 @@ class Controlador_vista_medidas_de_variabilidad:
                     numero= float(input("Por favor ingrese el numero el cual desee conocer a cuantas desviaciones estandar se encuentra de la media_muestral:  "))
                     break
                 except ValueError:
-                    
+
                     print("Por favor ingrese un número")# mensaje de error para el caso de que se ingrese texto en lugar de números
             
-            resultado_desicion= round((numero - media_muestral)/ desviacion_estandar,2)
+            resultado_desicion= round((numero - media_muestral)/ desviacion_estandar,2) #proceso par calcular la cantidad de desviaciones estandar del número ingresado
             if (resultado_desicion<0):
                 resultado_desicion*=-1
+                
+            with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# # metodo para almacenar el numero que el cliente eligió para conocer su distancia con la media muestral en desviaciones estandar en el archivo .txt
+                    f.write("el número elegido para conocer su distancia con la media muestral o poblacional en desviaciones estandar es  "+resultado_desicion +"\n")
         
         #En el caso en que no se quiera saber los puntos z de otro dato en especifico saldrá un mensaje de no se ingresó ningún numero
         else:
             numero= "No se ingresó ningún numero"
             resultado_desicion= "No se ingresó ningún numero"
+            
+            with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# metodo para almacenar el mensaje de que no se eligió ningún numero para conocer su distancia con la media muestral en desviaciones estandar en el archivo .txt
+                    f.write("No se ingresó ningún numero \n")
+        
             
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
         self.un_cuadro_de_variabilidad.set_numero_puntos_z(numero)    
@@ -265,39 +286,44 @@ class Controlador_vista_medidas_de_variabilidad:
         media_muestral= self.un_cuadro_de_variabilidad.get_media_muestral()
 
         for i in range (3, 0, -1 ):
-            tabla[0].append(str(round(media_muestral - (desviacion_estandar*i) , 1)))    
+            tabla[0].append(str(round(media_muestral - (desviacion_estandar*i) , 1))) # proceso para almacenar los valores menores a la media muestral que se pondrán en la parte inferior del teorema de chevyshev  
         
         for i in range(4):
-            tabla[0].append(str(round(media_muestral + (desviacion_estandar*i), 1)))  
+            tabla[0].append(str(round(media_muestral + (desviacion_estandar*i), 1)))  # proceso para almacenar los valores mayores a la media muestral que se pondrán en la parte inferior del teorema de chevyshev  
             
         self.un_cuadro_de_variabilidad.set_media_y_desviaciones_estandar(tabla)    
             
         self.preparar_para_mostrar_diagrama_de_caja(desea_puntos_z,tabla, cuartil_1, cuartil_3,cuartil_2)
         
     def preparar_para_mostrar_diagrama_de_caja(self,desea_puntos_z,tabla, cuartil_1, cuartil_3,cuartil_2):
-        todos_los_datos= self.un_cuadro_de_variabilidad.get_todos_los_datos()
+        
         rango_intercuartico=self.un_cuadro_de_variabilidad.get_rango_intercuartico()
-        limite_inferior=round((cuartil_1- rango_intercuartico) , 1)
-        limite_superior= round((cuartil_3 + rango_intercuartico) , 1)
+        
+        limite_inferior=round((cuartil_1- rango_intercuartico) , 1)#proceso para calcular el límite inferior de los datos para el diagrama de caja
+        
+        limite_superior= round((cuartil_3 + rango_intercuartico) , 1)#proceso para calcular el límite superior de los datos para el diagrama de caja
         
         cuartil_1_redondeado=round(cuartil_1 , 1)
         
-        lista=[[limite_inferior,cuartil_1_redondeado,cuartil_2,cuartil_3,limite_superior]]
+        lista=[[limite_inferior,cuartil_1_redondeado,cuartil_2,cuartil_3,limite_superior]]# lista que contendrá los valores de la parte de abajo del diagrama de caja
         
         
         self.llamado_para_mostrar_los_datos(desea_puntos_z,tabla,lista)
         
     #metodo para enviarle los datos organizados a la vista para que los muestre allá
     def llamado_para_mostrar_los_datos(self,desea_puntos_z,tabla,lista):
-        #obteniendo los datos ordenados en una sola variable
+        #obteniendo los datos ordenados en una sola variable para mostrarla posteriormente
         medidas_de_variabilidad= self.un_cuadro_de_variabilidad.mostrar_los_datos_de_las_medidas_de_variabilidad(desea_puntos_z)
         
+        #variable que contiene el número de la operación elegida por el usuario
         grafico_seleccionado=self.un_cuadro_de_variabilidad.get_grafico_seleccionado()
         
-        #llamada a la vista
-        if(grafico_seleccionado==7 or grafico_seleccionado==12):
-            self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)
         
-        if(grafico_seleccionado==9 or grafico_seleccionado==12):    
-            self.un_diagrama_de_caja.dibujar(lista)
+        if(grafico_seleccionado==7 or grafico_seleccionado==12):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 7 o el 12 (medidas de variabilidad y teorema de chevyshev o todas las tablas)
+            
+            self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)# llamado a la clase que imprimirá los resultados de las medidas de variabilidad y el teorema de chevyshev
+        
+        if(grafico_seleccionado==9 or grafico_seleccionado==12):   # condicional para que se ejecute en el caso de que la opción elegida haya sido el 8 o el 12 (diagrama de caja o todas las tablas)
+             
+            self.un_diagrama_de_caja.dibujar(lista)# llamado a la clase que construirá el diagrama de caja
         

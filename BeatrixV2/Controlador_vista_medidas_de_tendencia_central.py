@@ -17,7 +17,7 @@ class Controlador_vista_medidas_de_tendencia_central:
     #Se debe agregar la entrada de un dato de tipo booleano tipo desicion para cambiar la forma de sacar el promedio se se ingresan datos string
     def calcular_la_media(self,todos_los_datos,frecuencia_de_apari,datos_para_evaluar, grafico_seleccionado, nombre_archivo_final):
         
-        self.unas_medidias_de_tendencia.set_nombre_archivo_final(nombre_archivo_final)# proceso para almacenar el nombre del archivo .txt en el que se almacenan todo los resultados del anális
+        self.unas_medidias_de_tendencia.set_nombre_archivo_final(nombre_archivo_final)# proceso para almacenar el nombre del archivo .txt en el que se almacenan todo los resultados del análisis
         
         self.unas_medidias_de_tendencia.set_grafico_seleccionado(grafico_seleccionado)# proceso para almacenar el número de la operación a realizar ingresado por el usuario
         
@@ -131,7 +131,7 @@ class Controlador_vista_medidas_de_tendencia_central:
         
         if(grafico_seleccionado==2 or grafico_seleccionado ==12):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 2 o el 12 (medidas de tendencia centarl o todas las tablas)
             
-            self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos) # metodo para mostrar las medidas de tendencia central
+            self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos,nombre_archivo_final) # metodo para mostrar las medidas de tendencia central
         
         
         if(grafico_seleccionado !=2):# condicional para que se ejecute en el caso de que la opción elegida haya sido cualquier número distinto al 2 (medidas de tendencia central)
