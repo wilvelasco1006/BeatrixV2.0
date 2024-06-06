@@ -1,8 +1,8 @@
-class accion_4:
+class Grafica_de_pastel:
     #Constructor 
     def __init__(self):
         pass
-    def dibujar (self,intervalos):
+    def dibujar (self,intervalos, nombre_archivo_final):
         valores_en_gragos=[]
         for i in intervalos:
             valores_en_gragos.append(i[6])
@@ -132,6 +132,6 @@ class accion_4:
         return (intervalos[len(intervalos)-1][7])
                 
         
-ejecutar_4 = accion_4()
+'''ejecutar_4 = accion_4()
 lista_intervalos = [['1',2,1,3,4,5,14],['1',1,1,45,89,456,1234]]
-ejecutar_4.dibujar(lista_intervalos)
+ejecutar_4.dibujar(lista_intervalos)'''

@@ -68,11 +68,11 @@ class menu:
 
         while True:
             try:
-                respuesta = int(input("Ingrese un número entre 1 y 12: "))
-                if 1 <= respuesta <= 12:
+                respuesta = int(input("Ingrese un número entre 1 y 9: "))
+                if 1 <= respuesta <= 9:
                     return respuesta
                 else:
-                    print("Debe ingresar una de las 12 opciones.")
+                    print("Debe ingresar una de las 9 opciones.")
             except ValueError:
                 print("Debe ingresar un número válido.")
  
