@@ -436,9 +436,9 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
             self.una_grafica_histograma.dibujar(tabla,nombre_archivo_final) #llamado a el metodo dibujar de la clase una_grafica_histograma que contruirá el histograma
               
               
-        if(grafico_seleccionado==4 or grafico_seleccionado==12): # condicional para que se ejecute en el caso de que la opción elegida haya sido el 4 o el 12 (diagrama de pastel o todas las tablas)
+        #if(grafico_seleccionado==4 or grafico_seleccionado==12): # condicional para que se ejecute en el caso de que la opción elegida haya sido el 4 o el 12 (diagrama de pastel o todas las tablas)
             
-            self.un_grafico_de_pastel.dibujar(tabla, nombre_archivo_final) #llamado a el metodo dibujar de la clase Grafica_de_pastel que contruirá el diagrama de pastel
+        #    self.un_grafico_de_pastel.dibujar(tabla, nombre_archivo_final) #llamado a el metodo dibujar de la clase Grafica_de_pastel que contruirá el diagrama de pastel
               
               
         if(grafico_seleccionado ==6 or grafico_seleccionado ==12):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 6 o el 12 (diagrama de barras o todas las tablas)

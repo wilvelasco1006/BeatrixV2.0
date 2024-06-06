@@ -3,6 +3,7 @@ class accion_9:
     def __init__(self):
         pass
     def dibujar (self,lista_datos):
+        print (lista_datos)
         for dato in (lista_datos):
             limite_inferior= dato[0]
             limite_inferior=self.modificador_dibujar_primario (limite_inferior)

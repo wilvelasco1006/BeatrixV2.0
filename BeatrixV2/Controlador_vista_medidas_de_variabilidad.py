@@ -162,7 +162,7 @@ class Controlador_vista_medidas_de_variabilidad:
                 print("Entrada no válida. Por favor, ingrese un número.")# mensaje de error para el caso de que se ingrese texto en lugar de números
         
         with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# proceso para innsertar el numero menor escogido para definir un rango con el teorema de chevyshev en el archivo .txt
-                    f.write("numero menor escogido para definir un rango con el teorema de chevyshev: "+ num_menor_rango +"\n")
+                    f.write("numero menor escogido para definir un rango con el teorema de chevyshev: "+ str(num_menor_rango) +"\n")
             
         while True:
             try:# try catch para que el programa no deje de ejecutarse en el caso de que se ingrese texto en lugar de números 
@@ -173,7 +173,7 @@ class Controlador_vista_medidas_de_variabilidad:
                 print("Entrada no válida. Por favor, ingrese un número.")# menjsae de error para el caso de que se ingrese texto en lugar de números
         
         with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# proceso para innsertar el numero mayor escogido para definir un rango con el teorema de chevyshev en el archivo .txt
-                    f.write("numero mayor escogido para definir un rango con el teorema de chevyshev: "+ num_mayor_rango +"\n")
+                    f.write("numero mayor escogido para definir un rango con el teorema de chevyshev: "+ str(num_mayor_rango) +"\n")
         
         
         #uso del objeto un_cuadro_de_variabilidad para guardar datos en los atributos del mismo
@@ -263,7 +263,7 @@ class Controlador_vista_medidas_de_variabilidad:
                 resultado_desicion*=-1
                 
             with open(self.un_cuadro_de_variabilidad.get_nombre_archivo_final(), 'a', encoding='utf-8') as f:# # metodo para almacenar el numero que el cliente eligió para conocer su distancia con la media muestral en desviaciones estandar en el archivo .txt
-                    f.write("el número elegido para conocer su distancia con la media muestral o poblacional en desviaciones estandar es  "+resultado_desicion +"\n")
+                    f.write("el número elegido para conocer su distancia con la media muestral o poblacional en desviaciones estandar es  "+ str(resultado_desicion) +"\n")
         
         #En el caso en que no se quiera saber los puntos z de otro dato en especifico saldrá un mensaje de no se ingresó ningún numero
         else:
