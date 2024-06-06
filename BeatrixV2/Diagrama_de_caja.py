@@ -3,7 +3,7 @@ class Diagrama_de_caja:
         pass
     def dibujar (self,intervalos,datos_atipicos):
         lista_odernar = []
-
+        print("\n\nDiagrama de caja\n\n")
         for mini_intervalo in intervalos:
             lista_odernar.extend(mini_intervalo)
 

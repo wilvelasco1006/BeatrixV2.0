@@ -453,7 +453,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         
         if(grafico_seleccionado ==5 or grafico_seleccionado ==9): # condicional para que se ejecute en el caso de que la opción elegida haya sido el 5 o el 9 (diagrama de ojiva o todas las tablas)
             
-            self.una_ojiva.dibujar(tabla)
+            self.una_ojiva.dibujar(tabla, nombre_archivo_final)
             
             if(grafico_seleccionado== 5):# condicional que me permite hacer que el programa se ejecute de nuevo para que mantenga abierto
                 self.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)

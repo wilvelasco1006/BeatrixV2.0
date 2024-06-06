@@ -3,6 +3,10 @@ class Diagrama_de_caja_para_txt:
     def __init__(self):
         pass
     def dibujar (self,lista_datos,datos_atipicos, nombre_archivo_final):
+        
+        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+            f.write("\n\nDiagrama de caja\n\n")
+            
         for dato in (lista_datos):
             limite_inferior= dato[0]
             limite_inferior=self.modificador_dibujar_primario (limite_inferior)

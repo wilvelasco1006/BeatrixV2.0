@@ -1,7 +1,13 @@
 class Grafico_de_ojiva:
     def __init__(self):
         pass
-    def dibujar (self,intervalos):
+    def dibujar (self,intervalos,nombre_archivo_final):
+        
+        print("\n\nGrafica de ojiva\n\n")
+        
+        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+            f.write("\n\nGrafica de ojiva\n\n")
+        
         lista_acomodar = [sublista[1] for sublista in intervalos]
         lista_con_intervalos= self.acomodar_lista(lista_acomodar)
         numero_de_intervalos=len(lista_con_intervalos)
@@ -40,8 +46,17 @@ class Grafico_de_ojiva:
                     contador-=1
 
             linea_contructura= ("") .join (mensaje)
+            
             print ("\033["+"7;30;45"+"m "+ str(lista_con_intervalos[i]).center(espacio_inter," ") +"\u2523"+" "+linea_contructura+" ".center(espacio_inter,"\u2800")+"\033[0m")
+        
+            with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+                f.write(" "+ str(lista_con_intervalos[i]).center(espacio_inter," ") +"\u2523"+" "+linea_contructura+" ".center(espacio_inter,"\u2800")+"" +"\n")
+        
         print ("\033["+"7;30;45"+"m "+" ".center(espacio_inter," ")+("\u2517")+"\u2501"+((("\u2501")+('\u2501')+('\u2501')+("\u2533")+('\u2501')+('\u2501')).center(espacio+1,"\u2501"))*(len(lista_acomodar))+" ".center(espacio_inter," ")+"\033[0m")
+        
+        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+            f.write(" "+" ".center(espacio_inter," ")+("\u2517")+"\u2501"+((("\u2501")+('\u2501')+('\u2501')+("\u2533")+('\u2501')+('\u2501')).center(espacio+1,"\u2501"))*(len(lista_acomodar))+" ".center(espacio_inter," ")+"" +"\n")
+        
         contador=[]
         num_contador=0
         for i in range (len(lista_con_nombre)):
@@ -51,9 +66,21 @@ class Grafico_de_ojiva:
         linea_intervalos= ((" ")*(espacio))  .join (contador)
 
         print ("\033["+"7;30;45"+"m"+" ".center(espacio+2,"\u2800")+linea_intervalos+" ".center(espacio,"\u2800")+"\033[0m")
+        
+        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+            f.write(""+" ".center(espacio+2,"\u2800")+linea_intervalos+" ".center(espacio,"\u2800")+"" +"\n")
+        
+        
         for i in  range (len(lista_con_nombre)):
+            print("\n\nGrafica de ojiva\n\n")
             print ("\033["+"7;30;45"+"m "+contador[i]+" = "+lista_con_nombre[i]+"\u2800"+"\033[0m") 
 
+            with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+                f.write("\n\nGrafica de ojiva\n\n")
+                f.write(" "+contador[i]+" = "+lista_con_nombre[i]+"\u2800"+"" +"\n")
+        
+    
+    
     def acomodar_lista(self, intervalos):
     # Eliminar duplicados convirtiendo la lista a un conjunto
         conjunto_intervalos = set(intervalos)
