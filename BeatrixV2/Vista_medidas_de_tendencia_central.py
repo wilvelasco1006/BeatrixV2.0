@@ -11,4 +11,4 @@ class Vista_medidas_de_tendencia_central:
         print("\n"+datos)
         
         with open(nombre_archivo_final, 'a', encoding='utf-8') as f:# proceso para guardar las medidas de tendencia central en el archivo .txt que almacena los resultados
-            f.write( "Medidas de tendencia central\n\n"+datos + '\n')
+            f.write( "\n\nMedidas de tendencia central\n\n"+datos + '\n')

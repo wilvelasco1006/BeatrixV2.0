@@ -3,6 +3,10 @@ class Grafica_histograma:
         pass
     def dibujar (self,intervalos, nombre_archivo_final):
         print("\n\nGrafica histograma\n\n")
+        
+        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+            f.write("\n\nGrafica histograma\n\n")
+            
         lista_acomodar = [sublista[1] for sublista in intervalos]
         lista_con_intervalos= self.acomodar_lista(lista_acomodar)
         numero_de_intervalos=len(lista_con_intervalos)

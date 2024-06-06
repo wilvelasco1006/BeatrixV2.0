@@ -129,7 +129,7 @@ class Controlador_vista_medidas_de_tendencia_central:
         nombre_archivo_final=self.unas_medidias_de_tendencia.get_nombre_archivo_final()# variable que contendrá el nombre del archivo en el que se almacenaran los resultados del análisis proporcionado por el usuario
         
         
-        if(grafico_seleccionado==2 or grafico_seleccionado ==12):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 2 o el 12 (medidas de tendencia centarl o todas las tablas)
+        if(grafico_seleccionado==2 or grafico_seleccionado ==9):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 2 o el 9 (medidas de tendencia centarl o todas las tablas)
             
             self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos,nombre_archivo_final) # metodo para mostrar las medidas de tendencia central
         

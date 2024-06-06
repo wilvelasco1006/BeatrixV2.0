@@ -156,7 +156,13 @@ class Controlador_vista_medidas_de_variabilidad:
         while True:# try catch para que el programa no deje de ejecutarse en el caso de que se ingrese texto en lugar de números     
             try:
                 num_menor_rango= float(input("Por favor ingrese el numero menor que desee que se analice con el teorema de chevyshev: "))#numero menor para definir un rango y calcular el porcentaje de datos que se encuentran en ese reango
-                break
+                
+            
+                if(num_menor_rango!=self.un_cuadro_de_variabilidad.get_media_muestral()):# condicional para que no lance error en el caso de que en el número menor se ingrese el mismo valor de la media muestral o poblacional
+                    break
+                
+                else:
+                    print("el número menor no puede ser igual que la media muestral")
             
             except ValueError:
                 print("Entrada no válida. Por favor, ingrese un número.")# mensaje de error para el caso de que se ingrese texto en lugar de números
@@ -168,7 +174,13 @@ class Controlador_vista_medidas_de_variabilidad:
             try:# try catch para que el programa no deje de ejecutarse en el caso de que se ingrese texto en lugar de números 
                 
                 num_mayor_rango= float(input("Por favor ingrese el numero mayor que desee que se analice con el teorema de chevyshev: "))#numero mayor para definir un rango y calcular el porcentaje de datos que se encuentran en ese reango
-                break
+                
+                if(num_mayor_rango!=self.un_cuadro_de_variabilidad.get_media_muestral()):# condicional para que no lance error en el caso de que en el número menor se ingrese el mismo valor de la media muestral o poblacional
+                    break
+                
+                else:
+                    print("el número mayor no puede ser igual que la media muestral")
+                
             except ValueError:
                 print("Entrada no válida. Por favor, ingrese un número.")# menjsae de error para el caso de que se ingrese texto en lugar de números
         
@@ -189,7 +201,9 @@ class Controlador_vista_medidas_de_variabilidad:
         media_muestral= self.un_cuadro_de_variabilidad.get_media_muestral()#Se obtiene la lista todos los datos tras usar el metodo get para pedirsela al objeto un)cuadro_de_varibilidad
         
         #proceso para saber la cantidad de desviaciones estandar entre el numero mayor y menor de la media muestral o poblacional
+               
         desviacion_num_menor= round((num_menor_rango -media_muestral)/ desviacion_estandar,4)
+
         desviacion_num_mayor= round((num_mayor_rango - media_muestral)/ desviacion_estandar,4)
 
          #llamado al siguiente metodo para continuar con el programa
@@ -319,11 +333,15 @@ class Controlador_vista_medidas_de_variabilidad:
         grafico_seleccionado=self.un_cuadro_de_variabilidad.get_grafico_seleccionado()
         
         
-        if(grafico_seleccionado==7 or grafico_seleccionado==12):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 7 o el 12 (medidas de variabilidad y teorema de chevyshev o todas las tablas)
+        if(grafico_seleccionado==7 or grafico_seleccionado==9):  # condicional para que se ejecute en el caso de que la opción elegida haya sido el 7 o el 9 (diagrama de caja o todas las tablas)
+             
+            self.un_diagrama_de_caja.dibujar(lista)# llamado a la clase que construirá el diagrama de caja
+            
+        
+        
+        if(grafico_seleccionado==8 or grafico_seleccionado==9):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 8 o el 9 (medidas de variabilidad y teorema de chevyshev o todas las tablas)
             
             self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)# llamado a la clase que imprimirá los resultados de las medidas de variabilidad y el teorema de chevyshev
         
-        if(grafico_seleccionado==9 or grafico_seleccionado==12):   # condicional para que se ejecute en el caso de que la opción elegida haya sido el 8 o el 12 (diagrama de caja o todas las tablas)
-             
-            self.un_diagrama_de_caja.dibujar(lista)# llamado a la clase que construirá el diagrama de caja
+        
         
