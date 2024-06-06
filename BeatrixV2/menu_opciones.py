@@ -23,14 +23,14 @@ class menu:
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2523" +('\u2501')*95+"\u252B"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2503                                DIGITE LA OPEACION QUE SEA HACER                               \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503  1. MOSTRAR TABLA DE FRECUENCIA    5. GRAFICO DE PUNTOS              9. DIAGRAMA DE CAJA      \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503  2. MEDIDAS DE TENDENCIA CENTRAL   6. MOSTRAR DIAGRAMA DE BARRAS    10. OJIVA                 \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503  1. MOSTRAR TABLA DE FRECUENCIA    5. OJIVA                       9. TODOS LOS GRAFICOS       \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503  3. MOSTRAR HISTOGRAMA             7. TEOREMA DE CHEBYSHEV Y        11.                       \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503                                        MEDIDAS DE VARIABILIDAD                                \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503  2. MEDIDAS DE TENDENCIA CENTRAL   6. MOSTRAR DIAGRAMA DE BARRAS                              \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
-        print ("\033["+"7;30;45"+"m "+"\u2503  4. DIAGRAMA DE TORTAS             8. DIAGRAMA DE DISPERSION        12. TODOS LOS GRAFICOS    \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503  3. MOSTRAR HISTOGRAMA             7. DIAGRAMA DE CAJA                                        \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503                                                                                               \u2503"+" \033[0m")
+        print ("\033["+"7;30;45"+"m "+"\u2503  4. DIAGRAMA DE TORTAS             8. TEOREMA DE CHEBYSHEV Y MEDIDAS DE VARIABILIDAD          \u2503"+" \033[0m")
         print ("\033["+"7;30;45"+"m "+'\u2517'+('\u2501')*95+'\u251B'+" \033[0m")
         
         
@@ -53,14 +53,14 @@ class menu:
                     "\u2503                                                                                               \u2503"+"  \n"+
                     "\u2523" +('\u2501')*95+"\u252B"+"  \n"+
                     "\u2503                                DIGITE LA OPEACION QUE SEA HACER                               \u2503"+"  \n"+
-                    "\u2503  1. MOSTRAR TABLA DE FRECUENCIA    5. GRAFICO DE PUNTOS              9. DIAGRAMA DE CAJA      \u2503"+"  \n"+
                     "\u2503                                                                                               \u2503"+"  \n"+
-                    "\u2503  2. MEDIDAS DE TENDENCIA CENTRAL   6. MOSTRAR DIAGRAMA DE BARRAS    10. OJIVA                 \u2503"+"  \n"+
+                    "\u2503  1. MOSTRAR TABLA DE FRECUENCIA    5. OJIVA                        9. TODOS LOS GRAFICOS      \u2503"+"  \n"+
                     "\u2503                                                                                               \u2503"+"  \n"+
-                    "\u2503  3. MOSTRAR HISTOGRAMA             7. TEOREMA DE CHEBYSHEV Y        11.                       \u2503"+"  \n"+
-                    "\u2503                                        MEDIDAS DE VARIABILIDAD                                \u2503"+"  \n"+
+                    "\u2503  2. MEDIDAS DE TENDENCIA CENTRAL   6. MOSTRAR DIAGRAMA DE BARRAS                              \u2503"+"  \n"+
                     "\u2503                                                                                               \u2503"+"  \n"+
-                    "\u2503  4. DIAGRAMA DE PASTEL             8. DIAGRAMA DE DISPERSION        12. TODOS LOS GRAFICOS    \u2503"+"  \n"+
+                    "\u2503  3. MOSTRAR HISTOGRAMA             7. DIAGRAMA DE CAJA                                        \u2503"+"  \n"+
+                    "\u2503                                                                                               \u2503"+"  \n"+
+                    "\u2503  4. DIAGRAMA DE PASTEL             8. TEOREMA DE CHEBYSHEV Y MEDIDAS DE VARIABILIDAD          \u2503"+"  \n"+
                     '\u2517'+('\u2501')*95+'\u251B'+"  \n"
                 
                     )
