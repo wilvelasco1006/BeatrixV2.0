@@ -1,15 +1,23 @@
 from Medidas_de_variabilidad import Medidas_de_variabilidad
 from Vista_medidas_de_variabilidad import Vista_medidas_de_variabilidad
-from Diagrama_de_caja import accion_9
+from Diagrama_de_caja import Diagrama_de_caja
+from Diagrama_de_caja_para_txt import Diagrama_de_caja_para_txt
+
 class Controlador_vista_medidas_de_variabilidad:
     #atributos
+    un_cuadro_de_frecuencia=None
     un_cuadro_de_variabilidad= Medidas_de_variabilidad()#variable para crear un objeto medidas de variabilidad para rellenar y luego acceder a sus atributos
     una_vista_medidas_de_variabilidad= Vista_medidas_de_variabilidad()# permite mostrar las medidas de variabilidad junto con el teorema de chevyshev
-    un_diagrama_de_caja= accion_9()# objeto que me permite mostrar el diagrama de caja 
+    un_diagrama_de_caja= Diagrama_de_caja()# objeto que me permite mostrar el diagrama de caja 
+    diagrama_de_caja_para_txt= Diagrama_de_caja_para_txt()
     #metodos
     #metodo constructor
     def __init__(self):
         pass
+    
+    def importar_cuadro_de_frecuencias(self):
+        from Controlador_vista_cuadro_de_frecuencias_intervalos import Controlador_vista_cuadro_de_frecuencias_intervalos
+        self.un_cuadro_de_frecuencia=Controlador_vista_cuadro_de_frecuencias_intervalos()
     
     #Metodo que me permite calcular el rango de los datos
     def calcular_el_rango(self,todos_los_datos, cuartil_1, cuartil_3,cuartil_2, grafico_seleccionado, nombre_archivo_final):
@@ -158,11 +166,11 @@ class Controlador_vista_medidas_de_variabilidad:
                 num_menor_rango= float(input("Por favor ingrese el numero menor que desee que se analice con el teorema de chevyshev: "))#numero menor para definir un rango y calcular el porcentaje de datos que se encuentran en ese reango
                 
             
-                if(num_menor_rango!=self.un_cuadro_de_variabilidad.get_media_muestral()):# condicional para que no lance error en el caso de que en el número menor se ingrese el mismo valor de la media muestral o poblacional
-                    break
+                if(num_menor_rango==self.un_cuadro_de_variabilidad.get_media_muestral()):# condicional para que no lance error en el caso de que en el número menor se ingrese el mismo valor de la media muestral o poblacional
+                    print("el número menor no puede ser igual que la media muestral")
                 
                 else:
-                    print("el número menor no puede ser igual que la media muestral")
+                    break
             
             except ValueError:
                 print("Entrada no válida. Por favor, ingrese un número.")# mensaje de error para el caso de que se ingrese texto en lugar de números
@@ -175,11 +183,12 @@ class Controlador_vista_medidas_de_variabilidad:
                 
                 num_mayor_rango= float(input("Por favor ingrese el numero mayor que desee que se analice con el teorema de chevyshev: "))#numero mayor para definir un rango y calcular el porcentaje de datos que se encuentran en ese reango
                 
-                if(num_mayor_rango!=self.un_cuadro_de_variabilidad.get_media_muestral()):# condicional para que no lance error en el caso de que en el número menor se ingrese el mismo valor de la media muestral o poblacional
-                    break
+                if(num_mayor_rango==self.un_cuadro_de_variabilidad.get_media_muestral()):# condicional para que no lance error en el caso de que en el número menor se ingrese el mismo valor de la media muestral o poblacional
+                    print("el número mayor no puede ser igual que la media muestral")
                 
                 else:
-                    print("el número mayor no puede ser igual que la media muestral")
+                    break
+                    
                 
             except ValueError:
                 print("Entrada no válida. Por favor, ingrese un número.")# menjsae de error para el caso de que se ingrese texto en lugar de números
@@ -322,26 +331,48 @@ class Controlador_vista_medidas_de_variabilidad:
         lista=[[limite_inferior,cuartil_1_redondeado,cuartil_2,cuartil_3,limite_superior]]# lista que contendrá los valores de la parte de abajo del diagrama de caja
         
         
-        self.llamado_para_mostrar_los_datos(desea_puntos_z,tabla,lista)
+        self.llamado_para_mostrar_los_datos(desea_puntos_z,tabla,lista,limite_superior)
         
+        
+    #metodo que me permitirá almacenar los datos atípicos   
+    def determinar_las_observaciones_atipicas(self, limite_superior):
+        
+        observ_atipicas = []
+
+        for dato in self.un_cuadro_de_variabilidad.get_todos_los_datos():
+            if dato > limite_superior and dato not in observ_atipicas:
+                observ_atipicas.append(dato)
+                
+        return observ_atipicas
+    
     #metodo para enviarle los datos organizados a la vista para que los muestre allá
-    def llamado_para_mostrar_los_datos(self,desea_puntos_z,tabla,lista):
+    def llamado_para_mostrar_los_datos(self,desea_puntos_z,tabla,lista,limite_superior):
         #obteniendo los datos ordenados en una sola variable para mostrarla posteriormente
         medidas_de_variabilidad= self.un_cuadro_de_variabilidad.mostrar_los_datos_de_las_medidas_de_variabilidad(desea_puntos_z)
         
         #variable que contiene el número de la operación elegida por el usuario
         grafico_seleccionado=self.un_cuadro_de_variabilidad.get_grafico_seleccionado()
         
+        nombre_archivo_final= self.un_cuadro_de_variabilidad.get_nombre_archivo_final()
         
         if(grafico_seleccionado==7 or grafico_seleccionado==9):  # condicional para que se ejecute en el caso de que la opción elegida haya sido el 7 o el 9 (diagrama de caja o todas las tablas)
              
-            self.un_diagrama_de_caja.dibujar(lista)# llamado a la clase que construirá el diagrama de caja
+            observ_atipicas= self.determinar_las_observaciones_atipicas(limite_superior)
+            self.un_diagrama_de_caja.dibujar(lista, observ_atipicas)# llamado a la clase que construirá el diagrama de caja
             
+            self.diagrama_de_caja_para_txt.dibujar(lista, observ_atipicas, nombre_archivo_final)
+            
+            if(grafico_seleccionado==7):# condicional que me permite hacer que el programa se ejecute de nuevo para que mantenga abierto
+                self.importar_cuadro_de_frecuencias()
+                self.un_cuadro_de_frecuencia.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)
         
         
         if(grafico_seleccionado==8 or grafico_seleccionado==9):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 8 o el 9 (medidas de variabilidad y teorema de chevyshev o todas las tablas)
             
             self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)# llamado a la clase que imprimirá los resultados de las medidas de variabilidad y el teorema de chevyshev
-        
+
+            if(grafico_seleccionado==8):# condicional que me permite hacer que el programa se ejecute de nuevo para que mantenga abierto
+                self.importar_cuadro_de_frecuencias()
+                self.un_cuadro_de_frecuencia.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)
         
         

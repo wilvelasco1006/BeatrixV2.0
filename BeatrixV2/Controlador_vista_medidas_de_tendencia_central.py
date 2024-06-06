@@ -5,6 +5,7 @@ from Controlador_vista_medidas_de_variabilidad import Controlador_vista_medidas_
 
 class Controlador_vista_medidas_de_tendencia_central:
     #Atributos
+    un_cuadro_de_frecuencia=None
     unas_medidias_de_tendencia= Medidas_de_tendencia_central()#variable para crear un objeto medidas de tendencia central para rellenar y luego acceder a sus atributos
     una_vista_de_medidas_de_tendencia= Vista_medidas_de_tendencia_central()# objeto para mostrar las medidas de tendencia central
     unas_medidas_de_variabilidad= Controlador_vista_medidas_de_variabilidad()#variable para posteriormente tener un objeto de medidas de variabilidad para rellenar y luego acceder a sus atributos
@@ -13,6 +14,10 @@ class Controlador_vista_medidas_de_tendencia_central:
     #metodo constructor
     def __init__(self):
         pass
+    
+    def importar_cuadro_de_frecuencias(self):
+        from Controlador_vista_cuadro_de_frecuencias_intervalos import Controlador_vista_cuadro_de_frecuencias_intervalos
+        self.un_cuadro_de_frecuencia=Controlador_vista_cuadro_de_frecuencias_intervalos()
     
     #Se debe agregar la entrada de un dato de tipo booleano tipo desicion para cambiar la forma de sacar el promedio se se ingresan datos string
     def calcular_la_media(self,todos_los_datos,frecuencia_de_apari,datos_para_evaluar, grafico_seleccionado, nombre_archivo_final):
@@ -132,7 +137,12 @@ class Controlador_vista_medidas_de_tendencia_central:
         if(grafico_seleccionado==2 or grafico_seleccionado ==9):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 2 o el 9 (medidas de tendencia centarl o todas las tablas)
             
             self.una_vista_de_medidas_de_tendencia.mostrar_las_medidas_de_tendencia(datos,nombre_archivo_final) # metodo para mostrar las medidas de tendencia central
-        
+
+            if(grafico_seleccionado==2):# condicional que me permite hacer que el programa se ejecute de nuevo para que mantenga abierto
+                
+                self.importar_cuadro_de_frecuencias()
+                self.un_cuadro_de_frecuencia.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)
+            
         
         if(grafico_seleccionado !=2):# condicional para que se ejecute en el caso de que la opción elegida haya sido cualquier número distinto al 2 (medidas de tendencia central)
             

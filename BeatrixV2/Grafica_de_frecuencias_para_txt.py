@@ -5,8 +5,11 @@ class Grafica_de_frecuencias_para_txt:
         pass
 
     # METODO PARA DIBUJAR LA TABLA DE FRECUENCIA
-    print("\n\n")
     def dibujar(self, intervalos, nombre_archivo_final):
+        
+        with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
+            f.write(("\n\nTabla de frecuencias\n\n"))
+        
         # CILO UTILIZADO PARA ASIGNARLE LOS VALORES A VARIABLES LAS CUALES SRAN LAS QUE SE VAN A IMPRIMIR
         tamano = self.saber_mayor(intervalos) + 1
         self.dibujar_indice(tamano, nombre_archivo_final)

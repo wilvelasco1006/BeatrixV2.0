@@ -6,6 +6,7 @@ from Grafica_de_barras import Grafica_de_barras
 from menu_opciones import menu
 from Grafica_histograma import Grafica_histograma
 from Grafica_de_pastel import Grafica_de_pastel
+from Grafica_de_ojiva import Grafico_de_ojiva
 
 class Controlador_vista_cuadro_de_frecuencias_intervalos():
     #Atributos
@@ -17,7 +18,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
     una_grafica_histograma= Grafica_histograma() # objeto para crear un histograma
     menu_graficos= menu() #objeto que me permite crear la gráfica que contiene las opciones de las operaciones a elegir
     un_grafico_de_pastel= Grafica_de_pastel() # objeto que me permite crear un diagramma de pastel
-
+    una_ojiva=Grafico_de_ojiva()# objeto que me permite crear una ojiva
     
     #Metodoss
     #Metodo constructor
@@ -431,23 +432,42 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
             # llamado al metodo que construirá la tabla de frecuencias en el archivo .txt que almacena los resuldaos del objeto grafica_de_frecuencias_para_txt
             self.grafico_frecuencia_para_txt.dibujar(tabla,nombre_archivo_final)
             #se envía una lista que contiene otras listas de nombre tabla que contiene todas las frecuencias, el nombre del intervalo y los grados por cada lista. También se envía el nombre del archivo final para almacenar los datos en el archivo.txt con los resultados
+            if(grafico_seleccionado ==1):
+                self.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)
+            
             
         if(grafico_seleccionado== 3 or grafico_seleccionado==9 ): # condicional para que se ejecute en el caso de que la opción elegida haya sido el 1 o el 9 (tabla de frecuencias o todas las tablas)
             
             self.una_grafica_histograma.dibujar(tabla,nombre_archivo_final) #llamado a el metodo dibujar de la clase una_grafica_histograma que contruirá el histograma
               
+            if(grafico_seleccionado== 3):# condicional que me permite hacer que el programa se ejecute de nuevo para que mantenga abierto
+                self.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)      
               
         if(grafico_seleccionado==4 or grafico_seleccionado==9): # condicional para que se ejecute en el caso de que la opción elegida haya sido el 4 o el 9 (diagrama de pastel o todas las tablas)
             
             self.un_grafico_de_pastel.dibujar(tabla, nombre_archivo_final) #llamado a el metodo dibujar de la clase Grafica_de_pastel que contruirá el diagrama de pastel
 
+            if(grafico_seleccionado== 4):# condicional que me permite hacer que el programa se ejecute de nuevo para que mantenga abierto
+                self.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)     
+        
+        
+        if(grafico_seleccionado ==5 or grafico_seleccionado ==9): # condicional para que se ejecute en el caso de que la opción elegida haya sido el 5 o el 9 (diagrama de ojiva o todas las tablas)
+            
+            self.una_ojiva.dibujar(tabla)
+            
+            if(grafico_seleccionado== 5):# condicional que me permite hacer que el programa se ejecute de nuevo para que mantenga abierto
+                self.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)
+              
               
         if(grafico_seleccionado ==6 or grafico_seleccionado ==9):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 6 o el 9 (diagrama de barras o todas las tablas)
             
             self.un_diagra_de_barras.dibujar(tabla,nombre_archivo_final)
+
+            if(grafico_seleccionado== 6):# condicional que me permite hacer que el programa se ejecute de nuevo para que mantenga abierto
+                self.ingresar_y_almacenar_todos_los_datos(nombre_archivo_final)     
+        
         
             # condicional para que se ejecute en el caso de que la opción elegida haya sido el 2, el 7, el 8 o el 9 (medidas de tendencia central, el diagrama de caja, teorema de chevyshev o todas las tablas)
-            
         if(grafico_seleccionado==2 or grafico_seleccionado ==7 or grafico_seleccionado==9 or grafico_seleccionado==9):        
             
             #llamado a la clase medidas_de_tendencia central para el calculo de las mismas, y posteriormente las medidas de variabilidad
