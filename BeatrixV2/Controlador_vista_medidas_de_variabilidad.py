@@ -3,6 +3,7 @@ from Vista_medidas_de_variabilidad import Vista_medidas_de_variabilidad
 from Diagrama_de_caja import Diagrama_de_caja
 from Diagrama_de_caja_para_txt import Diagrama_de_caja_para_txt
 
+
 class Controlador_vista_medidas_de_variabilidad:
     #atributos
     un_cuadro_de_frecuencia=None
@@ -369,7 +370,7 @@ class Controlador_vista_medidas_de_variabilidad:
         
         if(grafico_seleccionado==8 or grafico_seleccionado==9):# condicional para que se ejecute en el caso de que la opción elegida haya sido el 8 o el 9 (medidas de variabilidad y teorema de chevyshev o todas las tablas)
             
-            self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla)# llamado a la clase que imprimirá los resultados de las medidas de variabilidad y el teorema de chevyshev
+            self.una_vista_medidas_de_variabilidad.mostrar_las_medidas_de_variabilidad(medidas_de_variabilidad,tabla,nombre_archivo_final)# llamado a la clase que imprimirá los resultados de las medidas de variabilidad y el teorema de chevyshev
 
             if(grafico_seleccionado==8):# condicional que me permite hacer que el programa se ejecute de nuevo para que mantenga abierto
                 self.importar_cuadro_de_frecuencias()

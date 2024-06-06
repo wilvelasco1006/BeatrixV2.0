@@ -468,7 +468,7 @@ class Controlador_vista_cuadro_de_frecuencias_intervalos():
         
         
             # condicional para que se ejecute en el caso de que la opción elegida haya sido el 2, el 7, el 8 o el 9 (medidas de tendencia central, el diagrama de caja, teorema de chevyshev o todas las tablas)
-        if(grafico_seleccionado==2 or grafico_seleccionado ==7 or grafico_seleccionado==9 or grafico_seleccionado==9):        
+        if(grafico_seleccionado==2 or grafico_seleccionado ==7 or grafico_seleccionado==8 or grafico_seleccionado==9):        
             
             #llamado a la clase medidas_de_tendencia central para el calculo de las mismas, y posteriormente las medidas de variabilidad
             self.unas_medidas_de_tendencia.calcular_la_media(todos_los_datos,frecuencias_de_apari, intervalos, grafico_seleccionado, nombre_archivo_final) 

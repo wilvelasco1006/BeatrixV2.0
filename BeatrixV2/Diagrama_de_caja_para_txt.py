@@ -24,7 +24,7 @@ class Diagrama_de_caja_para_txt:
                             str(q3),
                             str(limite_superior),])
         with open(nombre_archivo_final, 'a', encoding='utf-8') as f:
-            f.write  ("\n\nDiagrama de caja\\n")  
+            f.write  ("\n\nDiagrama de caja\n\n")  
             f.write (" "+"  ________________________________________________________ "+" \n")
             f.write (" "+" |                                                        |"+" \n")
             f.write (" "+" |                                                        |"+" \n")
