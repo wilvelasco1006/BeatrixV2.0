@@ -47,12 +47,12 @@
 ### Inicio del programa
 Aquí se define el nombre del archivo `.txt` que registrará toda tu sesión de análisis:
 
-![Pantalla inicial](/BeatrixV2.0/img/Beatrix-init.png)
+![Pantalla inicial](/img/Beatrix-init.png)
 
 ### Menú principal
 Desde esta pantalla puedes elegir qué tipo de análisis deseas realizar:
 
-![Menú principal](/BeatrixV2.0/img/Beatrix-menu.png)
+![Menú principal](/img/Beatrix-menu.png)
 
 ---
 
